@@ -5,8 +5,18 @@ class NotesController < ApplicationController
   
   def create
     @note = Note.new(params[:note])
-    @note.save
+
+    if @note.save
+      return index
+    else
+      render :action => "new"
+    end
+  end
+  
+  def index
+    @notes = Note.all
     
-    head :created, :location => @note.id
+    # The "render :action => "index"" line must be explicitly stated so the #create method can call it upon creating a new Note.
+    render :action => "index"
   end
 end
