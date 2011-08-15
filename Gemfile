@@ -30,6 +30,8 @@ gem 'mysql'
 #   gem 'webrat'
 # end
 
+gem 'RedCloth'
+
 group :development, :test do
   gem 'ruby-debug19'
 end
