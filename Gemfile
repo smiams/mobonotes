@@ -31,6 +31,7 @@ gem 'mysql'
 # end
 
 gem 'RedCloth'
+gem 'capistrano'
 
 group :development, :test do
   gem 'ruby-debug19'
