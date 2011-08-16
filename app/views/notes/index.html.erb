@@ -2,7 +2,7 @@
 <% @notes.each do |note| %>
 	<li>
 		<p>
-			<%= note.content %>
+			<%= note.content %> <%= link_to "edit", edit_note_path(note) %> <%= link_to "show", note_path(note) %>
 		</p>
 	</li>
 <% end %>
