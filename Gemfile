@@ -32,6 +32,7 @@ gem 'mysql'
 
 gem 'RedCloth'
 gem 'capistrano'
+gem 'heroku'
 
 group :development, :test do
   gem 'ruby-debug19'
