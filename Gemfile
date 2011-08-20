@@ -36,6 +36,7 @@ gem 'heroku'
 
 group :development, :test do
   gem 'ruby-debug19'
+  gem 'factory_girl_rails', '1.1.0'
 end
 
 group :test do

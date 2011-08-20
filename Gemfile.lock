@@ -43,6 +43,10 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    factory_girl (2.0.4)
+    factory_girl_rails (1.1.0)
+      factory_girl (~> 2.0.0)
+      railties (>= 3.0.0)
     heroku (2.4.2)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
@@ -127,6 +131,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   capistrano
+  factory_girl_rails (= 1.1.0)
   heroku
   mysql
   rails (= 3.0.9)

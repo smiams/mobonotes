@@ -1,9 +1,19 @@
-<ul>
-<% @notes.each do |note| %>
+<ul class="date-list">
+	<% @note_creation_dates.each do |date, notes| %>
 	<li>
-		<p>
-			<%= note.content %> <%= link_to "edit", edit_note_path(note) %> <%= link_to "show", note_path(note) %>
-		</p>
+		<div class="note-date">
+			<%= date.to_s %>
+		</div>
+		<% notes.each do |note| %>
+		<div class="note-container">
+			<div class="note-time">
+				<%= link_to note.created_at.strftime("%I:%M %P"), edit_note_path(note) %>
+			</div>
+			<div class="note-content">
+				<%= note.content%>
+			</div>
+		</div>
+		<% end %>
 	</li>
-<% end %>
+	<% end %>
 </ul>

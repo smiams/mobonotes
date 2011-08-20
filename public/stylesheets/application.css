@@ -1,0 +1,53 @@
+body
+{
+	font-family: helvetica;
+}
+
+ul.date-list
+{
+	list-style-type: none;
+	margin: 0 0 0 100px;
+	padding: 0;
+	position: relative;
+}
+
+ul.date-list li
+{
+	margin-bottom: 10px;
+	position: relative;
+}
+
+div.note-date
+{
+	background-color: #F0F0F0;
+	color: #000000;
+	left: -100px;
+	padding: 5px;
+	position: absolute;
+}
+
+div.note-container
+{
+	position: relative;
+}
+
+div.note-container div.note-time
+{
+	padding: 5px;
+	position: absolute;
+}
+
+div.note-container div.note-time a
+{
+	color: #000000;
+	text-decoration: none;
+}
+
+div.note-container div.note-content
+{
+	color: #000000;
+	left: 100px;
+	padding: 5px;
+	position: relative;
+	top: 0;
+}
