@@ -2,8 +2,14 @@
 	<% @note_creation_dates.each do |date, notes| %>
 	<li>	    
 		<div class="note-date">
-			<%= date.strftime("%Y-%m-%d") %>
+			<h2>
+				<%= date.strftime("%Y-%m-%d") %>
+			</h2>
+			<div class="note-count">
+				<%= "#{notes.length.to_s} notes" %>
+			</div>
 		</div>
+		<div style="clear:both;"></div>
 		<ul>
   		<% if date == Time.zone.now.to_date %>
   		<li>
