@@ -41,10 +41,11 @@ div.note-date
 div.note-container
 {
   font-size: 14px;
-	margin-left: 130px;
-	position: relative;
-	padding-bottom: 10px;
 	margin-bottom: 10px;
+	margin-left: 130px;
+	padding-bottom: 10px;
+	position: relative;
+	width: 700px;
 }
 
 div.form-container
@@ -107,20 +108,20 @@ div.note-container div.note-content
 	top: 0;
 }
 
-div.note-container div.note-content p, div.note-container div.note-content h1, div.note-container div.note-content h2, div.note-container div.note-content h3
+div.note-content p, div.note-content h1, div.note-content h2, div.note-content h3
 {
   margin: 0 0 5px 0;
   padding: 0;
 }
 
-div.note-container div.note-content ul, div.note-container div.note-content ol
+div.note-content ul, div.note-content ol
 {
-  list-style-position: inside;
+  list-style-position: outside;
   padding: 0;
-  margin: 0 0 0 -10px;
+  margin: 0 0 0 5px;
 }
 
-div.note-container div.note-content ul ul, div.note-container div.note-content ol ol, div.note-container div.note-content ul ol, div.note-container div.note-content ol ul
+div.note-content ul ul, div.note-content ol ol, div.note-content ul ol, div.note-content ol ul
 {
   margin: 0;
 }
@@ -130,8 +131,12 @@ div.note-container div.note-content ul
   list-style-type: disc;
 }
 
-div.note-container div.note-content ul li, div.note-container div.note-content ol li
+div.note-content ul li, div.note-content ol li, div.note-content ul li ul li, div.note-content ol li ul li, div.note-content ul li ol li, div.note-content ol li ol li
 {
-  margin-left: 10px;
+  margin: 0 0 5px 10px;
 }
 
+div.note-content ul li ul, div.note-content ul li ol, div.note-content ol li ul, div.note-content ol li ol
+{
+  margin: 5px 0 0 0;
+}
