@@ -109,7 +109,7 @@ div.note-container div.note-content
 
 div.note-container div.note-content p, div.note-container div.note-content h1, div.note-container div.note-content h2, div.note-container div.note-content h3
 {
-  margin: 0;
+  margin: 0 0 5px 0;
   padding: 0;
 }
 
@@ -132,6 +132,6 @@ div.note-container div.note-content ul
 
 div.note-container div.note-content ul li, div.note-container div.note-content ol li
 {
-  margin: 10px;
+  margin-left: 10px;
 }
 
