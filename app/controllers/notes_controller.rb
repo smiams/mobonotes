@@ -56,7 +56,7 @@ class NotesController < ApplicationController
   end
   
   def _add_note_to_creation_date(note)
-    @note_creation_dates ||= { Time.now.to_date => [] }
+    @note_creation_dates ||= { Time.zone.now.to_date => [] }
     notes = @note_creation_dates[note.created_at.to_date] || []
     notes << note
     notes.sort! { |less, greater| greater.created_at <=> less.created_at }
