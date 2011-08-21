@@ -13,7 +13,7 @@ class NotesController < ApplicationController
     @note = Note.new(params[:note])
 
     if @note.save
-      return index
+      redirect_to :action => "index"
     else
       render :action => "new"
     end
@@ -27,7 +27,7 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     
     if @note.update_attributes(params[:note])
-      render :action => "show"
+      redirect_to :action => "index"
     else
       render :action => "edit"
     end
@@ -36,6 +36,7 @@ class NotesController < ApplicationController
   def index
     @notes = Note.all
     _sort_notes_for_display(@notes)
+
     # The "render :action => "index"" line must be explicitly stated so the #create method can call it upon creating a new Note.
     render :action => "index"
   end
@@ -48,7 +49,7 @@ class NotesController < ApplicationController
   end
   
   def _add_note_to_creation_date(note)
-    @note_creation_dates ||= {}
+    @note_creation_dates ||= { }
     notes = @note_creation_dates[note.created_at.to_date] || []
     notes << note
     notes.sort! { |less, greater| greater.created_at <=> less.created_at }

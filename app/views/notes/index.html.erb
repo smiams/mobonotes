@@ -1,19 +1,30 @@
 <ul class="date-list">
 	<% @note_creation_dates.each do |date, notes| %>
-	<li>
+	<li>	    
 		<div class="note-date">
 			<%= date.to_s %>
 		</div>
-		<% notes.each do |note| %>
-		<div class="note-container">
-			<div class="note-time">
-				<%= link_to note.created_at.strftime("%I:%M %P"), edit_note_path(note) %>
-			</div>
-			<div class="note-content">
-				<%= note.content%>
-			</div>
-		</div>
-		<% end %>
+		<ul>
+  		<% if date == Time.now.to_date %>
+  		<li>
+  		  <div class="note-container">
+    		  <%= render :partial => "form", :locals => {:url => notes_path, :method => :post, :button_text => "Create", :class_name => "inline-creation-form"} %>
+        </div>
+      </li>
+      <% end %>
+  		<% notes.each do |note| %>
+  		<li>
+    		<div class="note-container">
+    			<div class="note-time">
+    				<%= link_to note.created_at.strftime("%I:%M %P"), edit_note_path(note) %>
+    			</div>
+    			<div class="note-content">
+    				<%= BlueCloth.new(note.content).to_html.html_safe %>
+    			</div>
+    		</div>
+  		</li>
+  		<% end %>
+  	</ul>
 	</li>
 	<% end %>
 </ul>

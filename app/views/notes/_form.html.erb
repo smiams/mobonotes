@@ -1,0 +1,11 @@
+<div class="form-container">
+  <% form_for @note, :as => :note, :url => url, :method => method, :html => {:class => class_name} do |f| %>
+    <div class="textarea-container">
+  	  <%= f.text_area :content %>
+  	</div>
+  	<div class="button-container">
+	    <%= f.submit button_text, :class => "submit" %>
+	    <div style="clear:both;"></div>
+	  </div>
+  <% end %>
+</div>

@@ -30,7 +30,7 @@ gem 'mysql'
 #   gem 'webrat'
 # end
 
-gem 'RedCloth'
+gem 'bluecloth', '2.1.0'
 gem 'capistrano'
 gem 'heroku'
 

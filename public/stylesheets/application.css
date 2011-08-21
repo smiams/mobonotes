@@ -17,6 +17,13 @@ ul.date-list li
 	position: relative;
 }
 
+ul.date-list li ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 div.note-date
 {
 	background-color: #F0F0F0;
@@ -28,11 +35,41 @@ div.note-date
 
 div.note-container
 {
+	margin-left: 100px;
 	position: relative;
+}
+
+div.form-container
+{
+  padding: 5px;
+  position: relative;
+}
+
+div.form-container form textarea
+{
+  font-size: 14px;
+  height: 150px;
+  margin-right: -5px;
+  padding: 5px;
+  width: 100%;
+}
+
+div.form-container form div.textarea-container
+{
+  margin-right: 10px;
+}
+
+div.form-container input.submit
+{
+  clear: both;
+  display: block;
+  float: right;
+  margin: 5px 0px;
 }
 
 div.note-container div.note-time
 {
+	left: -100px;
 	padding: 5px;
 	position: absolute;
 }
@@ -46,8 +83,36 @@ div.note-container div.note-time a
 div.note-container div.note-content
 {
 	color: #000000;
-	left: 100px;
 	padding: 5px;
 	position: relative;
 	top: 0;
 }
+
+div.note-container div.note-content p, div.note-container div.note-content h1, div.note-container div.note-content h2, div.note-container div.note-content h3
+{
+  margin: 0;
+  padding: 0;
+}
+
+div.note-container div.note-content ul, div.note-container div.note-content ol
+{
+  list-style-position: inside;
+  padding: 0;
+  margin: 0 0 0 -10px;
+}
+
+div.note-container div.note-content ul ul, div.note-container div.note-content ol ol, div.note-container div.note-content ul ol, div.note-container div.note-content ol ul
+{
+  margin: 0;
+}
+
+div.note-container div.note-content ul
+{
+  list-style-type: disc;
+}
+
+div.note-container div.note-content ul li, div.note-container div.note-content ol li
+{
+  margin: 10px;
+}
+
