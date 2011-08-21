@@ -2,13 +2,13 @@
 	<% @note_creation_dates.each do |date, notes| %>
 	<li>	    
 		<div class="note-date">
-			<%= date.to_s %>
+			<%= date.strftime("%Y-%m-%d") %>
 		</div>
 		<ul>
   		<% if date == Time.now.to_date %>
   		<li>
   		  <div class="note-container">
-    		  <%= render :partial => "form", :locals => {:url => notes_path, :method => :post, :button_text => "Create", :class_name => "inline-creation-form"} %>
+    		  <%= render :partial => "form", :locals => {:url => notes_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
         </div>
       </li>
       <% end %>

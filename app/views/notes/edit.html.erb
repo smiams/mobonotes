@@ -1,4 +1,1 @@
-<% form_for @note do |f| %>
-	<%= f.text_area :content %>
-	<%= f.submit "Update" %>
-<% end %>
+<%= render :partial => "form", :locals => {:url => note_path(@note), :method => :put, :button_text => "Save", :class_name => "update-form"} %>
