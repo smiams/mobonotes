@@ -133,7 +133,7 @@ div.note-container div.note-content ul
 
 div.note-content ul li, div.note-content ol li, div.note-content ul li ul li, div.note-content ol li ul li, div.note-content ul li ol li, div.note-content ol li ol li
 {
-  margin: 0 0 5px 10px;
+  margin: 0 0 5px 15px;
 }
 
 div.note-content ul li ul, div.note-content ul li ol, div.note-content ol li ul, div.note-content ol li ol
