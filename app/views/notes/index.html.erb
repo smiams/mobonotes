@@ -16,6 +16,7 @@
   		<li>
     		<div class="note-container">
     			<div class="note-time">
+    			  <%= link_to "delete", note_path(note), :method => :delete, :class => "delete" %>
     				<%= link_to note.created_at.strftime("%I:%M %P"), edit_note_path(note) %>
     			</div>
     			<div class="note-content">

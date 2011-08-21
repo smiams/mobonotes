@@ -41,6 +41,13 @@ class NotesController < ApplicationController
     render :action => "index"
   end
   
+  def destroy
+    @note = Note.find(params[:id])
+    
+    @note.destroy
+    redirect_to :action => "index"
+  end
+  
   private
   
   def _sort_notes_for_display(notes)

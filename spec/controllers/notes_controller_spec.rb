@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe NotesController do
   STANDARD_FROZEN_TIME = Time.parse("2011-08-20 00:00:00 UTC")
+  
   describe "GET show" do
     it "renders the new template" do
       note = Factory(:note)
@@ -34,6 +35,18 @@ describe NotesController do
       }.to_not change{Note.count}
       
       response.should render_template("new")
+    end
+  end
+  
+  describe "DELETE destroy" do
+    before(:each) do
+      @note = Factory(:note)
+    end
+    
+    it "deletes a note" do
+      expect {
+        delete :destroy, :id => @note.id
+      }.to change {Note.count}.from(1).to(0)
     end
   end
   

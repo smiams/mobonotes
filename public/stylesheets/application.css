@@ -3,6 +3,11 @@ body
 	font-family: helvetica;
 }
 
+div.main-content
+{
+  margin: 20px;
+}
+
 ul.date-list
 {
 	list-style-type: none;
@@ -35,8 +40,11 @@ div.note-date
 
 div.note-container
 {
-	margin-left: 100px;
+  font-size: 14px;
+	margin-left: 130px;
 	position: relative;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 div.form-container
@@ -69,7 +77,7 @@ div.form-container input.submit
 
 div.note-container div.note-time
 {
-	left: -100px;
+	left: -130px;
 	padding: 5px;
 	position: absolute;
 }
@@ -80,10 +88,21 @@ div.note-container div.note-time a
 	text-decoration: none;
 }
 
+div.note-container div.note-time a.delete
+{
+  font-size: 12px;
+  color: red;
+}
+
+div.note-container div.note-time a.delete:hover
+{
+  text-decoration: underline;  
+}
+
 div.note-container div.note-content
 {
 	color: #000000;
-	padding: 5px;
+  padding: 5px;
 	position: relative;
 	top: 0;
 }
