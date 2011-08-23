@@ -30,25 +30,26 @@ ul.date-list li ul
 
 div.note-date
 {
-	color: #000000;
-	padding: 5px 5px 10px 5px;
+	background-color: #2C2C2C;
+	color: #CCCCCC;
+	padding: 5px;
 	margin-bottom: 10px;
-	border-bottom: 1px solid black;
 	float: left;
-	width: 100%;
+	width: 100%;	
 }
 
 div.note-date h2
 {
 	float: left;
-	position: relative;
-	top: 0;
-	left: 0;
 	font-size: 15px;
-	width: 130px;
+	font-weight: normal;
+	left: 0;
+	line-height: 100%;
 	margin: 0;
 	padding: 0;
-	line-height: 100%;
+	position: relative;
+	top: 0;
+	width: 130px;
 }
 
 div.note-date div.note-count
