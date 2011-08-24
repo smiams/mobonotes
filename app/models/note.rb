@@ -1,5 +1,5 @@
-class Note < ActiveRecord::Base
-  attr_accessible :content
-  
+class Note < ActiveRecord::Base  
   validates :content, :presence => true
+
+  attr_accessible :content  
 end

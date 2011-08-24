@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe NotesController do
-  STANDARD_FROZEN_TIME = Time.parse("2011-08-20 00:00:00 UTC")
-  
   describe "GET show" do
     it "renders the new template" do
       note = Factory(:note)

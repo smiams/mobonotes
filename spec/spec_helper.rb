@@ -24,4 +24,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  
+  # For TimeCop
+  STANDARD_FROZEN_TIME = Time.parse("2011-08-20 00:00:00 UTC")
 end
