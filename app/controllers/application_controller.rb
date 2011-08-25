@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  # before_filter :get_current_user
+  before_filter :get_current_user
   before_filter :_set_time_zone
   
   def get_current_user

@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # skip_before_filter :get_current_user, :except => [:destroy]
+  skip_before_filter :get_current_user, :except => [:destroy]
 
   def new
     render :action => "new"
