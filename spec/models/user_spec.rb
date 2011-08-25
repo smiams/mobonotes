@@ -41,4 +41,22 @@ describe User do
       @user.password_hash.should == nil
     end
   end
+  
+  context "authentication" do
+    before(:each) do
+      @user = Factory(:user, :password => "new password", :password_confirmation => "new password")
+    end
+    
+    it "should save password_hash to the database" do
+      @user.reload.read_attribute(:password_hash).length.should > 0
+    end
+    
+    it "should succeed authentication" do
+      @user.reload.authenticate("new password").should == true
+    end
+    
+    it "should fail authentication" do
+      @user.reload.authenticate("different password").should == false
+    end
+  end
 end

@@ -33,6 +33,7 @@ gem 'mysql'
 gem 'bluecloth', '2.1.0'
 gem 'capistrano'
 gem 'heroku'
+gem 'bcrypt-ruby'
 
 group :development, :test do
   gem 'ruby-debug19'
