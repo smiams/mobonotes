@@ -1,5 +1,10 @@
 Mobonotes::Application.routes.draw do
   resources :notes
+
+  match "login" => "sessions#new", :via => :get, :as => :login
+  match "logout" => "sessions#destroy", :as => :logout
+  match "sessions/create" => "sessions#create", :via => :post, :as => :create_session
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
