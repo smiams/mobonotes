@@ -8,8 +8,12 @@ module Authentication
                                     :confirmation => {:message => "Password and password confirmation need to match.", :if => :password_changed?},
                                     :length => {:within => 4..32, :if => Proc.new { |object| object.password_required || object.password_changed? }})
     
-    has_columns = included_class.respond_to?(:column_names)
-    included_class.send(:attr_accessor, :password_hash) unless has_columns && included_class.column_names.map(&:to_sym).include?(:password_hash)
+    begin
+      has_columns = included_class.respond_to?(:column_names)
+      included_class.send(:attr_accessor, :password_hash) unless has_columns && included_class.column_names.map(&:to_sym).include?(:password_hash)
+    rescue Exception => e
+      included_class.logger.error e.to_s
+    end
   end
     
   def password_changed?

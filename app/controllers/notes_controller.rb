@@ -37,7 +37,6 @@ class NotesController < ApplicationController
     @notes = Note.all
     _sort_notes_for_display(@notes)
 
-    # The "render :action => "index"" line must be explicitly stated so the #create method can call it upon creating a new Note.
     render :action => "index"
   end
   
