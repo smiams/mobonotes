@@ -10,7 +10,7 @@ describe SessionsController do
   
   describe "POST create" do
     before(:each) do
-      Factory(:user, :password => "correct", :password_confirmation => "correct")
+      @user = Factory(:user, :password => "correct", :password_confirmation => "correct")
     end
     
     context "with valid credentials" do

@@ -1,7 +1,20 @@
 require 'spec_helper'
 
 describe NotesController do
+  before(:all) do
+    @current_user = Factory(:user)
+  end
+  
+  after(:all) do
+    @current_user.destroy
+  end
+  
   describe "GET show" do
+    before(:each) do
+      @controller.instance_variable_set(:@current_user, @current_user)
+      @controller.stub!(:get_current_user).and_return(true)
+    end
+    
     it "renders the new template" do
       note = Factory(:note)
       get :show, :id => note.id
@@ -12,6 +25,11 @@ describe NotesController do
   end
   
   describe "GET new" do
+    before(:each) do
+      @controller.instance_variable_set(:@current_user, @current_user)
+      @controller.stub!(:get_current_user).and_return(true)
+    end
+    
     it "renders the new template" do
       get :new
       response.should render_template("new")
@@ -19,6 +37,11 @@ describe NotesController do
   end
   
   describe "POST create" do
+    before(:each) do
+      @controller.instance_variable_set(:@current_user, @current_user)
+      @controller.stub!(:get_current_user).and_return(true)
+    end
+    
     it "creates a new note" do
       expect {
         post :create, :note => {:content => "This is a new note."}
@@ -39,6 +62,8 @@ describe NotesController do
   describe "DELETE destroy" do
     before(:each) do
       @note = Factory(:note)
+      @controller.instance_variable_set(:@current_user, @current_user)
+      @controller.stub!(:get_current_user).and_return(true)      
     end
     
     it "deletes a note" do
@@ -51,6 +76,8 @@ describe NotesController do
   describe "actions for existing notes" do
     before(:each) do
       @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME)
+      @controller.instance_variable_set(:@current_user, @current_user)
+      @controller.stub!(:get_current_user).and_return(true)      
     end
     
     describe "GET index" do
@@ -103,6 +130,8 @@ describe NotesController do
   describe "#_add_note_to_creation_date" do
     before(:each) do
       @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME)
+      @controller.instance_variable_set(:@current_user, @current_user)
+      @controller.stub!(:get_current_user).and_return(true)      
     end
     
     context "when the date does not have any notes associated with it" do
