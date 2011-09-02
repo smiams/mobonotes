@@ -5,7 +5,7 @@ gem 'rails', '3.0.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+gem 'mysql', '2.8.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -31,12 +31,12 @@ gem 'mysql'
 # end
 
 gem 'bluecloth', '2.1.0'
-gem 'capistrano'
-gem 'heroku'
-gem 'bcrypt-ruby'
+gem 'capistrano', '2.8.0'
+gem 'heroku', '2.4.2'
+gem 'bcrypt-ruby', '2.1.4'
 
 group :development, :test do
-  gem 'ruby-debug19'
+  gem 'ruby-debug19', '0.11.6'
   gem 'factory_girl_rails', '1.1.0'
   gem 'timecop', '0.3.5'
 end
