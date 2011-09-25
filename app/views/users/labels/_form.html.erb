@@ -1,0 +1,11 @@
+<div class="form-container">
+  <%= form_for @label, :as => :label, :url => url, :method => method, :html => {:class => class_name} do |f| %>
+    <div class="text_field-container">
+  	  <%= f.text_field :name, :value => @label.name %>
+  	</div>
+  	<div class="button-container">
+	    <%= f.submit button_text, :class => "submit" %>
+	    <div style="clear:both;"></div>
+	  </div>
+  <% end %>
+</div>

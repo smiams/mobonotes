@@ -2,7 +2,7 @@ Mobonotes::Application.routes.draw do
   resources :notes
   
   resources :users do
-    resources :labels
+    resources :labels, :controller => "users/labels"
   end
   
   match "labels" => "users/labels#index", :via => :get, :as => :labels
