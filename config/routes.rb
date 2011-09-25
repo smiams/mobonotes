@@ -1,6 +1,11 @@
 Mobonotes::Application.routes.draw do
   resources :notes
-
+  
+  resources :users do
+    resources :labels
+  end
+  
+  match "labels" => "users/labels#index", :via => :get, :as => :labels
   match "login" => "sessions#new", :via => :get, :as => :login
   match "logout" => "sessions#destroy", :as => :logout
   match "sessions/create" => "sessions#create", :via => :post, :as => :create_session
