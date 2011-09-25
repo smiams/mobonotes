@@ -42,7 +42,7 @@ describe User do
     end
   end
   
-  context "authentication" do
+  context "with authentication" do
     before(:each) do
       @user = Factory(:user, :password => "new password", :password_confirmation => "new password")
     end
@@ -57,6 +57,18 @@ describe User do
     
     it "should fail authentication" do
       @user.reload.authenticate("different password").should == false
+    end
+  end
+  
+  context "with labels" do
+    before(:each) do
+      @user = Factory(:user, :password => "new password", :password_confirmation => "new password")
+    end
+    
+    it "has many labels" do
+      expect {
+        @user.labels << Label.new(:name => "Test label")
+      }.to change {@user.labels.count}.from(0).to(1)
     end
   end
 end
