@@ -36,6 +36,12 @@ class Users::LabelsController < ApplicationController
       render :action => "new"
     end
   end
+  
+  def show
+    @notes = @user.labels.find(params[:id]).notes
+    render :template => "notes/index"
+  end
+  
   private
   
   def get_user

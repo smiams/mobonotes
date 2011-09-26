@@ -45,4 +45,17 @@ describe Note do
       @note.created_at.should == nil
     end
   end
+  
+  context "with a label" do
+    before(:each) do
+      @note = Factory(:note)
+      @label = Factory(:label)
+    end
+    
+    it "has a label" do
+      @note.label = @label
+      @note.save
+      @note.reload.label.should == @label
+    end
+  end
 end

@@ -57,6 +57,17 @@ describe NotesController do
       
       response.should render_template("new")
     end
+    
+    it "creates a new note with a label" do
+      @label = Factory(:label)
+      
+      expect {
+        post :create, :note => {:content => "This is a new note with a label.", :label_id => @label.id}
+      }.to change {Note.count}.from(0).to(1)
+      
+      assigns(:note).label.should == @label
+      response.should redirect_to notes_path
+    end
   end
   
   describe "DELETE destroy" do
@@ -123,6 +134,14 @@ describe NotesController do
         
         assigns(:note).id.should == @note.id
         response.should render_template("edit")
+      end
+      
+      it "updates the label_id on a note" do
+        @label = Factory(:label)
+        put :update, :note => {:content => "This is the updated content.", :label_id => @label.id}, :id => @note.id
+        
+        assigns(:note).label.should == @label
+        response.should redirect_to notes_path
       end
     end
   end

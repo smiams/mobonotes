@@ -5,6 +5,7 @@ Mobonotes::Application.routes.draw do
     resources :labels, :controller => "users/labels"
   end
   
+  match "labels/:id" => "users/labels#show", :via => :get, :as => :label
   match "labels" => "users/labels#index", :via => :get, :as => :labels
   match "login" => "sessions#new", :via => :get, :as => :login
   match "logout" => "sessions#destroy", :as => :logout

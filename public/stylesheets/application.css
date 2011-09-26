@@ -163,3 +163,68 @@ div.note-content ul li ul, div.note-content ul li ol, div.note-content ol li ul,
 {
   margin: 5px 0 0 0;
 }
+
+/* main navigation */
+ul.navigation
+{
+	background-color: #191919;
+	float: left;
+	font-size: 10px;
+	height: 36px;
+	position: relative;
+	width: 100%;
+}
+
+ul.navigation li
+{	
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	margin: 14px 2px 0 2px;
+	position: relative;
+}
+
+ul.navigation li.active
+{
+	margin-top: 15px;
+}
+
+ul.navigation li a.tab
+{
+	background-color: #656565;
+	color: #FFFFFF;
+	float: left;
+	padding: 2px 5px;
+	position: relative;
+	text-decoration: none;
+	top: -2px;	
+}
+
+ul.navigation li.active a
+{
+	background-color: #EFF3F2;
+	color: #000000;
+	font-size: 13px;
+	padding: 4px 7px;
+	text-align: center;	
+	top: -7px;
+}
+
+ul.navigation li.right
+{
+	float: right;
+	margin-right: 2px;
+}
+
+ul.navigation li.first
+{
+	margin-left: 5px;
+	margin-right: 3px;
+}
+
+ul.navigation li.last
+{
+	margin-left: 3px;
+	margin-right: 0px;
+}
+/* end main navigation */
