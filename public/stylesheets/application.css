@@ -171,6 +171,7 @@ ul.navigation
 	float: left;
 	font-size: 10px;
 	height: 36px;
+	list-style: none;
 	position: relative;
 	width: 100%;
 }

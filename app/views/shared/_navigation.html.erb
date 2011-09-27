@@ -1,10 +1,11 @@
 <ul class="navigation">
 	<li class="<%= @current_controller.eql?("notes") && @current_action.eql?("index") ? "active" : "" %>">
-		<%= link_to "All", notes_path, :class => "tab" %>
+		<%= link_to "All Notes", notes_path, :class => "tab" %>
 	</li>
 	<% @labels.each do |label| %>
-		<li class="<%= @current_controller.eql?("labels") && @current_action.eql?("show") && @current_id.eql?(label.id) ? "active" : "" %>">
-			<%= link_to label.name, label_path(label), :class => "tab" %>
+		<li class="<%= @current_controller.eql?("users/labels") && @current_action.eql?("notes") && @current_id.eql?(label.id.to_s) ? "active" : "" %>">
+			<%= link_to label.name, notes_label_path(label), :class => "tab" %>
 		</li>
 	<% end %>
 </ul>
+<div style="clear:both;"></div>

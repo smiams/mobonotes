@@ -1,4 +1,8 @@
+require "#{Rails.root.to_s}/lib/modules/note_sorting"
+
 class NotesController < ApplicationController
+  include NoteSorting
+  
   def show
     @note = Note.find(params[:id])
     
@@ -14,7 +18,7 @@ class NotesController < ApplicationController
     @note.label_id = params[:note][:label_id] if params[:note].present?
     
     if @note.save
-      redirect_to :action => "index"
+      redirect_to :back
     else
       render :action => "new"
     end
@@ -47,20 +51,5 @@ class NotesController < ApplicationController
     
     @note.destroy
     redirect_to :action => "index"
-  end
-  
-  private
-  
-  def _sort_notes_for_display(notes)
-    notes.each { |note| _add_note_to_creation_date(note) }
-    @note_creation_dates = @note_creation_dates.sort { |less, greater| greater <=> less }
-  end
-  
-  def _add_note_to_creation_date(note)
-    @note_creation_dates ||= { Time.zone.now.to_date => [] }
-    notes = @note_creation_dates[note.created_at.to_date] || []
-    notes << note
-    notes.sort! { |less, greater| greater.created_at <=> less.created_at }
-    @note_creation_dates[note.created_at.to_date] = notes
   end
 end

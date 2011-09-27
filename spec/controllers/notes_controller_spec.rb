@@ -38,16 +38,17 @@ describe NotesController do
   
   describe "POST create" do
     before(:each) do
+      request.env["HTTP_REFERER"] = Rails.application.routes.generate :controller => "notes", :action => "index"
       @controller.instance_variable_set(:@current_user, @current_user)
       @controller.stub!(:get_current_user).and_return(true)
     end
     
-    it "creates a new note" do
+    it "creates a new note" do      
       expect {
         post :create, :note => {:content => "This is a new note."}
       }.to change {Note.count}.from(0).to(1)
       
-      response.should redirect_to notes_path
+      response.should redirect_to request.env["HTTP_REFERER"]
     end
     
     it "returns an error if it could not create the note" do

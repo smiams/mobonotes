@@ -1,5 +1,9 @@
+require "#{Rails.root.to_s}/lib/modules/note_sorting"
+
 class Users::LabelsController < ApplicationController
-  before_filter :get_user
+  include NoteSorting
+  
+  before_filter :_get_user
   
   def index
     @labels = @user.labels
@@ -36,15 +40,16 @@ class Users::LabelsController < ApplicationController
       render :action => "new"
     end
   end
-  
-  def show
+    
+  def notes
     @notes = @user.labels.find(params[:id]).notes
-    render :template => "notes/index"
+    _sort_notes_for_display(@notes)
+    render :template => "notes/index"  
   end
   
   private
   
-  def get_user
+  def _get_user
     @user = params[:user_id].present? ? User.find(params[:user_id]) : @current_user
   end
 end
