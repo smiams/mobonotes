@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   skip_before_filter :get_current_user, :except => [:destroy]
-
+  skip_before_filter :get_labels
+  
+  layout false
+  
   def new
     render :action => "new"
   end
