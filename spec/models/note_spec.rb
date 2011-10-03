@@ -17,15 +17,29 @@ describe Note do
       before(:each) do
         @note.content = "This is a new note."
       end
-
-      it "should be valid" do
-        @note.valid?.should == true
+      
+      context "and without a user" do
+        it "should be invalid" do
+          @note.valid?.should == false
+          @note.errors[:user].first.should == "can't be blank"
+        end
       end
-  
-      it "should be creatd" do
-        expect {
-          @note.save.should == true
-        }.to change {Note.count}.from(0).to(1)
+
+      context "and with a user" do
+        before(:each) do
+          @user = Factory(:user)
+          @note.user = @user
+        end
+        
+        it "should be valid" do
+          @note.valid?.should == true
+        end
+        
+        it "should be created" do
+          expect {
+            @note.save.should == true
+          }.to change {Note.count}.from(0).to(1)
+        end
       end
     end
   end
@@ -48,7 +62,9 @@ describe Note do
   
   context "with a label" do
     before(:each) do
-      @note = Factory(:note)
+      @note = FactoryGirl.build(:note)
+      @note.user = Factory(:user)
+      @note.save
       @label = Factory(:label)
     end
     
@@ -58,4 +74,5 @@ describe Note do
       @note.reload.label.should == @label
     end
   end
+      
 end

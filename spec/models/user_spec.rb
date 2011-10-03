@@ -71,4 +71,16 @@ describe User do
       }.to change {@user.labels.count}.from(0).to(1)
     end
   end
+  
+  context "with notes" do
+    before(:each) do
+      @user = Factory(:user, :password => "new password", :password_confirmation => "new password")
+    end
+    
+    it "has many notes" do
+      expect {
+        @user.notes << Note.new(:content => "Test note")
+      }.to change {@user.notes.count}.from(0).to(1)
+    end  
+  end
 end

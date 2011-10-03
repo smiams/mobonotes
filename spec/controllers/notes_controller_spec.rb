@@ -15,8 +15,8 @@ describe NotesController do
       @controller.stub!(:get_current_user).and_return(true)
     end
     
-    it "renders the new template" do
-      note = Factory(:note)
+    it "renders the show template" do
+      note = Factory(:note, :user => Factory(:user))
       get :show, :id => note.id
       
       response.should render_template("show")
@@ -73,7 +73,7 @@ describe NotesController do
   
   describe "DELETE destroy" do
     before(:each) do
-      @note = Factory(:note)
+      @note = Factory(:note, :user => Factory(:user))
       @controller.instance_variable_set(:@current_user, @current_user)
       @controller.stub!(:get_current_user).and_return(true)      
     end
@@ -87,7 +87,7 @@ describe NotesController do
   
   describe "actions for existing notes" do
     before(:each) do
-      @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME)
+      @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME, :user => Factory(:user))
       @controller.instance_variable_set(:@current_user, @current_user)
       @controller.stub!(:get_current_user).and_return(true)      
     end
@@ -102,7 +102,7 @@ describe NotesController do
       
       it "has a list of note creation dates" do
         Timecop.freeze(STANDARD_FROZEN_TIME) do
-          another_note = Factory(:note, :content => "This is another note.", :created_at => Time.now + 1.day)
+          another_note = Factory(:note, :content => "This is another note.", :user => Factory(:user), :created_at => Time.now + 1.day)
           get :index
       
           assigns(:note_creation_dates).length.should == 2
@@ -149,7 +149,7 @@ describe NotesController do
   
   describe "#_add_note_to_creation_date" do
     before(:each) do
-      @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME)
+      @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME, :user => Factory(:user))
       @controller.instance_variable_set(:@current_user, @current_user)
       @controller.stub!(:get_current_user).and_return(true)      
     end
@@ -170,7 +170,7 @@ describe NotesController do
         Timecop.freeze(STANDARD_FROZEN_TIME) do                
           @controller.instance_variable_set(:@note_creation_dates, {Time.now.to_date => [@note]})
       
-          another_note = Factory(:note, :created_at => Time.now, :content => "This is another note.")
+          another_note = Factory(:note, :created_at => Time.now, :content => "This is another note.", :user => Factory(:user))
       
           @controller.send(:_add_note_to_creation_date, another_note)
       

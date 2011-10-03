@@ -15,6 +15,7 @@ class NotesController < ApplicationController
   
   def create
     @note = Note.new(params[:note])
+    @note.user_id = @current_user.id
     @note.label_id = params[:note][:label_id] if params[:note].present?
     
     if @note.save
