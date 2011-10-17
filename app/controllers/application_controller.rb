@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :get_current_user
   before_filter :get_labels
   before_filter :get_current_controller_and_action
+  before_filter :_get_current_tab
   before_filter :_set_time_zone
   
   def get_current_user
@@ -22,7 +23,16 @@ class ApplicationController < ActionController::Base
     @current_id = symbolized_path_parameters[:id]
   end
   
+  def set_current_tab(tab_name)
+    session[:current_tab] = tab_name
+    _get_current_tab
+  end
+  
   private
+  
+  def _get_current_tab
+    @current_tab = session[:current_tab] || "all-notes"
+  end
   
   def _set_time_zone
     Time.zone = "Central Time (US & Canada)"

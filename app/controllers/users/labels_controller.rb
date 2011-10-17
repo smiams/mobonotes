@@ -42,8 +42,12 @@ class Users::LabelsController < ApplicationController
   end
     
   def notes
-    @notes = @user.labels.find(params[:id]).notes
+    @label = @user.labels.find(params[:id], :include => :notes)
+    @notes = @label.notes
+    
+    set_current_tab(@label.name)
     _sort_notes_for_display(@notes)
+    
     render :template => "notes/index"  
   end
   

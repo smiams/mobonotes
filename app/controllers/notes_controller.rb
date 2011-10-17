@@ -34,7 +34,11 @@ class NotesController < ApplicationController
     @note.label_id = params[:note][:label_id] if params[:note].present?
     
     if @note.update_attributes(params[:note])
-      redirect_to :action => "index"
+      if @current_tab == @note.label.name
+        redirect_to notes_label_path(@note.label)
+      else
+        redirect_to :action => "index"
+      end
     else
       render :action => "edit"
     end
@@ -42,6 +46,8 @@ class NotesController < ApplicationController
   
   def index
     @notes = Note.all
+    
+    set_current_tab("all-notes")
     _sort_notes_for_display(@notes)
 
     render :action => "index"
