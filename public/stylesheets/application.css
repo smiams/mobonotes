@@ -15,9 +15,9 @@ ul.date-list
 	position: relative;
 }
 
-ul.date-list li
+ul.date-list li.date
 {
-	margin-bottom: 10px;
+	margin-bottom: 35px;
 	position: relative;
 }
 
@@ -30,26 +30,50 @@ ul.date-list li ul
 
 div.note-date
 {
-	background-color: #2C2C2C;
-	color: #CCCCCC;
-	padding: 5px;
-	margin-bottom: 10px;
+	clear: both;
 	float: left;
+  margin-bottom: 15px;
+	padding: 5px;
 	width: 100%;	
+}
+
+div.note-date hr, div.note-time hr
+{
+  color: #656565;
+  display: inline;
+  float: left;
+  width: 75px;
+}
+
+div.note-time hr
+{
+  width: 5px;
+}
+
+div.note-date hr.left
+{
+  width: 25px;
 }
 
 div.note-date h2
 {
 	float: left;
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: normal;
 	left: 0;
 	line-height: 100%;
-	margin: 0;
+	margin: 0 10px;
 	padding: 0;
 	position: relative;
 	top: 0;
-	width: 130px;
+}
+
+div.note-date span.day
+{
+  background-color: #656565;
+  color: #FFFFFF;
+  font-size: 13px;
+  padding: 1px 3px;
 }
 
 div.note-date div.note-count
@@ -65,7 +89,7 @@ div.note-container
 {
   font-size: 14px;
 	margin-bottom: 10px;
-	margin-left: 130px;
+	margin-left: 100px;
 	padding-bottom: 10px;
 	position: relative;
 	width: 700px;
@@ -73,7 +97,9 @@ div.note-container
 
 div.form-container
 {
-  padding: 5px;
+  border-bottom: 1px dashed #C0C0C0;
+  padding: 0px 5px 20px 5px;
+  margin-bottom: 20px;
   position: relative;
 }
 
@@ -91,41 +117,68 @@ div.form-container form div.textarea-container
   margin-right: 10px;
 }
 
-div.form-container input.submit
+div.button-container
 {
-  clear: both;
-  display: block;
-  float: right;
+  text-align: right;
+  padding-top: 10px;
+}
+
+div.button-container input.submit
+{
+  margin-left: 10px;
+}
+
+div.button-container div.select-container
+{
+  display: inline;
+}
+
+div.button-container div.select-container input
+{
+  right: 0;
+  position: relative;
   margin: 5px 0px;
+  background-color: red;
 }
 
 div.note-container div.note-time
 {
-	left: -130px;
+	left: -100px;
 	padding: 5px;
 	position: absolute;
 }
 
-div.note-container div.note-time a
+div.note-container div.note-time div.time
 {
-	color: #000000;
-	text-decoration: none;
+  margin-bottom: 5px;
 }
 
-div.note-container div.note-time a.delete
+div.note-container div.note-time span.time
+{
+	margin: 0 0 0 10px;  
+}
+
+
+div.note-time div.note-controls
+{
+  text-align: right;
+}
+
+div.note-time div.note-controls a
 {
   font-size: 12px;
-  color: red;
+  color: #000000;
 }
 
-div.note-container div.note-time a.delete:hover
+div.note-time div.note-controls a.delete
 {
-  text-decoration: underline;  
+  color: red;
 }
 
 div.note-container div.note-content
 {
 	color: #000000;
+	margin-bottom: 10px;
   padding: 5px;
 	position: relative;
 	top: 0;

@@ -1,29 +1,37 @@
 <ul class="date-list">
 	<% @note_creation_dates.each do |date, notes| %>
-	<li>	    
-		<div class="note-date">
+	<li class="date">
+	  <div class="note-date">
+	    <hr class="left"/>
 			<h2>
-				<%= date.strftime("%Y-%m-%d") %>
+				<%= date.strftime("%b %d, %Y") %>
+				<span class="day">
+				  <%= date.strftime("%A").downcase %>
+				</span>
 			</h2>
-			<div class="note-count">
-				<%= "#{notes.length.to_s} notes" %>
-			</div>
+			<hr/>
+			<div style="clear:both;"></div>
 		</div>
 		<div style="clear:both;"></div>
+	  <% if date == Time.zone.now.to_date %>
+		  <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
+		<% end %>
+		<div style="clear:both;"></div>
 		<ul>
-  		<% if date == Time.zone.now.to_date %>
-  		<li>
-  		  <div class="note-container">
-    		  <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
-        </div>
-      </li>
-      <% end %>
   		<% notes.each do |note| %>
   		<li>
     		<div class="note-container">
     			<div class="note-time">
-    			  <%= link_to "delete", note_path(note), :method => :delete, :confirm => "Are you sure?", :class => "delete" %>
-    				<%= link_to note.created_at.strftime("%I:%M %P"), edit_note_path(note) %>
+    			  <div class="time">
+      			  <hr class="left"/>
+      			  <span class="time">
+                <%= note.created_at.strftime("%I:%M %P") %>
+      			  </span>
+      			</div>
+    			  <div class="note-controls">
+              <%= link_to "edit", edit_note_path(note) %>
+              <%= link_to "delete", note_path(note), :method => :delete, :confirm => "Are you sure?", :class => "delete" %>
+      			</div>        			
     			</div>
     			<div class="note-content">
     				<%= BlueCloth.new(note.content).to_html.html_safe %>
