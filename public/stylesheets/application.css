@@ -28,6 +28,26 @@ ul.date-list li ul
   padding: 0;
 }
 
+ul.date-list
+{
+	list-style-type: none;
+	padding: 0;
+	position: relative;
+}
+
+ul.date-list li.date
+{
+	margin-bottom: 35px;
+	position: relative;
+}
+
+ul.date-list li ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 div.note-date
 {
 	clear: both;
@@ -37,7 +57,7 @@ div.note-date
 	width: 100%;	
 }
 
-div.note-date hr, div.note-time hr
+div.note-date hr, div.note-time hr, div.note-controls hr
 {
   color: #656565;
   display: inline;
@@ -55,10 +75,16 @@ div.note-date hr.left
   width: 25px;
 }
 
+div.note-controls hr.left
+{
+  margin-right: 5px;
+  width: 15px;
+}
+
 div.note-date h2
 {
 	float: left;
-	font-size: 16px;
+	font-size: 22px;
 	font-weight: normal;
 	left: 0;
 	line-height: 100%;
@@ -71,9 +97,11 @@ div.note-date h2
 div.note-date span.day
 {
   background-color: #656565;
+  bottom: 2px;
   color: #FFFFFF;
   font-size: 13px;
   padding: 1px 3px;
+  position: relative;
 }
 
 div.note-date div.note-count
@@ -89,7 +117,6 @@ div.note-container
 {
   font-size: 14px;
 	margin-bottom: 10px;
-	margin-left: 100px;
 	padding-bottom: 10px;
 	position: relative;
 	width: 700px;
@@ -141,36 +168,37 @@ div.button-container div.select-container input
   background-color: red;
 }
 
-div.note-container div.note-time
+div.note-controls
+{
+  font-style: italic;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+div.note-controls div.note-time
 {
 	left: -100px;
 	padding: 5px;
 	position: absolute;
 }
 
-div.note-container div.note-time div.time
+div.note-controls div.note-time div.time
 {
   margin-bottom: 5px;
 }
 
-div.note-container div.note-time span.time
+div.note-controls div.note-time span.time
 {
 	margin: 0 0 0 10px;  
 }
 
-
-div.note-time div.note-controls
-{
-  text-align: right;
-}
-
-div.note-time div.note-controls a
+div.note-controls a
 {
   font-size: 12px;
   color: #000000;
 }
 
-div.note-time div.note-controls a.delete
+div.note-controls a.delete
 {
   color: red;
 }
@@ -178,7 +206,6 @@ div.note-time div.note-controls a.delete
 div.note-container div.note-content
 {
 	color: #000000;
-	margin-bottom: 10px;
   padding: 5px;
 	position: relative;
 	top: 0;
