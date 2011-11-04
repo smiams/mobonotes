@@ -17,7 +17,7 @@ ul.date-list
 
 ul.date-list li.date
 {
-	margin-bottom: 35px;
+	margin-bottom: 40px;
 	position: relative;
 }
 
@@ -48,6 +48,11 @@ ul.date-list li ul
   padding: 0;
 }
 
+ul.date-list li.date ul.notes li.note
+{
+  margin-bottom: 20px;
+}
+
 div.note-date
 {
 	clear: both;
@@ -57,17 +62,12 @@ div.note-date
 	width: 100%;	
 }
 
-div.note-date hr, div.note-time hr, div.note-controls hr
+div.note-date hr, div.note-controls hr
 {
   color: #656565;
   display: inline;
   float: left;
   width: 75px;
-}
-
-div.note-time hr
-{
-  width: 5px;
 }
 
 div.note-date hr.left
@@ -117,6 +117,7 @@ div.note-container
 {
   font-size: 14px;
 	margin-bottom: 10px;
+	margin-left: 90px;
 	padding-bottom: 10px;
 	position: relative;
 	width: 700px;
@@ -201,6 +202,23 @@ div.note-controls a
 div.note-controls a.delete
 {
   color: red;
+}
+
+div.note-container div.note-time
+{
+	left: -100px;
+	padding: 5px 0;
+	position: absolute;
+}
+
+div.note-container div.note-time div.time
+{
+  margin-bottom: 5px;
+}
+
+div.note-container div.note-time span.time
+{
+	margin: 0 0 0 10px;  
 }
 
 div.note-container div.note-content

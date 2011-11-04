@@ -16,17 +16,21 @@
 		  <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
 		<% end %>
 		<div style="clear:both;"></div>
-		<ul>
+		<ul class="notes">
   		<% notes.each do |note| %>
-  		<li>
+  		<li class="note">
     		<div class="note-container">
+    		  <div class="note-time">
+    			  <div class="time">
+      			  <span class="time">
+                <%= note.created_at.strftime("%I:%M %P") %>
+      			  </span>
+      			</div>
+      		</div>
     			<div class="note-content">
     				<%= BlueCloth.new(note.content).to_html.html_safe %>
     			</div>
     			<div class="note-controls">
-      			<span class="note-time">
-              <%= note.created_at.strftime("%I:%M %P") %>
-            </span>
             <%= link_to "edit", edit_note_path(note) %>
             <%= link_to "delete", note_path(note), :method => :delete, :confirm => "Are you sure?", :class => "delete" %>
     			</div>
