@@ -32,12 +32,13 @@ class NotesController < ApplicationController
   def update
     @note = Note.find(params[:id])
     @note.label_id = params[:note][:label_id] if params[:note].present?
+    label_changed = @note.changed.include?("label_id")
     
     if @note.update_attributes(params[:note])
-      if @current_tab == @note.label.name
+      if @current_tab != notes_path && label_changed && @note.label.present?
         redirect_to notes_label_path(@note.label)
       else
-        redirect_to :action => "index"
+        redirect_to @current_tab
       end
     else
       render :action => "edit"
@@ -47,7 +48,7 @@ class NotesController < ApplicationController
   def index
     @notes = Note.all
     
-    set_current_tab("all-notes")
+    set_current_tab(notes_path)
     _sort_notes_for_display(@notes)
 
     render :action => "index"
