@@ -120,7 +120,6 @@ div.note-container
 	margin-left: 90px;
 	padding-bottom: 10px;
 	position: relative;
-	width: 700px;
 }
 
 div.form-container
@@ -172,25 +171,8 @@ div.button-container div.select-container input
 div.note-controls
 {
   font-style: italic;
-  margin-left: 5px;
+  margin-left: 10px;
   font-size: 12px;
-}
-
-div.note-controls div.note-time
-{
-	left: -100px;
-	padding: 5px;
-	position: absolute;
-}
-
-div.note-controls div.note-time div.time
-{
-  margin-bottom: 5px;
-}
-
-div.note-controls div.note-time span.time
-{
-	margin: 0 0 0 10px;  
 }
 
 div.note-controls a
@@ -223,8 +205,11 @@ div.note-container div.note-time span.time
 
 div.note-container div.note-content
 {
+  border-color: #C0C0C0;
+  border-style: solid;
+  border-width: 0 0 0 1px;
 	color: #000000;
-  padding: 5px;
+  padding: 10px;
 	position: relative;
 	top: 0;
 }
