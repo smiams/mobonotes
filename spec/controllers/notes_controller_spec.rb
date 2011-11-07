@@ -136,24 +136,46 @@ describe NotesController do
         assigns(:note).id.should == @note.id
         response.should render_template("edit")
       end
-      
+
       it "updates the label_id on a note" do
         @label = Factory(:label)
         put :update, :note => {:content => "This is the updated content.", :label_id => @label.id}, :id => @note.id
-        
+
         assigns(:note).label.should == @label
+        response.should redirect_to notes_path
+      end
+
+      it "redirects back to the current_tab" do
+        put :update, :note => {:content => "This is the updated content."}, :id => @note.id
+
+        response.should redirect_to controller.instance_variable_get(:@current_tab)
+      end
+
+      it "redirects to the note's new notes_label_path if the current tab is not notes_path, and the label has been changed" do
+        @label = Factory(:label)
+        session[:current_tab] = notes_label_path(Label.all.first)
+        put :update, :note => {:content => "This is the updated content.", :label_id => @label.id}, :id => @note.id
+
+        response.should redirect_to notes_label_path(@label)
+      end
+
+      it "redirects to notes_path if the current tab is notes_path, and the label has been changed" do
+        @label = Factory(:label)
+        session[:current_tab] = notes_path
+        put :update, :note => {:content => "This is the updated content.", :label_id => @label.id}, :id => @note.id
+
         response.should redirect_to notes_path
       end
     end
   end
-  
+
   describe "#_add_note_to_creation_date" do
     before(:each) do
       @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME, :user => Factory(:user))
       @controller.instance_variable_set(:@current_user, @current_user)
       @controller.stub!(:get_current_user).and_return(true)      
     end
-    
+
     context "when the date does not have any notes associated with it" do
       it "adds a note to the date upon which it was created" do
         Timecop.freeze(STANDARD_FROZEN_TIME) do

@@ -1,9 +1,9 @@
 <ul class="navigation">
-	<li class="<%= @current_controller.eql?("notes") && @current_action.eql?("index") ? "active" : "" %>">
+	<li class="<%= @current_tab == notes_path ? "active" : "" %>">
 		<%= link_to "All Notes", notes_path, :class => "tab" %>
 	</li>
 	<% @labels.each do |label| %>
-		<li class="<%= @current_controller.eql?("users/labels") && @current_action.eql?("notes") && @current_id.eql?(label.id.to_s) ? "active" : "" %>">
+		<li class="<%= @current_tab == notes_label_path(label) ? "active" : "" %>">
 			<%= link_to label.name, notes_label_path(label), :class => "tab" %>
 		</li>
 	<% end %>
