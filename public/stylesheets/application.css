@@ -3,6 +3,11 @@ body
 	font-family: helvetica;
 }
 
+.no-bottom-border
+{
+  border-bottom: none !important;
+}
+
 div.main-content
 {
   margin: 20px;
@@ -53,43 +58,64 @@ ul.date-list li.date ul.notes li.note
   margin-bottom: 20px;
 }
 
+table.top-note
+{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.top-note td
+{
+  vertical-align: top;
+}
+
+table.top-note td.left
+{
+  width: 75%;
+}
+
+table.top-note td.right
+{
+  padding-left: 25px;
+  width: 25%;
+}
+
+table.top-note td.right h3
+{
+  font-weight: normal;
+  margin: 0;
+  padding: 0 0 5px 0;
+}
+
+ul.date-list li ul.tasks
+{
+  list-style-position: inside;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+ul.date-list li ul.tasks li.task
+{
+  list-style-type: disc;
+  padding: 5px;
+}
+
 div.note-date
 {
-	clear: both;
-	float: left;
   margin-bottom: 15px;
 	padding: 5px;
 	width: 100%;	
 }
 
-div.note-date hr, div.note-controls hr
-{
-  color: #656565;
-  display: inline;
-  float: left;
-  width: 75px;
-}
-
-div.note-date hr.left
-{
-  width: 25px;
-}
-
-div.note-controls hr.left
-{
-  margin-right: 5px;
-  width: 15px;
-}
-
 div.note-date h2
 {
-	float: left;
+  border-bottom: 1px solid #C0C0C0;
 	font-size: 22px;
 	font-weight: normal;
 	left: 0;
 	line-height: 100%;
-	margin: 0 10px;
-	padding: 0;
+	margin: 0;
+	padding: 0 0 10px 0;
 	position: relative;
 	top: 0;
 }
@@ -142,6 +168,12 @@ div.form-container form textarea
 div.form-container form div.textarea-container
 {
   margin-right: 10px;
+}
+
+div.form-container form div.text-field-container input.text-field
+{
+  font-size: 13px;
+  padding: 3px;
 }
 
 div.button-container

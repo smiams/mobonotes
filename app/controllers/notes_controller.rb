@@ -1,7 +1,9 @@
 require "#{Rails.root.to_s}/lib/modules/note_sorting"
+require "#{Rails.root.to_s}/lib/modules/task_sorting"
 
 class NotesController < ApplicationController
   include NoteSorting
+  include TaskSorting
   
   def show
     @note = Note.find(params[:id])
@@ -47,10 +49,12 @@ class NotesController < ApplicationController
   
   def index
     @notes = Note.all
+    @tasks = Task.all
     
     set_current_tab(notes_path)
     _sort_notes_for_display(@notes)
-
+    _sort_tasks_for_display(@tasks)
+    
     render :action => "index"
   end
   

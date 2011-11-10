@@ -1,7 +1,9 @@
 require "#{Rails.root.to_s}/lib/modules/note_sorting"
+require "#{Rails.root.to_s}/lib/modules/task_sorting"
 
 class Users::LabelsController < ApplicationController
   include NoteSorting
+  include TaskSorting
   
   before_filter :_get_user
   
@@ -44,9 +46,11 @@ class Users::LabelsController < ApplicationController
   def notes
     @label = @user.labels.find(params[:id], :include => :notes)
     @notes = @label.notes
+    @tasks = @label.tasks
     
     set_current_tab(notes_label_path(@label))
     _sort_notes_for_display(@notes)
+    _sort_tasks_for_display(@tasks)
     
     render :template => "notes/index"  
   end

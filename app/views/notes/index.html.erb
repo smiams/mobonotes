@@ -2,39 +2,53 @@
 	<% @note_creation_dates.each do |date, notes| %>
 	<li class="date">
 	  <div class="note-date">
-	    <hr class="left"/>
 			<h2>
 				<%= date.strftime("%b %d, %Y") %>
 				<span class="day">
 				  <%= date.strftime("%A").downcase %>
 				</span>
 			</h2>
-			<hr/>
 		</div>
-		<div style="clear:both;"></div>
-	  <% if date == Time.zone.now.to_date %>
-		  <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
-		<% end %>
-		<div style="clear:both;"></div>
+		<% if date == Time.zone.now.to_date %>
+		<table class="top-note">
+		  <tr>
+		    <td class="left">
+    		  <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
+      	</td>
+      	<td class="right">
+      	  <h3>
+      	    Tasks
+      	  </h3>
+      	  <% if @task_creation_dates[date].present? %>
+      	  <%= render :partial => "tasks/list_for_date", :locals => {:task_creation_dates => @task_creation_dates, :date => date} %>
+      	  <% end %>
+      	  <%= render :partial => "tasks/form", :locals => {:url => tasks_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
+      	</td>
+    	</tr>
+    </table>
+    <% end %>
 		<ul class="notes">
-  		<% notes.each do |note| %>
+  		<% notes.each_with_index do |note, index| %>
   		<li class="note">
-    		<div class="note-container">
-    		  <div class="note-time">
-    			  <div class="time">
-      			  <span class="time">
-                <%= note.created_at.strftime("%I:%M %P") %>
-      			  </span>
-      			</div>
-      		</div>
-    			<div class="note-content">
-    				<%= BlueCloth.new(note.content).to_html.html_safe %>
-    			</div>
-    			<div class="note-controls">
-            <%= link_to "edit", edit_note_path(note) %>
-            <%= link_to "delete", note_path(note), :method => :delete, :confirm => "Are you sure?", :class => "delete" %>
-    			</div>
-    		</div>
+  		  <% if index == 0 && note.created_at.to_date != Time.zone.now.to_date %>
+  		  <table class="top-note">
+  		    <tr>
+  		      <td class="left">
+  		        <%= render :partial => "notes/note_container", :locals => {:note => note} %>
+  		      </td>
+  		      <td class="right">
+  		        <% if @task_creation_dates[date].present? %>
+          	  <h3>
+          	    Tasks
+          	  </h3>
+          	  <%= render :partial => "tasks/list_for_date", :locals => {:task_creation_dates => @task_creation_dates, :date => date} %>
+          	  <% end %>
+  		      </td>
+  		    </tr>
+  		  </table>
+  		  <% else %>
+  		    <%= render :partial => "notes/note_container", :locals => {:note => note} %>
+  		  <% end %>
   		</li>
   		<% end %>
   	</ul>

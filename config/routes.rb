@@ -1,6 +1,8 @@
 Mobonotes::Application.routes.draw do
   resources :notes
   
+  resources :tasks
+
   resources :users do
     resources :labels, :controller => "users/labels"
   end

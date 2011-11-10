@@ -1,6 +1,4 @@
 module NoteSorting
-  private
-  
   def _sort_notes_for_display(notes=[])
     @note_creation_dates ||= { Time.zone.now.to_date => [] }
     notes.each { |note| _add_note_to_creation_date(note) }
