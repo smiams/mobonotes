@@ -73,6 +73,5 @@ describe Note do
       @note.save
       @note.reload.label.should == @label
     end
-  end
-      
+  end   
 end
