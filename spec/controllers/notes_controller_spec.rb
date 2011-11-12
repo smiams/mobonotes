@@ -9,12 +9,12 @@ describe NotesController do
     @current_user.destroy
   end
   
-  describe "GET show" do
-    before(:each) do
-      @controller.instance_variable_set(:@current_user, @current_user)
-      @controller.stub!(:get_current_user).and_return(true)
-    end
-    
+  before(:each) do
+    @controller.instance_variable_set(:@current_user, @current_user)
+    @controller.stub!(:get_current_user).and_return(true)  
+  end
+  
+  describe "GET show" do    
     it "renders the show template" do
       note = Factory(:note, :user => Factory(:user))
       get :show, :id => note.id
@@ -24,12 +24,7 @@ describe NotesController do
     end  
   end
   
-  describe "GET new" do
-    before(:each) do
-      @controller.instance_variable_set(:@current_user, @current_user)
-      @controller.stub!(:get_current_user).and_return(true)
-    end
-    
+  describe "GET new" do    
     it "renders the new template" do
       get :new
       response.should render_template("new")
@@ -39,8 +34,6 @@ describe NotesController do
   describe "POST create" do
     before(:each) do
       request.env["HTTP_REFERER"] = Rails.application.routes.generate :controller => "notes", :action => "index"
-      @controller.instance_variable_set(:@current_user, @current_user)
-      @controller.stub!(:get_current_user).and_return(true)
     end
     
     it "creates a new note" do      
@@ -69,13 +62,15 @@ describe NotesController do
       assigns(:note).label.should == @label
       response.should redirect_to notes_path
     end
+    
+    it "does not create a new note for another user" do
+      pending
+    end
   end
   
   describe "DELETE destroy" do
     before(:each) do
       @note = Factory(:note, :user => Factory(:user))
-      @controller.instance_variable_set(:@current_user, @current_user)
-      @controller.stub!(:get_current_user).and_return(true)      
     end
     
     it "deletes a note" do
@@ -83,13 +78,15 @@ describe NotesController do
         delete :destroy, :id => @note.id
       }.to change {Note.count}.from(1).to(0)
     end
+    
+    it "does not delete the note if it does not belong to the current user" do
+      pending
+    end
   end
   
   describe "actions for existing notes" do
     before(:each) do
       @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME, :user => Factory(:user))
-      @controller.instance_variable_set(:@current_user, @current_user)
-      @controller.stub!(:get_current_user).and_return(true)      
     end
     
     describe "GET index" do
@@ -166,14 +163,16 @@ describe NotesController do
 
         response.should redirect_to notes_path
       end
+      
+      it "does not update a note that does not belong to the current user" do
+        pending
+      end
     end
   end
 
   describe "#_add_note_to_creation_date" do
     before(:each) do
       @note = Factory(:note, :created_at => STANDARD_FROZEN_TIME, :user => Factory(:user))
-      @controller.instance_variable_set(:@current_user, @current_user)
-      @controller.stub!(:get_current_user).and_return(true)      
     end
 
     context "when the date does not have any notes associated with it" do

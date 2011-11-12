@@ -7,7 +7,17 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to :back
     else
-      render :error => "hello"
+      render :action => "new"
+    end
+  end
+  
+  def complete
+    @task = Task.find(params[:id])
+    
+    if @task.mark_completed
+      redirect_to :back
+    else
+      redirect_to :back
     end
   end
 end
