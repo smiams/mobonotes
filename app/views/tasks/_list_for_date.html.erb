@@ -1,7 +1,7 @@
-<ul class="tasks">
-  <% task_creation_dates[date].each do |task| %>
+<ol class="tasks">
+  <% tasks.each do |task| %>
     <li class="task">
       <%= task.name %>
     </li>
   <% end %>
-</ul>
+</ol>
