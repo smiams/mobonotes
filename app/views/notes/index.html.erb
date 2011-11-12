@@ -27,15 +27,17 @@
         	</ol>
         </td>
         <td class="right">
-          <h3>
-            Tasks
-          </h3>
-          <% if @task_creation_dates[date].present? %>
-            <%= render :partial => "tasks/list_for_date", :locals => {:tasks => @task_creation_dates[date]} %>
-          <% end %>
-          <% if date == Time.zone.now.to_date %>
-            <%= render :partial => "tasks/form", :locals => {:url => tasks_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
-          <% end %>
+          <div class="content">
+            <h3>
+              Tasks
+            </h3>
+            <% if @task_creation_dates[date].present? %>
+              <%= render :partial => "tasks/list_for_date", :locals => {:tasks => @task_creation_dates[date]} %>
+            <% end %>
+            <% if date == Time.zone.now.to_date %>
+              <%= render :partial => "tasks/form", :locals => {:url => tasks_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
+            <% end %>
+          </div>
         </td>
       </tr>
     <% end %>

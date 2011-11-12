@@ -37,7 +37,13 @@ table.layout td.right
   border-width: 0 0 0 1px;
   border-style: solid;
   border-color: #C0C0C0;
+  width: 30%;
+}
+
+table.layout td.right div.content
+{
   padding-left: 20px;
+  width: auto;
 }
 
 ol.notes
