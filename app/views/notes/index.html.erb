@@ -1,7 +1,9 @@
 <div class="layout">
   <table class="layout">
     <tbody>
-    <% @note_creation_dates.each do |date, notes| %>
+    <% @object_creation_dates.each do |date| %>
+      <% notes = @note_creation_dates[date] %>
+      <% tasks = @task_creation_dates[date] %>
       <tr>
         <td class="left">
           <div class="date">
@@ -18,6 +20,7 @@
     		    <hr class="dashed border with-bottom-margin"/>
       		<% end %>
     		
+    		  <% if notes.present? %>
       		<ol class="notes">
         		<% notes.each_with_index do |note, index| %>
         		<li class="note">
@@ -25,14 +28,15 @@
         		</li>
         		<% end %>
         	</ol>
+        	<% end %>
         </td>
         <td class="right">
           <div class="content">
             <h3>
               Tasks
             </h3>
-            <% if @task_creation_dates[date].present? %>
-              <%= render :partial => "tasks/list_for_date", :locals => {:tasks => @task_creation_dates[date]} %>
+            <% if tasks.present? %>
+              <%= render :partial => "tasks/list_for_date", :locals => {:tasks => tasks} %>
             <% end %>
             <% if date == Time.zone.now.to_date %>
               <%= render :partial => "tasks/form", :locals => {:url => tasks_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
