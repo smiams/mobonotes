@@ -3,6 +3,7 @@ Mobonotes::Application.routes.draw do
     
   resources :tasks do
     put "complete", :on => :member
+    put "uncomplete", :on => :member
   end
   
   resources :users do

@@ -53,18 +53,35 @@ describe TasksController do
   end
   
   describe "PUT complete" do
-    before(:each) do      
+    before(:each) do
       @task = Factory(:task, :user => @current_user)
     end
-        
+
     it "completes the task" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
         put :complete, :id => @task.id
         @task.reload.completed_at.should == Time.now
       end
     end
-    
+
     it "does not complete the task if the current user does not own it" do
+      pending
+    end
+  end
+  
+  describe "PUT complete" do
+    before(:each) do
+      @task = Factory(:task, :user => @current_user, :completed_at => Time.parse(STANDARD_FROZEN_TIME))
+    end
+
+    it "uncompletes the task" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        put :uncomplete, :id => @task.id
+        @task.reload.completed_at.should == nil
+      end
+    end
+
+    it "does not uncomplete the task if the current user does not own it" do
       pending
     end
   end

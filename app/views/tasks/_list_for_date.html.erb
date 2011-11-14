@@ -1,7 +1,7 @@
 <ol class="tasks">
   <% tasks.each do |task| %>
     <li class="task">
-      <%= task.name %>
+      <%= render :partial => "tasks/task", :locals => {:task => task} %>
     </li>
   <% end %>
 </ol>

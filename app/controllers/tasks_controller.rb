@@ -14,10 +14,20 @@ class TasksController < ApplicationController
   def complete
     @task = Task.find(params[:id])
     
-    if @task.mark_completed
-      redirect_to :back
-    else
-      redirect_to :back
+    if @task.mark_complete
+      respond_to do |format|
+        format.js { render :action => "toggle_task_completion" }
+      end
+    end
+  end
+  
+  def uncomplete
+    @task = Task.find(params[:id])
+    
+    if @task.mark_incomplete
+      respond_to do |format|
+        format.js { render :action => "toggle_task_completion" }
+      end
     end
   end
 end

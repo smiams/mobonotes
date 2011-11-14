@@ -75,14 +75,14 @@ describe Task do
     end
   end   
   
-  describe "#mark_completed" do
+  describe "#mark_complete" do
     before(:each) do
       @task = Factory(:task, :user => Factory(:user))
     end
     
     it "sets the completed_at date/time to the current date/time" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        @task.mark_completed
+        @task.mark_complete
         @task.reload.completed_at.should == Time.now
       end
     end
@@ -91,7 +91,7 @@ describe Task do
       @task.should_receive(:save).and_return(false)
       
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        @task.mark_completed.should == false
+        @task.mark_complete.should == false
         @task.reload.completed_at.should == nil
       end      
     end

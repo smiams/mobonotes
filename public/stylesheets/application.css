@@ -60,15 +60,20 @@ ol.notes li.note
 
 ol.tasks
 {
-  list-style-position: inside;
+  list-style-position: outside;
   margin-bottom: 5px;
   padding: 5px;
 }
 
 ol.tasks li.task
 {
-  list-style-type: disc;
+  list-style-type: none;
   padding: 5px;
+}
+
+li.task label.complete
+{
+  text-decoration: line-through;
 }
 
 div.date

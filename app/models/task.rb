@@ -7,8 +7,17 @@ class Task < ActiveRecord::Base
   
   attr_accessible :name
   
-  def mark_completed
+  def mark_complete
     self.completed_at = Time.now
     self.save
+  end
+
+  def mark_incomplete
+    self.completed_at = nil
+    self.save
+  end
+  
+  def complete?
+    self.completed_at.present?
   end
 end
