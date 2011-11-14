@@ -1,11 +1,7 @@
-require "#{Rails.root.to_s}/lib/modules/note_sorting"
-require "#{Rails.root.to_s}/lib/modules/task_sorting"
+require "#{Rails.root.to_s}/lib/modules/object_sorting"
 require "#{Rails.root.to_s}/lib/modules/utilities"
 
-class NotesController < ApplicationController
-  include NoteSorting
-  include TaskSorting
-  
+class NotesController < ApplicationController  
   def show
     @note = Note.find(params[:id])
     
@@ -54,8 +50,8 @@ class NotesController < ApplicationController
     
     set_current_tab(notes_path)
     
-    @note_creation_dates = _sort_notes_for_display(@notes)
-    @task_creation_dates = _sort_tasks_for_display(@tasks)
+    @note_creation_dates = ObjectSorting.sort_notes_for_display(@notes)
+    @task_creation_dates = ObjectSorting.sort_tasks_for_display(@tasks)
     
     @object_creation_dates = (Utilities.get_keys_from_2d_array(@note_creation_dates) +
                               Utilities.get_keys_from_2d_array(@task_creation_dates))

@@ -1,10 +1,7 @@
-require "#{Rails.root.to_s}/lib/modules/note_sorting"
-require "#{Rails.root.to_s}/lib/modules/task_sorting"
+require "#{Rails.root.to_s}/lib/modules/object_sorting"
+require "#{Rails.root.to_s}/lib/modules/utilities"
 
-class Users::LabelsController < ApplicationController
-  include NoteSorting
-  include TaskSorting
-  
+class Users::LabelsController < ApplicationController  
   before_filter :_get_user
   
   def index
@@ -49,8 +46,14 @@ class Users::LabelsController < ApplicationController
     @tasks = @label.tasks
     
     set_current_tab(notes_label_path(@label))
-    _sort_notes_for_display(@notes)
-    _sort_tasks_for_display(@tasks)
+  
+    @note_creation_dates = ObjectSorting.sort_notes_for_display(@notes)
+    @task_creation_dates = ObjectSorting.sort_tasks_for_display(@tasks)
+
+    @object_creation_dates = (Utilities.get_keys_from_2d_array(@note_creation_dates) +
+                              Utilities.get_keys_from_2d_array(@task_creation_dates))
+    @object_creation_dates.uniq!.sort! { |less, greater| greater <=> less }
+
     
     render :template => "notes/index"  
   end
