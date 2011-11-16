@@ -32,9 +32,15 @@
         </td>
         <td class="right">
           <div class="content">
+            <% if date == Time.zone.now.to_date %>
             <h3 class="tasks">
               Tasks
             </h3>
+            <% elsif tasks.present? && date != Time.zone.now.to_date %>
+            <h3 class="tasks">
+              Tasks
+            </h3>            
+            <% end %>
             <% if tasks.present? %>
               <%= render :partial => "tasks/list_for_date", :locals => {:tasks => tasks} %>
             <% end %>

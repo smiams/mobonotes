@@ -195,14 +195,10 @@ div.button-container
   padding-top: 10px;
 }
 
-div.button-container input.submit
-{
-  margin-left: 10px;
-}
-
 div.button-container div.select-container
 {
   display: inline;
+  margin-right: 10px;
 }
 
 div.button-container div.select-container input
