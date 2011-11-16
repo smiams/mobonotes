@@ -3,6 +3,7 @@ body
 	font-family: helvetica;
 	margin: 0;
 	padding: 0;
+	min-width: 760px;
 }
 
 div.layout
@@ -37,7 +38,6 @@ table.layout td.right
   border-width: 0 0 0 1px;
   border-style: solid;
   border-color: #C0C0C0;
-  width: 30%;
 }
 
 table.layout td.right div.content
@@ -168,7 +168,7 @@ div.text-field-container
 div.text-field-container input.text-field
 {
   padding: 3px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 div.button-container
@@ -271,6 +271,11 @@ div.note-content ul li, div.note-content ol li, div.note-content ul li ul li, di
 div.note-content ul li ul, div.note-content ul li ol, div.note-content ol li ul, div.note-content ol li ol
 {
   margin: 5px 0 0 0;
+}
+
+div.note-content pre
+{
+  white-space: pre-wrap;
 }
 
 /* main navigation */
