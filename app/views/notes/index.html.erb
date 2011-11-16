@@ -7,7 +7,7 @@
       <tr>
         <td class="left">
           <div class="date">
-      			<h2>
+      			<h2 class="date">
       				<%= date.strftime("%b %d, %Y") %>
       				<span class="day">
       				  <%= date.strftime("%A").downcase %>
@@ -32,7 +32,7 @@
         </td>
         <td class="right">
           <div class="content">
-            <h3>
+            <h3 class="tasks">
               Tasks
             </h3>
             <% if tasks.present? %>

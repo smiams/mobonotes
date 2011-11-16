@@ -67,8 +67,27 @@ ol.tasks
 
 ol.tasks li.task
 {
+  left: 10px;
   list-style-type: none;
   padding: 5px;
+  position: relative;
+}
+
+ol.tasks li.task div.task
+{
+  position: relative;
+}
+
+ol.tasks li.task div.task input.task
+{
+  position: absolute;
+  left: -25px;
+  top: -2px;
+}
+
+ol.tasks li.task div.task label
+{
+  font-size: 15px;
 }
 
 li.task label.complete
@@ -81,11 +100,12 @@ div.date
   margin-bottom: 15px;
 }
 
-div.date h2
+div.date h2.date, table.layout td.right h3.tasks
 {
   border-bottom: 1px solid #C0C0C0;
 	font-size: 22px;
 	font-weight: normal;
+	height: 20px;
 	left: 0;
 	line-height: 100%;
 	margin: 0;
@@ -104,14 +124,10 @@ div.date span.day
   position: relative;
 }
 
-table.layout td.right h3
+table.layout td.right h3.tasks
 {
-  background-color: #656565;
-  color: #FFFFFF;
-  font-size: 18px;
-  font-weight: normal;
-  margin: 0 0 10px 0;
-  padding: 5px;
+	font-size: 18px;
+	margin: 0 0 17px;
 }
 
 div.note-container
