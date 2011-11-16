@@ -30,7 +30,7 @@ gem 'mysql', '2.8.1'
 #   gem 'webrat'
 # end
 
-gem 'bluecloth', '2.1.0'
+gem 'RedCloth', '4.2.7'
 gem 'capistrano', '2.8.0'
 gem 'heroku', '2.4.2'
 gem 'bcrypt-ruby', '2.1.4'
