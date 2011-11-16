@@ -20,12 +20,14 @@ div.firefox-shim
 table.layout
 {
   border-collapse: collapse;
+  margin-right: 4px;
 }
 
 table.layout td.left, table.layout td.right
 {
   vertical-align: top;
   padding-bottom: 60px;
+  position: relative;
 }
 
 table.layout td.left
