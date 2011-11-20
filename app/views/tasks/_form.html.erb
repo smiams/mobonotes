@@ -1,11 +1,14 @@
 <div class="form-container no-bottom-border">
-  <%= form_for @task, :as => :task, :url => url, :method => method, :html => {:class => class_name} do |f| %>
+  <%= form_for task, :as => :task, :url => url, :method => method, :remote => method == :put ? true : false, :html => {:class => class_name} do |f| %>
     <div class="text-field-container">
   	  <%= f.text_field :name, :class => "text-field", :size => 30 %>
   	</div>
   	<div class="button-container">
   	  <%= render :partial => "notes/label_id_form_element", :locals => {:f => f} %>
 	    <%= f.submit button_text, :class => "submit" %>
+	    <% if method == :put %>
+	      <%= link_to "cancel", task_path(task), :remote => true, :class => "cancel" %>
+	    <% end %>
 	  </div>
   <% end %>
 </div>

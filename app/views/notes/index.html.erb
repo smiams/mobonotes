@@ -45,7 +45,7 @@
               <%= render :partial => "tasks/list_for_date", :locals => {:tasks => tasks} %>
             <% end %>
             <% if date == Time.zone.now.to_date %>
-              <%= render :partial => "tasks/form", :locals => {:url => tasks_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
+              <%= render :partial => "tasks/form", :locals => {:task => Task.new, :url => tasks_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
             <% end %>
           </div>
         </td>

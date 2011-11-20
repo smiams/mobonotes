@@ -1,7 +1,13 @@
-<div id="task-<%= task.id %>" class="task">
+<div id="task-<%= task.id %>">
+  <div class="task">
   <%= check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", 
                     task.complete?,
                     :class => "task",
                     :onclick => remote_function(:url => task.complete? ? uncomplete_task_path(task) : complete_task_path(task), :method => :put) %>
-  <%= label_tag "checkbox_for_task_#{task.id.to_s}", task.name, :class => task.complete? ? "complete" : "incomplete" %>
+  <%= label_tag "checkbox_for_task_#{task.id.to_s}", task.name, :class => task.complete? ? "complete" : "incomplete", :onmouseover => "showItemControls('task-#{task.id}');" %>
+  </div>
+  <div class="task-controls">
+    <%= link_to "edit", edit_task_path(task), :remote => true %>
+    <%= link_to "delete", task_path(task), :class => "delete", :method => :delete, :confirm => "Are you sure?" %>
+  </div>
 </div>

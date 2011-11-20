@@ -1,1 +1,0 @@
-page.replace_html "task-#{@task.id}", :partial => "tasks/task", :locals => {:task => @task}

@@ -72,25 +72,58 @@ ol.tasks li.task
 {
   left: 10px;
   list-style-type: none;
-  padding: 5px;
+  margin-bottom: 10px;
   position: relative;
 }
 
-ol.tasks li.task div.task
+li.task div.task
 {
   position: relative;
+  padding: 4px 0 4px 0;
+  z-index: 2;
+  background-color: #FFFFFF;
+}
+
+li.task div.form-container
+{
+  left: -24px;
+}
+
+
+li.task div.task:hover
+{
+  z-index: 0;
+}
+
+li.task div.task-controls
+{
+  background-color: #FFFFFF;
+  border: 1px solid #656565;
+  right: 5px;
+  padding: 2px 5px 2px 5px;
+  position: absolute;
+  top: 0;
+  z-index: 1;  
+}
+
+li.task div.task-controls:hover
+{
+  z-index: 3;
 }
 
 ol.tasks li.task div.task input.task
 {
-  position: absolute;
   left: -25px;
-  top: -2px;
+  margin: 0;
+  position: absolute;
+  top: 5px;
 }
 
 ol.tasks li.task div.task label
 {
   font-size: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 li.task label.complete
@@ -209,20 +242,25 @@ div.button-container div.select-container input
   background-color: red;
 }
 
-div.note-controls
+div.button-container a.cancel
 {
-  font-style: italic;
-  margin-left: 10px;
-  font-size: 12px;
-}
-
-div.note-controls a
-{
-  font-size: 12px;
+  font-size: 13px;
   color: #000000;
 }
 
-div.note-controls a.delete
+div.note-controls
+{
+  margin-left: 10px;
+}
+
+div.note-controls a, div.task-controls a
+{
+  color: #000000;
+  font-size: 12px;
+  font-style: italic;
+}
+
+div.note-controls a.delete, div.task-controls a.delete
 {
   color: red;
 }
