@@ -1,14 +1,21 @@
 body
 {
-	font-family: helvetica;
-	margin: 0;
-	padding: 0;
-	min-width: 760px;
+  background-color: #EBEBEB;
+  font-family: helvetica;
+  margin: 0;
+  padding: 0;
+  min-width: 760px;
 }
 
 div.layout
 {
-  padding: 10px 0 0 25px;
+  margin: auto;
+  padding: 0 20px 0 30px;
+}
+
+div.width-container
+{
+  width: 970px;
 }
 
 div.firefox-shim
@@ -19,34 +26,51 @@ div.firefox-shim
 
 table.layout
 {
+  border: 0 none;
   border-collapse: collapse;
-  margin-right: 4px;
+  width: 0;
 }
 
 table.layout td.left, table.layout td.right
 {
+  margin: 0;
+  padding: 0;
   vertical-align: top;
-  padding-bottom: 60px;
-  position: relative;
 }
 
 table.layout td.left
 {
-  padding-right: 20px;
+  background-color: #FFFFFF;
 }
 
-table.layout td.right
+table.layout td.left div.column-content, table.layout td.right div.column-content
 {
-  border-width: 0 0 0 1px;
+  padding-bottom: 0;
+  padding-top: 10px;
+}
+
+table.layout td.left div.column-content
+{
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 700px;
+}
+
+table.layout td.right div.column-content
+{
+  width: 270px;
+}
+
+table.layout td.right div.column-content div.tasks-container
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 2px;
+  border-color: #D1D1D1;
   border-style: solid;
-  border-color: #C0C0C0;
-  width: 30%;
-}
-
-table.layout td.right div.content
-{
-  padding-left: 20px;
-  width: auto;
+  border-left-width: 0px;
+  border-right-width: 2px;
+  border-top-width: 1px;
+  padding: 5px 5px 5px 10px;
 }
 
 ol.notes
@@ -64,42 +88,53 @@ ol.notes li.note
 ol.tasks
 {
   list-style-position: outside;
-  margin-bottom: 5px;
-  padding: 5px;
+  padding: 0;
+  margin: 0;
 }
 
 ol.tasks li.task
 {
-  left: 10px;
   list-style-type: none;
-  margin-bottom: 10px;
-  position: relative;
+  width: 250px;
+  margin-bottom: 7px;
 }
-
-li.task div.task
-{
-  position: relative;
-  padding: 4px 0 4px 0;
-  z-index: 2;
-  background-color: #FFFFFF;
-}
-
-li.task div.form-container
-{
-  left: -24px;
-}
-
 
 li.task div.task:hover
 {
   z-index: 0;
 }
 
+li.task div.task div.checkbox-container
+{
+  width: 15px;
+  height: 20px;
+  float: left;
+  position: relative;
+}
+
+li.task div.task div.checkbox-container input.task-checkbox
+{
+  position: absolute;
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 2px;
+  left: 0px;
+}
+
+li.task div.task div.label-container
+{
+  padding-left: 10px;
+  width: 225px;
+  float: left;
+}
+
 li.task div.task-controls
 {
   background-color: #FFFFFF;
-  border: 1px solid #656565;
-  right: 5px;
+  border-color: #656565;
+  border-style: solid;
+  border-width: 1px 2px 2px 1px;
+  right: 0px;
   padding: 2px 5px 2px 5px;
   position: absolute;
   top: 0;
@@ -111,17 +146,14 @@ li.task div.task-controls:hover
   z-index: 3;
 }
 
-ol.tasks li.task div.task input.task
+ol.tasks li.task div.task-container
 {
-  left: -25px;
   margin: 0;
-  position: absolute;
-  top: 5px;
 }
 
 ol.tasks li.task div.task label
 {
-  font-size: 15px;
+  font-size: 13px;
   margin: 0;
   padding: 0;
 }
@@ -131,23 +163,24 @@ li.task label.complete
   text-decoration: line-through;
 }
 
-div.date
+td div.column-content div.date
 {
+  border-bottom: 1px solid #C0C0C0;
+  height: 30px;
   margin-bottom: 15px;
 }
 
-div.date h2.date, table.layout td.right h3.tasks
+td.right div.column-content div.date
 {
-  border-bottom: 1px solid #C0C0C0;
-	font-size: 22px;
-	font-weight: normal;
-	height: 20px;
-	left: 0;
-	line-height: 100%;
-	margin: 0;
-	padding: 0 0 10px 0;
-	position: relative;
-	top: 0;
+  border-bottom: 1px solid transparent;
+}
+
+div.date h2.date
+{
+  font-size: 22px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
 }
 
 div.date span.day
@@ -209,7 +242,7 @@ div.form-container form textarea
 
 div.form-container form div.textarea-container
 {
-  margin-right: 10px;
+  margin-right: 13px;
 }
 
 div.text-field-container
@@ -362,45 +395,45 @@ ul.navigation li
 
 ul.navigation li.active
 {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 ul.navigation li a.tab
 {
-	background-color: #656565;
-	color: #FFFFFF;
-	float: left;
-	padding: 2px 5px;
-	position: relative;
-	text-decoration: none;
-	top: -2px;	
+  background-color: #656565;
+  color: #FFFFFF;
+  float: left;
+  padding: 2px 5px;
+  position: relative;
+  text-decoration: none;
+  top: -2px;
 }
 
 ul.navigation li.active a
 {
-	background-color: #EFF3F2;
-	color: #000000;
-	font-size: 13px;
-	padding: 4px 7px;
-	text-align: center;	
-	top: -7px;
+  background-color: #EBEBEB;
+  color: #000000;
+  font-size: 13px;
+  padding: 4px 7px;
+  text-align: center;	
+  top: -7px;
 }
 
 ul.navigation li.right
 {
-	float: right;
-	margin-right: 2px;
+  float: right;
+  margin-right: 2px;
 }
 
 ul.navigation li.first
 {
-	margin-left: 5px;
-	margin-right: 3px;
+  margin-left: 5px;
+  margin-right: 3px;
 }
 
 ul.navigation li.last
 {
-	margin-left: 3px;
-	margin-right: 0px;
+  margin-left: 3px;
+  margin-right: 0px;
 }
 /* end main navigation */

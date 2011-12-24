@@ -1,56 +1,57 @@
 <div class="layout">
-  <table class="layout">
-    <tbody>
-    <% @object_creation_dates.each do |date| %>
-      <% notes = @note_creation_dates[date] %>
-      <% tasks = @task_creation_dates[date] %>
-      <tr>
-        <td class="left">
-          <div class="date">
-      			<h2 class="date">
-      				<%= date.strftime("%b %d, %Y") %>
-      				<span class="day">
-      				  <%= date.strftime("%A").downcase %>
-      				</span>
-      			</h2>
-      		</div>
-    		
-      		<% if date == Time.zone.now.to_date %>
-    		    <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :button_text => "Save", :class_name => "creation-form"} %>
-    		    <hr class="dashed border with-bottom-margin"/>
-      		<% end %>
-    		
-    		  <% if notes.present? %>
-      		<ol class="notes">
-        		<% notes.each_with_index do |note, index| %>
-        		<li class="note">
-      		    <%= render :partial => "notes/note_container", :locals => {:note => note} %>
-        		</li>
-        		<% end %>
-        	</ol>
-        	<% end %>
-        </td>
-        <td class="right">
-          <div class="content">
-            <% if date == Time.zone.now.to_date %>
-            <h3 class="tasks">
-              Tasks
-            </h3>
-            <% elsif tasks.present? && date != Time.zone.now.to_date %>
-            <h3 class="tasks">
-              Tasks
-            </h3>            
-            <% end %>
-            <% if tasks.present? %>
-              <%= render :partial => "tasks/list_for_date", :locals => {:tasks => tasks} %>
-            <% end %>
-            <% if date == Time.zone.now.to_date %>
-              <%= render :partial => "tasks/form", :locals => {:task => Task.new, :url => tasks_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <div class="width-container">
+    <table class="layout">
+      <tbody>
+      <% @object_creation_dates.each do |date| %>
+        <% notes = @note_creation_dates[date] %>
+        <% tasks = @task_creation_dates[date] %>
+        <tr>
+          <td class="left">
+            <div class="column-content">
+              <div class="date">
+                <h2 class="date">
+                  <%= date.strftime("%b %d, %Y") %>
+                  <span class="day">
+                    <%= date.strftime("%A").downcase %>
+                  </span>
+                </h2>
+              </div>
+
+              <% if date == Time.zone.now.to_date %>
+                <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :button_text => "Save", :class_name => "creation-form"} %>
+                <hr class="dashed border with-bottom-margin"/>
+              <% end %>
+
+              <% if notes.present? %>
+                <ol class="notes">
+                  <% notes.each_with_index do |note, index| %>
+                    <li class="note">
+                      <%= render :partial => "notes/note_container", :locals => {:note => note} %>
+                    </li>
+                  <% end %>
+                </ol>
+              <% end %>
+            </div>
+          </td>
+          <td class="right">
+            <div class="column-content">
+              <div class="date">
+              </div>
+              <% if tasks.present? %>
+                <div class="tasks-container">
+                  <%= render :partial => "tasks/list_for_date", :locals => {:tasks => tasks} %>
+                </div>
+              <% end %>
+              <% if date == Time.zone.now.to_date %>
+                <div class="tasks-container">
+                  <%= render :partial => "tasks/form", :locals => {:task => Task.new, :url => tasks_path, :method => :post, :button_text => "Save", :class_name => "inline-creation-form"} %>
+                </div>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 <div>
