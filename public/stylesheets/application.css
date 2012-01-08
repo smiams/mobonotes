@@ -28,15 +28,20 @@ ol.dates
 
 ol.dates li.date
 {
-  margin-bottom: 30px;
   position: relative;
-  margin-left: 180px;
+  margin: 0 0 0 180px;
 }
 
 ol.dates li div.date, ol.dates li div.filters
 {
   height: 30px;
   line-height: 30px;
+}
+
+ol.dates li.date div.bottom-spacer
+{
+  width: 20px;
+  height: 30px;
 }
 
 ol.dates li div.filters
@@ -59,8 +64,7 @@ ol.dates li div.filters a
 
 ol.dates li div.filters a:hover
 {
-  background-color: #656565;
-  color: #FFFFFF;
+  border-bottom: 1px solid #000000;
 }
 
 ol.dates li div.filters a.active
@@ -71,6 +75,7 @@ ol.dates li div.filters a.active
 
 ol.dates li div.content div.tasks
 {
+  background-color: #EBEBEB;
   border-color: #656565;
   border-style: solid;
   border-width: 0px 0px 0px 2px;
@@ -283,8 +288,8 @@ div.note-container div.note-time
   text-align: right;
   left: -76px;
   position: absolute;
-  background-color: #656565;
-  color: #FFFFFF;
+  background-color: #EBEBEB;
+  color: #000000;
   width: 70px;
 }
 
