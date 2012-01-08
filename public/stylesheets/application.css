@@ -41,6 +41,7 @@ table.layout td.left, table.layout td.right
 table.layout td.left
 {
   background-color: #FFFFFF;
+  border-right: 2px solid #D1D1D1;
 }
 
 table.layout td.left div.column-content, table.layout td.right div.column-content
@@ -58,6 +59,8 @@ table.layout td.left div.column-content
 
 table.layout td.right div.column-content
 {
+  position: relative;
+  right: 2px;
   width: 270px;
 }
 
@@ -71,6 +74,11 @@ table.layout td.right div.column-content div.tasks-container
   border-right-width: 2px;
   border-top-width: 1px;
   padding: 5px 5px 5px 10px;
+}
+
+table.layout td.right div.column-content div.tasks-container div.form-container
+{
+  padding: 10px 0 0 0;
 }
 
 ol.notes
@@ -130,7 +138,7 @@ li.task div.task div.label-container
 
 li.task div.task-controls
 {
-  background-color: #FFFFFF;
+  background-color: red;
   border-color: #656565;
   border-style: solid;
   border-width: 1px 2px 2px 1px;
@@ -138,7 +146,7 @@ li.task div.task-controls
   padding: 2px 5px 2px 5px;
   position: absolute;
   top: 0;
-  z-index: 1;  
+  z-index: 2;
 }
 
 li.task div.task-controls:hover
