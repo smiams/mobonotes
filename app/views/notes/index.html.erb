@@ -18,10 +18,18 @@
         <a href="#">files</a>
       </div>
       <div class="content">
-        <% if tasks.present? %>
+        <% if date == Time.now.to_date || tasks.present? %>
           <div class="tasks">
-            <%= render :partial => "tasks/list_for_date", :locals => {:tasks => tasks} %>
+            <% if tasks.present? %>
+              <%= render :partial => "tasks/list_for_date", :locals => {:tasks => tasks} %>
+            <% end %>
+            <% if date == Time.now.to_date %>
+              <%= render :partial => "tasks/form", :locals => {:url => tasks_path, :method => :post, :class_name => "", :button_text => "Save", :task => Task.new} %>
+            <% end %>
           </div>
+        <% end %>
+        <% if date == Time.now.to_date %>
+          <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :class_name => "", :button_text => "Save", :note => Note.new } %>
         <% end %>
         <% if notes.present? %>
           <ol class="notes">

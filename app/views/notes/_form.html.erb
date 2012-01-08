@@ -1,12 +1,12 @@
 <div class="form-container">
-  <%= form_for @note, :as => :note, :url => url, :method => method, :html => {:class => class_name} do |f| %>
+  <%= form_for note, :as => :note, :url => url, :method => method, :html => {:class => class_name} do |f| %>
     <div class="textarea-container">
-  	  <%= f.text_area :content %>
-  	</div>
-  	<div class="button-container">
-  	  <%= render :partial => "notes/label_id_form_element", :locals => {:f => f} %>
-	    <%= f.submit button_text, :class => "submit" %>
-	    <div style="clear:both;"></div>
-	  </div>
+      <%= f.text_area :content %>
+    </div>
+    <div class="button-container">
+      <%= render :partial => "notes/label_id_form_element", :locals => {:f => f} %>
+      <%= f.submit button_text, :class => "submit" %>
+      <div style="clear:both;"></div>
+    </div>
   <% end %>
 </div>
