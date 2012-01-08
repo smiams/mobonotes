@@ -84,6 +84,7 @@ ol.dates li div.content div.tasks
   margin: 0 0 50px;
   padding: 10px;
   position: relative;
+  width: 300px;
 }
 
 ol.dates li div.date
@@ -130,7 +131,6 @@ ol.tasks
 ol.tasks li.task
 {
   list-style-type: none;
-  width: 250px;
   margin-bottom: 7px;
 }
 
