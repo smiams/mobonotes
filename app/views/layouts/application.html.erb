@@ -9,7 +9,9 @@
 <body>
   <div class="main-content">
     <%= render :partial => "shared/navigation" %>
-    <%= yield %>
+    <div class="page-content">
+      <%= yield %>
+    </div>
   </div>
 </body>
 </html>

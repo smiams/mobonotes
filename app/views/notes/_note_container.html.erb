@@ -1,16 +1,12 @@
 <div class="note-container">
   <div class="note-time">
-	  <div class="time">
-		  <span class="time">
-        <%= note.created_at.strftime("%I:%M %P") %>
-		  </span>
-		</div>
-	</div>
-	<div class="note-content">
-		<%= raw(RedCloth.new(note.content).to_html) %>
-	</div>
-	<div class="note-controls">
+    <%= note.created_at.strftime("%I:%M %P") %>
+  </div>
+  <div class="note-content">
+    <%= raw(RedCloth.new(note.content).to_html) %>
+  </div>
+  <div class="note-controls">
     <%= link_to "edit", edit_note_path(note) %>
     <%= link_to "delete", note_path(note), :method => :delete, :confirm => "Are you sure?", :class => "delete" %>
-	</div>
+  </div>
 </div>
