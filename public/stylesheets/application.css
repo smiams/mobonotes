@@ -165,11 +165,6 @@ li.task div.task-container input.task-checkbox
   width: 13px;
 }
 
-li.task div.task-controls:hover
-{
-  z-index: 3;
-}
-
 ol.tasks li.task div.task-container
 {
   margin: 0;
@@ -179,6 +174,9 @@ ol.tasks li.task div.task-container
 
 li.task div.task-controls
 {
+  border-color: #000000;
+  border-style: dashed;
+  border-width: 1px;
   display: none;
   position: absolute;
   top: 0px;
