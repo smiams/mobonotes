@@ -130,38 +130,39 @@ ol.tasks
 
 ol.tasks li.task
 {
+  font-size: 13px;
   list-style-type: none;
   margin-bottom: 7px;
+  position: relative;
 }
 
-li.task div.task:hover
+ol.tasks li.task label
 {
-  z-index: 0;
+  display: block;
+  margin: 0;
+  padding: 0 0 0 20px;
+  text-indent: -22px;
+}
+
+ol.tasks li.task label:hover
+{
+  cursor: pointer;
+}
+
+li.task label.complete
+{
+  text-decoration: line-through;
 }
 
 li.task div.task-container input.task-checkbox
 {
-  margin: 0;
-  padding: 0;
   height: 13px;
   margin: 0 5px 0 0;
+  padding: 0;
   position: relative;
   top: -1px;
   vertical-align: bottom;
   width: 13px;
-}
-
-li.task div.task-controls
-{
-  background-color: red;
-  border-color: #656565;
-  border-style: solid;
-  border-width: 1px 2px 2px 1px;
-  right: 0px;
-  padding: 2px 5px 2px 5px;
-  position: absolute;
-  top: 0;
-  z-index: 2;
 }
 
 li.task div.task-controls:hover
@@ -172,20 +173,55 @@ li.task div.task-controls:hover
 ol.tasks li.task div.task-container
 {
   margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
-ol.tasks li.task label
+li.task div.task-controls
+{
+  display: none;
+  position: absolute;
+  top: 0px;
+  z-index: 0;
+}
+
+li.task div.task-controls div.links
+{
+  text-align: right;
+  margin: 0;
+  background-color: #EBEBEB;
+  width: 80px;
+}
+
+li.task div.task-controls div.links a
+{
+  color: #000000;
+}
+
+div.task-controls a.move
+{
+  background-color: #000000;
+  cursor: move;
+  display: block;
+  height: 15px;
+  left: 5px;
+  position: absolute;
+  top: 5px;
+  width: 15px;
+}
+
+li.task:hover div.task-controls, div.task-controls:hover
 {
   display: block;
-  padding: 0 0 0 20px;
-  text-indent: -22px;
-  font-size: 13px;
-  margin: 0;
+  left: 220px;
+  top: -5px;
+  width: 100px;
+  z-index: 2;
 }
 
-li.task label.complete
+li.task:hover div.task-controls div.links, div.task-controls:hover div.links
 {
-  text-decoration: line-through;
+  padding: 5px;
 }
 
 div.note-container
