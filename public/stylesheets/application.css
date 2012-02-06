@@ -413,6 +413,43 @@ div.note-content pre
 
 /* end note-content */
 
+div.note-container:hover ul.tags
+{
+  display: block;
+}
+
+ul.tags
+{
+  background-color: #e5e5e5;
+  clear: both;
+  color: #000000;
+  float: left;
+  font-size: 11px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+ul.tags li.tag
+{
+  float: left;
+  margin: 0 3px 0 0;
+  padding: 0 3px 0 0;
+  border-right: 3px solid #ffffff;
+}
+
+ul.tags li.first.tag
+{
+  padding: 0 3px 0 3px;
+}
+
+ul.tags li.last.tag
+{
+  margin: 0 0 0 0;
+  border-right: none;
+}
+
 /* begin main navigation */
 
 div.navigation-container
