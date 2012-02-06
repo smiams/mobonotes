@@ -15,6 +15,7 @@ div.firefox-shim
 
 div.page-content
 {
+  background-color: #EBEBEB;
   margin: auto;
   padding: 0 30px 0 0;
 }
@@ -28,9 +29,9 @@ ol.dates
 
 ol.dates li.date
 {
-  background-color: #EBEBEB;
-  position: relative;
+  background-color: #FFFFFF;
   margin: 0 0 0 180px;
+  position: relative;
 }
 
 ol.dates li div.date, ol.dates li div.filters
@@ -47,18 +48,15 @@ ol.dates li.date div.bottom-spacer
 
 ol.dates li div.filters
 {
-/*  background-color: #EBEBEB;
-*/  padding: 0 0 0px 10px;
-  margin: 0 0 30px 0;
-  border-width: 1px 0 0 0;
-  border-color: #656565;
-  border-style: solid;
+  background-color: #036287;
+  margin: 0;
+  padding: 0 0 0px 10px;
 }
 
 ol.dates li div.filters a
 {
   font-size: 12px;
-  color: #000000;
+  color: #FFFFFF;
   padding: 3px;
   text-decoration: none;
 }
@@ -81,7 +79,7 @@ ol.dates li div.content div.tasks
   border-style: solid;
   border-width: 1px 2px 2px 1px;
   left: -159px;
-  margin: 0 0 50px;
+  margin: 25px 0 0 0;
   padding: 10px;
   position: relative;
   width: 300px;
@@ -89,7 +87,7 @@ ol.dates li div.content div.tasks
 
 ol.dates li div.date
 {
-  background-color: #656565;
+  background-color: #1BA8E0;
   font-size: 13px;
   left: -160px;
   padding: 0 10px 0 0;
@@ -114,11 +112,6 @@ ol.notes
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-
-ol.notes li.note
-{
-  margin-bottom: 50px;
 }
 
 ol.tasks
@@ -300,37 +293,53 @@ div.button-container a.cancel
   color: #000000;
 }
 
-div.note-controls
-{
-  display: none;
-  margin-left: 10px;
-}
-
-div.note-controls a, div.task-controls a
-{
-  color: #000000;
-  font-size: 12px;
-  font-style: italic;
-}
-
-div.note-controls a.delete, div.task-controls a.delete
-{
-  color: red;
-}
-
 div.note-container div.note-time
 {
-  font-size: 11px;
-  padding: 6px 6px 6px 0;
-  text-align: right;
-  left: -76px;
-  position: absolute;
-  background-color: #656565;
+  background-color: #1BA8E0;
   color: #FFFFFF;
-  width: 70px;
+  display: none;
+  font-size: 11px;
+  left: -112px;
+  padding: 6px 6px 6px 0;
+  position: absolute;
+  text-align: right;
+  width: 106px;
+}
+
+div.note-time span.links
+{
+  text-align: left;
+  padding: 0 3px 0 6px;
+  position: relative;
+  left: 0;
+}
+div.note-container div.note-time a.delete
+{
+  color: #000000;
+}
+
+div.note-container div.note-time a.edit
+{
+  color: #FFFFFF;
 }
 
 /* begin note-content */
+
+div.note-container
+{
+  border-bottom: 1px dashed #C0C0C0;
+  padding: 25px 0 25px 0;
+}
+
+li.note.last div.note-container
+{
+  border-bottom: none;
+}
+
+div.note-container:hover div.note-time
+{
+  display: block;
+}
 
 div.note-container div.note-content
 {
@@ -338,7 +347,7 @@ div.note-container div.note-content
   border-style: solid;
   border-width: 0 0 0 0;
   color: #000000;
-  padding: 6px 10px 10px 10px;
+  padding: 10px;
   position: relative;
   top: 0;
 }
