@@ -49,7 +49,7 @@ ol.dates li.date div.bottom-spacer
 ol.dates li div.filters
 {
   background-color: #036287;
-  margin: 0;
+  margin-bottom: 25px;
   padding: 0 0 0px 10px;
 }
 
@@ -79,7 +79,7 @@ ol.dates li div.content div.tasks
   border-style: solid;
   border-width: 1px 2px 2px 1px;
   left: -159px;
-  margin: 35px 0 0 0;
+  margin: 0 0 25px 0;
   padding: 10px;
   position: relative;
   width: 300px;
@@ -244,8 +244,7 @@ hr.with-bottom-margin
 
 li.date div.content div.form-container
 {
-  margin: 25px 0 0 0;
-  padding: 10px 10px 20px 10px;
+  padding: 0px 10px 25px 10px;
   position: relative;
 }
 
@@ -339,12 +338,14 @@ div.note-container div.note-time a.edit
 div.note-container
 {
   border-bottom: 1px dashed #C0C0C0;
-  padding: 25px 0 25px 0;
+  padding: 0 0 25px 0;
+  margin: 0 0 25px 0;
 }
 
 li.note.last div.note-container
 {
   border-bottom: none;
+  margin: 0;
 }
 
 div.note-container:hover div.note-time
