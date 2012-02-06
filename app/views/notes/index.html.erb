@@ -34,7 +34,7 @@
         <% if notes.present? %>
           <ol class="notes">
             <% notes.each_with_index do |note, index| %>
-              <li class="<%= notes.size - 1 == index ? 'last' : '' %> note">
+              <li class="<%= notes.size - 1 == index ? 'last' : '' %> <%= index == 0 ? 'first' : '' %> note">
                 <%= render :partial => "notes/note_container", :locals => {:note => note} %>
               </li>
             <% end %>

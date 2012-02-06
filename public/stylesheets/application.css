@@ -344,8 +344,14 @@ div.note-container
 {
   border-bottom: 1px dashed #C0C0C0;
   padding: 0 0 25px 0;
+  margin: 25px 0 0 0;
 }
 
+/*li.note.first div.note-container
+{
+  margin: 0 0 25px 0;
+}
+*/
 li.note.last div.note-container
 {
   border-bottom: none;
