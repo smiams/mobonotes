@@ -72,6 +72,11 @@ ol.dates li div.filters a.active
   color: #FFFFFF;
 }
 
+ol.dates li div.content
+{
+  padding-bottom: 25px;
+}
+
 ol.dates li div.content div.tasks
 {
   background-color: #FFFFFF;
@@ -339,13 +344,13 @@ div.note-container
 {
   border-bottom: 1px dashed #C0C0C0;
   padding: 0 0 25px 0;
-  margin: 0 0 25px 0;
 }
 
 li.note.last div.note-container
 {
   border-bottom: none;
-  margin: 0;
+  margin: 25px 0 0 0;
+  padding: 0;
 }
 
 div.note-container:hover div.note-time
