@@ -1,6 +1,6 @@
 <ol class="tasks">
-  <% tasks.each do |task| %>
-    <li class="task">
+  <% tasks.each_with_index do |task, index| %>
+    <li class="<%= tasks.length - 1 == index ? 'last' : '' %> task">
       <%= render :partial => "tasks/task", :locals => {:task => task} %>
     </li>
   <% end %>

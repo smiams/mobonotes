@@ -17,7 +17,7 @@ div.page-content
 {
   background-color: #EBEBEB;
   margin: auto;
-  padding: 0 30px 0 0;
+  padding: 20px 30px 0 0;
 }
 
 ol.dates
@@ -74,13 +74,12 @@ ol.dates li div.filters a.active
 
 ol.dates li div.content div.tasks
 {
-  display: none;
   background-color: #FFFFFF;
   border-color: #656565;
   border-style: solid;
   border-width: 1px 2px 2px 1px;
   left: -159px;
-  margin: 25px 0 0 0;
+  margin: 35px 0 0 0;
   padding: 10px;
   position: relative;
   width: 300px;
@@ -128,6 +127,11 @@ ol.tasks li.task
   list-style-type: none;
   margin-bottom: 7px;
   position: relative;
+}
+
+ol.tasks li.last.task
+{
+  margin-bottom: 0;
 }
 
 ol.tasks li.task label
@@ -216,15 +220,9 @@ li.task:hover div.task-controls div.links, div.task-controls:hover div.links
   padding: 5px;
 }
 
-div.note-container
+ol.notes li.note div.note-container
 {
   font-size: 13px;
-}
-
-div.form-container
-{
-  margin-bottom: 20px;
-  position: relative;
 }
 
 hr.border
@@ -244,16 +242,28 @@ hr.with-bottom-margin
   margin-bottom: 25px;
 }
 
-div.form-container form textarea
+li.date div.content div.form-container
 {
-  font-size: 14px;
-  height: 150px;
-  margin-right: -5px;
-  padding: 5px;
-  width: 100%;
+  margin: 25px 0 0 0;
+  padding: 10px 10px 20px 10px;
+  position: relative;
 }
 
-div.form-container form div.textarea-container
+li.date div.tasks div.form-container
+{
+  margin: 0;
+}
+
+li.date div.content div.form-container form textarea
+{
+  font-size: 14px;
+  height: 100px;
+  margin-right: -5px;
+  padding: 5px;
+  width: 580px;
+}
+
+li.date div.content div.form-container form div.textarea-container
 {
   margin-right: 13px;
 }
@@ -398,28 +408,28 @@ div.note-content pre
 div.navigation-container
 {
   background-color: #000000;
-  margin: 0 0 25px 0;
+  margin: 0;
   padding: 0;
 }
 
 ul.navigation
 {
-	background-color: #191919;
-	clear: both;
-	float: left;
-	font-size: 10px;
-	height: 36px;
-	list-style: none;
-	margin: 0;
-	padding: 0 0 0 35px;
+  background-color: #191919;
+  clear: both;
+  float: left;
+  font-size: 10px;
+  height: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 35px;
 }
 
 ul.navigation li
-{	
-	float: left;
-	height: 20px;
-	line-height: 20px;
-	margin: 14px 2px 0 2px;
+{
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  margin: 14px 2px 0 2px;
 }
 
 ul.navigation li.active
