@@ -74,6 +74,7 @@ ol.dates li div.filters a.active
 
 ol.dates li div.content div.tasks
 {
+  display: none;
   background-color: #FFFFFF;
   border-color: #656565;
   border-style: solid;
