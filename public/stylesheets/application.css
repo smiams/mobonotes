@@ -249,13 +249,16 @@ hr.with-bottom-margin
 
 li.date div.content div.form-container
 {
-  padding: 0px 10px 25px 10px;
+  padding: 0px 10px 0px 10px;
   position: relative;
 }
 
 li.date div.tasks div.form-container
 {
   margin: 0;
+  padding: 6px 0 0 0;
+  position: relative;
+  left: -5px;
 }
 
 li.date div.content div.form-container form textarea
@@ -347,11 +350,6 @@ div.note-container
   margin: 25px 0 0 0;
 }
 
-/*li.note.first div.note-container
-{
-  margin: 0 0 25px 0;
-}
-*/
 li.note.last div.note-container
 {
   border-bottom: none;
