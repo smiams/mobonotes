@@ -1,0 +1,1 @@
+page.insert_html :bottom, "task-#{task.id}-notes", :partial => "tasks/notes/note_list_item", :locals => {:note => note}

@@ -111,7 +111,7 @@ li.task:hover div.task-details, div.task-details:hover
 {
   display: block;
   float: left;
-  height: 200px;
+  min-height: 200px;
   left: 320px;
   top: -20px;
   width: 300px;
@@ -122,6 +122,17 @@ li.task div.task-details h1
 {
   font-size: 16px;
   margin: 0 10px 0 10px;
+  padding: 10px;
+  border-bottom: 1px solid #C0C0C0;
+}
+
+div.task-details ol.notes
+{
+  margin-bottom: 10px;
+}
+
+div.task-details ol.notes li
+{
   padding: 10px;
   border-bottom: 1px solid #C0C0C0;
 }
@@ -163,4 +174,14 @@ div#inline-edit-task-container div.text-field-container input.text-field
 div#inline-edit-task-container div.button-container div.select-container select
 {
   width: 100px;
+}
+
+div.note-form-container
+{
+  padding: 10px;
+}
+
+div.note-form-container div.text-field-container input.text-field
+{
+  width: 265px;
 }

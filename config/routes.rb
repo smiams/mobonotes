@@ -7,6 +7,7 @@ Mobonotes::Application.routes.draw do
   resources :tasks do
     put "complete", :on => :member
     put "uncomplete", :on => :member
+    resources :notes, :controller => "tasks/notes", :only => [:create]
   end
 
   resources :users do
