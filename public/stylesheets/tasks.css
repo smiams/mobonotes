@@ -1,0 +1,166 @@
+div.tasks
+{
+  background-color: #FFFFFF;
+  border-color: #656565;
+  border-style: solid;
+  border-width: 1px 2px 2px 1px;
+  padding: 10px;
+  position: relative;
+  width: 300px;
+}
+
+div.tasks div.top
+{
+  border-bottom: 1px solid #C0C0C0;
+  margin-bottom: 20px;
+  padding: 10px 0 20px 0;
+}
+
+ol.tasks
+{
+  list-style-position: outside;
+  position: relative;
+  left: 2px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  left: -10px;
+}
+
+li.task
+{
+  font-size: 13px;
+  list-style-type: none;
+  padding: 5px 0 5px 10px;
+  position: relative;
+}
+
+li.last.task
+{
+  margin-bottom: 0;
+}
+
+li.task label
+{
+  display: block;
+  margin: 0;
+  padding: 0 0 0 20px;
+  text-indent: -22px;
+}
+
+li.task label:hover
+{
+  cursor: pointer;
+}
+
+li.task label.complete
+{
+  text-decoration: line-through;
+}
+
+li.task div.task-container input.checkbox
+{
+  height: 13px;
+  margin: 0 5px 0 0;
+  padding: 0;
+  position: relative;
+  top: -1px;
+  vertical-align: bottom;
+  width: 13px;
+}
+
+li.task div.task-container
+{
+  margin: 0;
+  position: relative;
+}
+
+li.task:hover
+{
+  background-color: #C0C0C0;
+  width: 320px;
+}
+
+li.task div.task-details
+{
+  display: none;
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  border: 1px solid #C0C0C0;
+  background-color: #FFFFFF;
+}
+
+div.hidden-hover-pad
+{
+  display: none;
+}
+
+li.task:hover div.task-container div.hidden-hover-pad, div.task-container div.hidden-hover-pad:hover
+{
+  display: block;
+  position: absolute;
+  height: 200px;
+  width: 150px;
+  bottom: -155px;
+  right: 0;
+  z-index: 1;
+}
+
+li.task:hover div.task-details, div.task-details:hover
+{
+  display: block;
+  float: left;
+  height: 200px;
+  left: 320px;
+  top: -20px;
+  width: 300px;
+  z-index: 2;
+}
+
+li.task div.task-details h1
+{
+  font-size: 16px;
+  margin: 0 10px 0 10px;
+  padding: 10px;
+  border-bottom: 1px solid #C0C0C0;
+}
+
+li.task div.task-details h1:hover
+{
+  cursor: pointer;
+}
+
+li.task div.task-details h1 div.links
+{
+  display: none;
+}
+
+li.task div.task-details h1:hover div.links
+{
+  position: absolute;
+  top: 5px;
+  right: 0;
+  font-weight: normal;
+  font-size: 12px;
+  background-color: #C0C0C0;
+  display: inline;
+  padding: 5px 15px 5px 5px;
+}
+
+li.task div.task-details h1 div.links a
+{
+  color: #000000;
+}
+
+div#inline-edit-task-container div.text-field-container input.text-field
+{
+  width: 250px;
+  padding: 3px;
+  font-size: 12px;
+}
+
+div#inline-edit-task-container div.button-container div.select-container select
+{
+  width: 100px;
+}

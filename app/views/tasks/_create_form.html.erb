@@ -4,7 +4,9 @@
       <%= f.text_field :name, :class => "text-field", :size => 30 %>
     </div>
     <div class="button-container">
-      <%= render :partial => "notes/label_id_form_element", :locals => {:f => f} %>
+      <div class="select-container">
+        <%= f.select :label_id, @labels.collect { |label| [label.name, label.id] }, :include_blank => true %>
+      </div>
       <%= f.submit button_text, :class => "submit" %>
       <% if method == :put %>
         <%= link_to "cancel", task_path(task), :remote => true, :class => "cancel" %>

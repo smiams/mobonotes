@@ -1,7 +1,0 @@
-<% if (@current_controller.eql?("notes") && @current_action.eql?("index")) || (@current_controller.eql?("notes") && @current_action.eql?("edit")) || (@current_controller.eql?("notes") && @current_action.eql?("new")) || (@current_controller.eql?("tasks") && @current_action.eql?("edit")) || (@current_controller.eql?("tasks") && @current_action.eql?("new")) %>
-	<div class="select-container">
-		<%= f.select :label_id, @current_user.labels.collect { |label| [label.name, label.id] }, :include_blank => true %>
-	</div>
-<% elsif (@current_controller.eql?("users/labels") && @current_action.eql?("notes")) || (@current_controller.eql?("users/labels") && @current_action.eql?("tasks")) %>
-	<%= f.hidden_field :label_id, :value => @current_id %>
-<% end %>

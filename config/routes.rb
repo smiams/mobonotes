@@ -1,19 +1,22 @@
 Mobonotes::Application.routes.draw do
+  root :to => "dates#show"
+  match "dates/:year/:month/:day" => "dates#show"
+
   resources :notes
-    
+
   resources :tasks do
     put "complete", :on => :member
     put "uncomplete", :on => :member
   end
-  
+
   resources :users do
     resources :labels, :controller => "users/labels"
   end
-  
+
   resources :labels, :controller => "users/labels" do
     get "notes", :on => :member
   end
-  
+
   match "login" => "sessions#new", :via => :get, :as => :login
   match "logout" => "sessions#destroy", :as => :logout
   match "sessions/create" => "sessions#create", :via => :post, :as => :create_session

@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :get_current_controller_and_action
   before_filter :_get_current_tab
   before_filter :_set_time_zone
+  before_filter :_get_current_time_and_date
 
   def get_current_user
     @current_user = session[:user_id] && User.exists?(session[:user_id]) ? User.find(session[:user_id], :include => :labels) : nil
@@ -31,6 +32,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def _get_current_time_and_date
+    @time = Time.zone.now
+    @date = @time.to_date
+  end
 
   def _get_current_tab
     @current_tab = session[:current_tab] || notes_path

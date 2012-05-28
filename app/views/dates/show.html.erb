@@ -1,0 +1,29 @@
+<div class="date-content">
+  <div class="upper">
+    <div class="tasks">
+      <% if @tasks.present? %>
+        <div class="top">
+          <%= render :partial => "tasks/list_for_date", :locals => {:tasks => @tasks} %>
+        </div>
+      <% end %>
+      <div class="bottom">
+        <%= render :partial => "tasks/create_form", :locals => {:url => tasks_path, :method => :post, :class_name => "", :button_text => "Save", :task => Task.new} %>
+      </div>
+    </div>
+  </div>
+  <div class="lower">
+    <div class="notes">
+      <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :class_name => "", :button_text => "Save", :note => Note.new } %>
+
+      <% if @notes.present? %>
+        <ol class="notes">
+          <% @notes.each_with_index do |note, index| %>
+            <li class="<%= @notes.size - 1 == index ? 'last' : '' %> <%= index == 0 ? 'first' : '' %> note">
+              <%= render :partial => "notes/note_container", :locals => {:note => note} %>
+            </li>
+          <% end %>
+        </ol>
+      <% end %>
+    </div>
+  </div>
+</div>
