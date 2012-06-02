@@ -7,4 +7,6 @@ class Note < ActiveRecord::Base
   validates :user, :presence => true
 
   attr_accessible :content
+
+  scope :created_between, lambda { |start_time, end_time| where(:created_at => start_time..end_time) }
 end

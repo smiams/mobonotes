@@ -59,6 +59,22 @@ describe Note do
       @note.created_at.should == nil
     end
   end
+
+  context "created between" do
+    it "should return the correct notes" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        user = Factory.create(:user)
+        note_1 = FactoryGirl.create(:note, :created_at => Time.now - 1.day, :user => user)
+        note_2 = FactoryGirl.create(:note, :created_at => Time.now - 1.second, :user => user)
+        note_3 = FactoryGirl.create(:note, :created_at => Time.now + 0.seconds, :user => user)
+        note_4 = FactoryGirl.create(:note, :created_at => Time.now + 1.second, :user => user)
+        
+        notes = Note.created_between(Time.now - 1.day, Time.now)
+
+        notes.should == [note_1, note_2, note_3]
+      end
+    end
+  end
   
   context "with a label" do
     before(:each) do
