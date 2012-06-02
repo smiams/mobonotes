@@ -2,7 +2,10 @@
 <div class="navigation-container">
   <ul class="navigation">
     <li class="<%= @current_tab == notes_path ? "active" : "" %>">
-      <a href="#" class="tab"><%= @date.strftime("%b #{@date.day.ordinalize}, %Y") %></a>
+      <a href="#" class="tab">
+        <%= @date.strftime("%b #{@date.day.ordinalize}, %Y") %>
+        <%= select_tag :label_id, options_from_collection_for_select(@labels, :id, :name), :include_blank => true %>
+      </a>
     </li>
     <li>
       <a href="#" class="tab">Archive</a>

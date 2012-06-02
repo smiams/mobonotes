@@ -31,6 +31,14 @@ class ApplicationController < ActionController::Base
     _get_current_tab
   end
 
+  def get_date
+    if params[:year].present? && params[:month].present? && params[:day].present?
+      @date = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}").to_date
+    else
+      @date = Time.zone.now.to_date
+    end
+  end
+
   private
 
   def _get_current_time_and_date

@@ -1,6 +1,7 @@
 Mobonotes::Application.routes.draw do
   root :to => "dates#show"
   match "dates/:year/:month/:day" => "dates#show"
+  match "labels/:label_id/dates/:year/:month/:day" => "labels/dates#show"
 
   resources :notes
 
@@ -10,11 +11,7 @@ Mobonotes::Application.routes.draw do
     resources :notes, :controller => "tasks/notes", :only => [:create]
   end
 
-  resources :users do
-    resources :labels, :controller => "users/labels"
-  end
-
-  resources :labels, :controller => "users/labels" do
+  resources :labels do
     get "notes", :on => :member
   end
 
