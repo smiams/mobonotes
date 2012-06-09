@@ -3,11 +3,11 @@
     <div class="tasks">
       <% if @tasks.present? %>
         <div class="top">
-          <%= render :partial => "tasks/list_for_date", :locals => {:tasks => @tasks} %>
+          <%= render :partial => "tasks/list", :locals => {:tasks => @tasks} %>
         </div>
       <% end %>
       <div class="bottom">
-        <%= render :partial => "tasks/create_form", :locals => {:url => tasks_path, :method => :post, :class_name => "", :button_text => "Save", :task => Task.new} %>
+        <%= render :partial => "tasks/new_form", :locals => {:labels => @labels} %>
       </div>
     </div>
   </div>

@@ -1,1 +1,0 @@
-page.replace_html "task-#{@task.id}-header", :partial => "tasks/inline_edit_form", :locals => {:task => @task, :url => task_path(@task), :method => :put, :class_name => "", :button_text => "Update"}

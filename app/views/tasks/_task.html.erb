@@ -17,22 +17,7 @@
         <a href="#" class="move"></a>
       </div>
     </h1>
-    <ol id="task-<%= task.id %>-notes" class="notes">
-      <% task.notes.each do |note| %>
-        <%= render :partial => "tasks/notes/note_list_item", :locals => {:task => task, :note => note} %>
-      <% end %>
-    </ol>
 
-    <div class="note-form-container">
-      <%= form_for Note.new, :url => task_notes_path(task), :as => :note, :method => :post, :remote => true do |f| %>
-        <div class="text-field-container">
-          <%= f.text_field :content, :class => "text-field" %>
-        </div>
-        <div class="button-container">
-          <%= f.submit "Add", :class => "submit" %>
-          <div style="clear:both;"></div>
-        </div>
-      <% end %>
-    </div>    
+    <%= render :partial => "tasks/notes/list", :locals => {:task => task} %>
   </div>
 </div>

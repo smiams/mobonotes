@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     respond_to do |format|
-      format.js { render :action => "show_edit_form"}
+      format.js { render :action => "replace-edit-form"}
     end
   end
 
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
     @task.update_attributes(params[:task])
 
     respond_to do |format|
-      format.js { render :action => "show_task" }
+      format.js { render :action => "replace-task" }
     end
   end
 
@@ -51,7 +51,7 @@ class TasksController < ApplicationController
 
     if @task.mark_complete
       respond_to do |format|
-        format.js { render :action => "show_task" }
+        format.js { render :action => "replace-task" }
       end
     end
   end
@@ -61,7 +61,7 @@ class TasksController < ApplicationController
 
     if @task.mark_incomplete
       respond_to do |format|
-        format.js { render :action => "show_task" }
+        format.js { render :action => "replace-task" }
       end
     end
   end

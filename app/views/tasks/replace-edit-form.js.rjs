@@ -1,0 +1,1 @@
+page.replace_html "task-#{@task.id}-header", :partial => "tasks/edit_form", :locals => {:task => @task, :labels => @labels}

@@ -164,14 +164,14 @@ li.task div.task-details h1 div.links a
   color: #000000;
 }
 
-div#inline-edit-task-container div.text-field-container input.text-field
+div.form-container.edit-task div.text-field-container input.text-field
 {
   width: 250px;
   padding: 3px;
   font-size: 12px;
 }
 
-div#inline-edit-task-container div.button-container div.select-container select
+div.form-container.edit-task div.button-container div.select-container select
 {
   width: 100px;
 }
