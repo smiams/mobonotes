@@ -1,14 +1,25 @@
 <div class="label-navigator">
   <ol>
-    <li class="active label">
-      <a href="#" class="label">
-        -- all --
-      </a>
-    </li>
+    <% if @label.present?%>
+      <% labels -= [@label] %>
+      <li class="active label">
+        <%= link_to @label.name, labels_dates_path(@label.id, Time.now.to_date), :class => "active label" %>
+      </li>
+      <li class="label">
+        <%= link_to "-- all --", date_path(Time.now.to_date), :class => "label" %>
+      </li>
+    <% else %>
+      <li class="active label">
+        <%= link_to "-- all --", date_path(Time.now.to_date), :class => "active label" %>
+      </li>
+    <% end %>
     <% labels.each do |label| %>
       <li class="label">
-        <%= link_to label.name, labels_dates_path(label.id, Time.now.to_date), :class => "label" %>
+        <%= link_to label.name, labels_dates_path(label.id, @date), :class => "label" %>
       </li>
     <% end %>
   </ol>
 </div>
+
+
+

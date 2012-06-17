@@ -1,5 +1,6 @@
 Mobonotes::Application.routes.draw do
   root :to => "dates#show"
+  match "dates/:date" => "dates#show", :as => :date
 
   match "labels/:label_id/dates/:date" => "labels/dates#show", :as => :labels_dates
 
