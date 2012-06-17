@@ -1,16 +1,16 @@
 <div class="firefox-shim"></div>
 <div class="navigation-container">
   <ul class="navigation">
-    <li class="<%= @current_tab == notes_path ? "active" : "" %>">
+    <li class="<%= @current_tab == notes_path ? "active" : "" %> tab with-label-navigator">
       <a href="#" class="tab">
         <%= @date.strftime("%b #{@date.day.ordinalize}, %Y") %>
-        <%= select_tag :label_id, options_from_collection_for_select(@labels, :id, :name), :include_blank => true %>
       </a>
+      <%= render :partial => "shared/label_navigator", :locals => {:labels => @labels} %>
     </li>
-    <li>
+    <li class="tab">
       <a href="#" class="tab">Archive</a>
     </li>
-    <li>
+    <li class="tab">
       <input type="text">Archive</input>
       <input type="submit" value="Search"/>
     </li>

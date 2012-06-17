@@ -2,13 +2,18 @@ class Labels::DatesController < ApplicationController
   before_filter :_get_label, :get_date
 
   def show
-    @notes = @label.notes.where("created_at BETWEEN ? AND ?", @date.beginning_of_day.utc, @date.end_of_day.utc)
-    @tasks = @label.tasks.where("created_at BETWEEN ? AND ?", @date.beginning_of_day.utc, @date.end_of_day.utc)
+    @notes = @label.notes.created_between(@date.beginning_of_day.utc, @date.end_of_day.utc)
+    @tasks = @label.tasks.created_between(@date.beginning_of_day.utc, @date.end_of_day.utc)
 
     respond_to do |format|
       format.html { render "dates/show" }
     end
   end
+
+  # The #index action should show a calendar or something...
+  # def index
+  # 
+  # end
 
   private
 

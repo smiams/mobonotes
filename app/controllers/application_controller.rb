@@ -32,8 +32,8 @@ class ApplicationController < ActionController::Base
   end
 
   def get_date
-    if params[:year].present? && params[:month].present? && params[:day].present?
-      @date = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}").to_date
+    if params[:date].present?
+      @date = Time.parse(params[:date]).to_date
     else
       @date = Time.zone.now.to_date
     end

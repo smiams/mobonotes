@@ -1,0 +1,146 @@
+div.navigation-container
+{
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+ul.navigation
+{
+  background-color: #191919;
+  clear: both;
+  float: left;
+  font-size: 10px;
+  height: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 35px;
+}
+
+ul.navigation li.tab
+{
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  margin: 14px 2px 0 2px;
+}
+
+ul.navigation li.tab.active
+{
+  bottom: 6px;
+  color: #FFFFFF;
+  padding: 4px 7px 4px 0px;
+  position: relative;
+}
+
+ul.navigation li.tab a.tab
+{
+  background-color: #656565;
+  color: #FFFFFF;
+  float: left;
+  padding: 2px 5px 2px 5px;
+  position: relative;
+  text-align: center;	
+  text-decoration: none;
+  top: -2px;
+}
+
+ul.navigation li.tab.active a.tab
+{
+  background-color: #EBEBEB;
+  color: #000000;
+  font-size: 13px;
+  padding: 4px 5px 4px 5px;
+  top: -4px;
+}
+
+ul.navigation li.tab.first
+{
+  margin-left: 5px;
+  margin-right: 3px;
+}
+
+ul.navigation li.tab.last
+{
+  margin-left: 3px;
+  margin-right: 0px;
+}
+
+ul.navigation li.tab.with-label-navigator
+{
+  width: 190px;
+  padding-right: 0;
+}
+
+ul.navigation li.tab.with-label-navigator.active a.tab
+{
+  width: 92px;
+}
+
+div.label-navigator
+{
+  background-color: red;
+  clear: both;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 102px;
+  top: -32px;
+  width: 88px;
+  z-index: 10;
+}
+
+div.label-navigator ol
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+div.label-navigator:hover ol
+{
+  display: block;
+}
+
+div.label-navigator ol li.label.active
+{
+  display: block;
+}
+
+div.label-navigator ol li.label
+{
+  display: none;
+  text-align: left;
+}
+
+div.label-navigator ol:hover li.label
+{
+  display: block;
+}
+
+div.label-navigator ol li.label a.label
+{
+  background-color: yellow;
+  display: block;
+  padding: 4px 5px 4px 5px;
+}
+
+div.label-navigator ol li.label a.label:hover
+{
+  background-color: magenta;
+}
+
+ol.test
+{
+  background-color: red;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ol.test li
+{
+  background-color: blue;
+}
+

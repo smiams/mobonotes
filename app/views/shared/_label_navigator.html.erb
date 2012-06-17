@@ -1,0 +1,14 @@
+<div class="label-navigator">
+  <ol>
+    <li class="active label">
+      <a href="#" class="label">
+        -- all --
+      </a>
+    </li>
+    <% labels.each do |label| %>
+      <li class="label">
+        <%= link_to label.name, labels_dates_path(label.id, Time.now.to_date), :class => "label" %>
+      </li>
+    <% end %>
+  </ol>
+</div>
