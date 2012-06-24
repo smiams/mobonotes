@@ -10,17 +10,35 @@ class Task < ActiveRecord::Base
 
   scope :created_between, lambda { |start_time, end_time| where(:created_at => start_time..end_time) }
 
-  def mark_complete
+  def complete!
     self.completed_at = Time.now
     self.save
   end
 
-  def mark_incomplete
+  def uncomplete!
     self.completed_at = nil
     self.save
   end
 
   def complete?
     self.completed_at.present?
+  end
+
+  def start!
+    self.started_at = Time.now
+    self.save
+  end
+
+  def unstart!
+    self.started_at = nil
+    self.save
+  end
+
+  def started?
+    self.started_at.present?
+  end
+
+  def in_progress?
+    self.started_at.present? && self.complete? == false
   end
 end

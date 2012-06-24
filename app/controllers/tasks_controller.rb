@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   def complete
     @task = Task.find(params[:id])
 
-    if @task.mark_complete
+    if @task.complete!
       respond_to do |format|
         format.js { render :action => "replace-task" }
       end
@@ -59,7 +59,27 @@ class TasksController < ApplicationController
   def uncomplete
     @task = Task.find(params[:id])
 
-    if @task.mark_incomplete
+    if @task.uncomplete!
+      respond_to do |format|
+        format.js { render :action => "replace-task" }
+      end
+    end
+  end
+
+  def start
+    @task = Task.find(params[:id])
+
+    if @task.start!
+      respond_to do |format|
+        format.js { render :action => "replace-task" }
+      end
+    end
+  end
+
+  def unstart
+    @task = Task.find(params[:id])
+
+    if @task.unstart!
       respond_to do |format|
         format.js { render :action => "replace-task" }
       end

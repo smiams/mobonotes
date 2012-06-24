@@ -91,25 +91,86 @@ describe Task do
     end
   end   
   
-  describe "#mark_complete" do
+  describe "#complete!" do
     before(:each) do
       @task = Factory(:task, :user => Factory(:user))
     end
     
     it "sets the completed_at date/time to the current date/time" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        @task.mark_complete
+        @task.complete!
         @task.reload.completed_at.should == Time.now
       end
     end
     
     it "returns false if it does not save" do
       @task.should_receive(:save).and_return(false)
-      
+
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        @task.mark_complete.should == false
+        @task.complete!.should == false
         @task.reload.completed_at.should == nil
       end      
+    end
+  end
+
+  describe "#uncomplete!" do
+    before(:each) do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        @task = Factory(:task, :user => Factory(:user), :completed_at => Time.now)
+      end
+    end
+
+    it "sets the completed_at date/time to nil" do
+      @task.uncomplete!
+      @task.reload.completed_at.should == nil
+    end
+
+    it "returns false if it does not save" do
+      @task.should_receive(:save).and_return(false)
+
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        @task.uncomplete!.should == false
+        @task.reload.completed_at.should == Time.now
+      end
+    end
+  end
+
+  describe "#start!" do
+    before(:each) do
+      @task = Factory(:task, :user => Factory(:user))
+    end
+
+    it "sets the started_at timestamp to the current date/time" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        @task.start!
+        @task.reload.started_at.should == Time.now
+      end
+    end
+  end
+
+  describe "#unstart!" do
+    before(:each) do
+      @task = Factory(:task, :user => Factory(:user), :started_at => Time.now)
+    end
+
+    it "sets the started_at timestamp to the current date/time" do
+      @task.unstart!
+      @task.reload.started_at.should == nil
+    end
+  end
+
+  describe "#started?" do
+    before(:each) do
+      @task = Factory(:task, :user => Factory(:user), :started_at => Time.now)
+    end
+
+    it "returns true if the task has been started" do
+      @task.started?.should == true
+    end
+
+    it "returns false if the task has not been started" do
+      @task.started_at = nil
+      @task.started?.should == false
     end
   end
 end

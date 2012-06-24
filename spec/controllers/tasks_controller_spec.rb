@@ -3,7 +3,6 @@ require 'spec_helper'
 describe TasksController do
   before(:all) do
     @current_user = Factory(:user)
-    request.env["HTTP_REFERER"] = Rails.application.routes.generate :controller => "notes", :action => "index"
   end
   
   after(:all) do
@@ -69,20 +68,42 @@ describe TasksController do
     end
   end
   
-  describe "PUT complete" do
+  describe "PUT uncomplete" do
     before(:each) do
-      @task = Factory(:task, :user => @current_user, :completed_at => Time.parse(STANDARD_FROZEN_TIME))
+      @task = Factory(:task, :user => @current_user, :completed_at => STANDARD_FROZEN_TIME)
     end
 
     it "uncompletes the task" do
-      Timecop.freeze(STANDARD_FROZEN_TIME) do
-        put :uncomplete, :id => @task.id
-        @task.reload.completed_at.should == nil
-      end
+      put :uncomplete, :id => @task.id
+      @task.reload.completed_at.should == nil
     end
 
     it "does not uncomplete the task if the current user does not own it" do
       pending
+    end
+  end
+
+  describe "PUT start" do
+    before(:each) do
+      @task = Factory(:task, :user => @current_user)
+    end
+
+    it "starts the task" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        put :start, :id => @task.id
+        @task.reload.started_at.should == Time.now
+      end
+    end
+  end
+
+  describe "PUT unstart" do
+    before(:each) do
+      @task = Factory(:task, :user => @current_user, :started_at => STANDARD_FROZEN_TIME)
+    end
+
+    it "unstarts the task" do
+      put :unstart, :id => @task.id
+      @task.reload.started_at.should == nil
     end
   end
 end

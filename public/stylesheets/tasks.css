@@ -81,6 +81,11 @@ li.task:hover
   width: 320px;
 }
 
+div.task-container.started
+{
+  background-color: #26B319;
+}
+
 li.task div.task-details
 {
   display: none;
