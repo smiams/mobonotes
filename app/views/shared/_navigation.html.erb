@@ -1,18 +1,22 @@
 <div class="firefox-shim"></div>
 <div class="navigation-container">
   <ul class="navigation">
-    <li class="<%= @current_tab == notes_path ? "active" : "" %> tab with-label-navigator">
-      <a href="#" class="tab">
-        <%= @date.strftime("%b #{@date.day.ordinalize}, %Y") %>
-      </a>
-      <%= render :partial => "shared/label_navigator", :locals => {:labels => @labels} %>
+    <li class="first <%= @current_tab == notes_path ? "active" : "" %> tab">
+      <div class="tab">
+        <%= link_to raw("&laquo;"), @label.present? ? labels_dates_path(@label, @date - 1.day) : date_path(@date - 1.day), :class => "arrow tab-slice" %>
+        <a href="#" class="tab-slice">
+          <%= @date.strftime("%b #{@date.day.ordinalize}, %Y") %>
+        </a>
+        <%= link_to raw("&raquo;"), @label.present? ? labels_dates_path(@label, @date + 1.day) : date_path(@date + 1.day), :class => "arrow tab-slice" %>
+        <div class="label-nav tab-slice">
+          <%= render :partial => "shared/label_navigator", :locals => {:labels => @labels} %>
+        </div>
+      </div>
     </li>
     <li class="tab">
-      <a href="#" class="tab">Archive</a>
-    </li>
-    <li class="tab">
-      <input type="text">Archive</input>
-      <input type="submit" value="Search"/>
+      <div class="tab">
+        <a href="#" class="tab-slice">Archive</a>
+      </div>
     </li>
   </ul>
   <div style="clear:both;"></div>
