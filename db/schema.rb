@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624204513) do
+ActiveRecord::Schema.define(:version => 20120704200847) do
 
   create_table "labels", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20120624204513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "started_at"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean  "rolling"
   end
 
   create_table "users", :force => true do |t|

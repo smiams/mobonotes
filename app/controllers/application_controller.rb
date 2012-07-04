@@ -33,9 +33,9 @@ class ApplicationController < ActionController::Base
 
   def get_date
     if params[:date].present?
-      @date = Time.parse(params[:date]).to_date
+      @date = Time.parse(params[:date])
     else
-      @date = Time.zone.now.to_date
+      @date = Time.zone.now
     end
   end
 

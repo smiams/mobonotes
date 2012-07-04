@@ -5,19 +5,26 @@ describe Task do
     before(:each) do
       @task = Task.new
     end
-    
+
+    it "defaults start_at to the current time" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        @task = Factory(:task, :user => Factory(:user))
+        @task.start_at.should == Time.now
+      end
+    end
+
     context "without a name" do
       it "should be invalid" do
         @task.valid?.should == false
         @task.errors[:name].first.should == "can't be blank"
       end
     end
-    
+
     context "with name" do
       before(:each) do
         @task.name = "This is a new task."
       end
-      
+
       context "and without a user" do
         it "should be invalid" do
           @task.valid?.should == false
@@ -171,6 +178,139 @@ describe Task do
     it "returns false if the task has not been started" do
       @task.started_at = nil
       @task.started?.should == false
+    end
+  end
+
+  describe "#occurs_between" do
+    before(:each) do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        @task = Factory(:task, :user => Factory(:user), :start_at => Time.now)
+      end
+    end
+
+    context "without an end time" do
+      it "is returned if it occurs within the time window" do
+        Timecop.freeze(STANDARD_FROZEN_TIME) do
+          Task.occurs_between(Time.now, Time.now + 1.second).length.should == 1
+        end
+      end
+
+      it "is not returned if it occurs outside the time window (left)" do
+        Timecop.freeze(STANDARD_FROZEN_TIME) do
+          Task.occurs_between(Time.now + 1.second, Time.now + 1.seconds).length.should == 0
+        end
+      end
+
+      it "is not returned if it occurs outside the time window (right)" do
+        Timecop.freeze(STANDARD_FROZEN_TIME) do
+          Task.occurs_between(Time.now - 1.second, Time.now - 1.second).length.should == 0
+        end
+      end
+
+    end
+
+    context "with an end time" do
+      before(:each) do
+        Timecop.freeze(STANDARD_FROZEN_TIME) do
+          @task.end_at = Time.now + 1.second
+          @task.save
+        end
+      end
+
+      it "is returned if it occurs within the time window (right)" do
+        Timecop.freeze(STANDARD_FROZEN_TIME) do
+          Task.occurs_between(Time.now - 1.second, Time.now).length.should == 1
+        end
+      end
+
+      it "is returned if it occurs within the time window (middle)" do
+        Timecop.freeze(STANDARD_FROZEN_TIME) do
+          Task.occurs_between(Time.now, Time.now + 1.second).length.should == 1
+        end
+      end
+
+      it "is returned if it occurs within the time window (left)" do
+        Timecop.freeze(STANDARD_FROZEN_TIME) do
+          Task.occurs_between(Time.now + 1.second, Time.now + 2.seconds).length.should == 1
+        end
+      end
+    end
+  end
+
+  describe "#occurs_before" do
+    before(:each) do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        @task = Factory(:task, :user => Factory(:user), :start_at => Time.now)
+      end
+    end
+
+    it "is returned if it starts before the specified time" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        Task.occurs_before(Time.now + 1.second).length.should == 1
+      end
+    end
+
+    it "is not returned if it starts after the specified time" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        Task.occurs_before(Time.now - 1.second).length.should == 0 
+      end
+    end
+  end
+
+  describe "complete and incomplete scopes" do
+    before(:each) do
+      @task_1 = Factory(:task, :user => Factory(:user))
+      @task_2 = Factory(:task, :user => Factory(:user))
+      @task_3 = Factory(:task, :user => Factory(:user), :completed_at => Time.now)
+      @task_4 = Factory(:task, :user => Factory(:user), :completed_at => Time.now)
+    end
+
+    it "returns incomplete tasks" do
+      incomplete_tasks = Task.incomplete
+
+      incomplete_tasks.length.should == 2
+
+      incomplete_task_ids = incomplete_tasks.map(&:id)
+
+      incomplete_task_ids.should include(@task_1.id)
+      incomplete_task_ids.should include(@task_2.id)
+    end
+
+    it "returns complete tasks" do
+      complete_tasks = Task.complete
+
+      complete_tasks.length.should == 2
+
+      complete_task_ids = complete_tasks.map(&:id)
+
+      complete_task_ids.should include(@task_3.id)
+      complete_task_ids.should include(@task_4.id)
+    end
+  end
+
+  describe "rolling scope" do
+    before(:each) do
+      @task_1 = Factory(:task, :user => Factory(:user), :rolling => true)
+      @task_2 = Factory(:task, :user => Factory(:user))
+      @task_3 = Factory(:task, :user => Factory(:user))
+    end
+
+    it "returns rolling tasks" do
+      rolling_tasks = Task.rolling
+
+      rolling_tasks.length.should == 1
+      rolling_tasks.last.id.should == @task_1.id
+    end
+
+    it "does not return non-rolling tasks" do
+      non_rolling_tasks = Task.non_rolling
+
+      non_rolling_tasks.length.should == 2
+
+      non_rolling_task_ids = non_rolling_tasks.map(&:id)
+
+      non_rolling_task_ids.should include(@task_2.id)
+      non_rolling_task_ids.should include(@task_3.id)
     end
   end
 end
