@@ -5,8 +5,9 @@ class Task < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :user, :presence => true
+  # validates :start_at_is_before_end_at
 
-  attr_accessible :name
+  attr_accessible :name, :rolling
 
   scope :created_between, lambda { |start_time, end_time| where(:created_at => start_time..end_time) }
   scope :occurs_between, lambda { |start_time, end_time|
