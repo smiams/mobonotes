@@ -3,7 +3,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     respond_to do |format|
-      format.js { render :action => "show_task"}
+      format.js { render :action => "replace-task", :locals => {:task => @task}}
     end  
   end
 
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     respond_to do |format|
-      format.js { render :action => "replace-edit-form"}
+      format.js { render :action => "replace-edit-form", :locals => {:task => @task, :labels => @labels} }
     end
   end
 
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
     @task.update_attributes(params[:task])
 
     respond_to do |format|
-      format.js { render :action => "replace-task" }
+      format.js { render :action => "replace-task", :locals => {:task => @task} }
     end
   end
 
@@ -51,7 +51,7 @@ class TasksController < ApplicationController
 
     if @task.complete!
       respond_to do |format|
-        format.js { render :action => "replace-task" }
+        format.js { render :action => "replace-task", :locals => {:task => @task} }
       end
     end
   end
@@ -61,7 +61,7 @@ class TasksController < ApplicationController
 
     if @task.uncomplete!
       respond_to do |format|
-        format.js { render :action => "replace-task" }
+        format.js { render :action => "replace-task", :locals => {:task => @task} }
       end
     end
   end
@@ -71,7 +71,7 @@ class TasksController < ApplicationController
 
     if @task.start!
       respond_to do |format|
-        format.js { render :action => "replace-task" }
+        format.js { render :action => "replace-task", :locals => {:task => @task} }
       end
     end
   end
@@ -81,7 +81,7 @@ class TasksController < ApplicationController
 
     if @task.unstart!
       respond_to do |format|
-        format.js { render :action => "replace-task" }
+        format.js { render :action => "replace-task", :locals => {:task => @task} }
       end
     end
   end

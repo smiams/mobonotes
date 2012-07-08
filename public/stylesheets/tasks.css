@@ -82,7 +82,7 @@ li.task:hover
   width: 320px;
 }
 
-div.task-container.started
+li.task.started:hover, div.task-container.started
 {
   background-color: #7FD674;
 }
@@ -175,9 +175,26 @@ li.task div.task-details h1 div.links a
   color: #000000;
 }
 
+div.task-details div.form-container.edit-task
+{
+  float: left;
+  margin: 10px;
+}
+
+div.form-container.edit-task div.button-container a.cancel
+{
+  margin-left: 5px;
+}
+
+div.form-container.edit-task div.text-field-container
+{
+  margin: 0;
+  padding: 0;
+}
+
 div.form-container.edit-task div.text-field-container input.text-field
 {
-  width: 250px;
+  width: 265px;
   padding: 3px;
   font-size: 12px;
 }

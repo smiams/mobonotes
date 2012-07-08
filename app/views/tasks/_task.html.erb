@@ -1,6 +1,4 @@
 <div id="task-<%= task.id %>" class="<%= task.in_progress? ? 'started' : '' %> task-container">
-  <div class="hidden-hover-pad">
-  </div>
   <label class="<%= task.complete? ? 'complete' : 'incomplete' %>">
     <%= check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", 
                       task.complete?,
@@ -8,7 +6,7 @@
                       :onclick => remote_function(:url => task.complete? ? uncomplete_task_path(task) : complete_task_path(task), :method => :put) %>
     <%= task.name %>
   </label>
-  <div class="task-details">
+  <div id="task-<%= task.id %>-details" class="task-details">
     <h1 id="task-<%= task.id %>-header">
       <%= task.name %>
       <div class="links">

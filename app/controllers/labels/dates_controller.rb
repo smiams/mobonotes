@@ -3,6 +3,7 @@ class Labels::DatesController < ApplicationController
 
   def show
     @notes = @label.notes.created_between(@date.beginning_of_day.utc, @date.end_of_day.utc)
+
     @tasks = @label.tasks.occurs_between(@date.beginning_of_day.utc, @date.end_of_day.utc)
     @tasks += @label.tasks.occurs_before(@date.end_of_day.utc).rolling.incomplete
     @tasks.uniq!

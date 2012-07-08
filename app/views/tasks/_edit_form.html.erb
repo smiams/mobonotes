@@ -1,5 +1,5 @@
 <div class="form-container edit-task">
-  <%= form_for task, :as => :task, :url => task_path(task), :method => :put, :remote => true, :html => {:class => class_name} do |f| %>
+  <%= form_for task, :as => :task, :url => task_path(task), :method => :put, :remote => true do |f| %>
     <div class="text-field-container">
       <%= f.text_field :name, :class => "text-field", :size => 30 %>
     </div>
@@ -7,8 +7,15 @@
       <div class="select-container">
         <%= f.select :label_id, labels.collect { |label| [label.name, label.id] }, :include_blank => true %>
       </div>
+      <div class="checkbox-container">
+        <label>
+          <%= f.check_box :rolling, :class => "checkbox" %>
+          Roll
+        </label>
+      </div>
       <%= f.submit "Update", :class => "submit" %>
       <%= link_to "cancel", task_path(task), :remote => true, :class => "cancel" %>
     </div>
   <% end %>
 </div>
+<div style="clear:both;"></div>
