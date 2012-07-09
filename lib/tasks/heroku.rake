@@ -18,3 +18,18 @@ namespace :notes do
     end
   end
 end
+
+namespace :tasks do
+  desc "rake tasks:copy_created_at_to_start_at"
+  task :copy_created_at_to_start_at => [:environment] do
+    Task.all.each do |task|
+      if task.start_at.blank?
+        task.start_at = task.created_at
+        task.rolling = true
+      end
+
+      puts "updating task: #{task.id}"
+      task.save!
+    end
+  end
+end
