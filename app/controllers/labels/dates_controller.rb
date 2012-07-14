@@ -6,6 +6,8 @@ class Labels::DatesController < ApplicationController
 
     @tasks = @label.tasks.occurs_between(@date.beginning_of_day.utc, @date.end_of_day.utc)
     @tasks += @label.tasks.occurs_before(@date.end_of_day.utc).rolling.incomplete
+    @tasks += @label.tasks.completed_between(@date.beginning_of_day.utc, @date.end_of_day.utc)
+
     @tasks.uniq!
 
     respond_to do |format|

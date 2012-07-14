@@ -37,11 +37,11 @@ describe Task do
           @user = Factory(:user)
           @task.user = @user
         end
-        
+
         it "should be valid" do
           @task.valid?.should == true
         end
-        
+
         it "should be created" do
           expect {
             @task.save.should == true
@@ -50,23 +50,41 @@ describe Task do
       end
     end
   end
-  
-  context "created between" do
+
+  describe "#created_between" do
     it "should return the correct notes" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
         user = Factory.create(:user)
+
         task_1 = FactoryGirl.create(:task, :created_at => Time.now - 1.day, :user => user)
         task_2 = FactoryGirl.create(:task, :created_at => Time.now - 1.second, :user => user)
         task_3 = FactoryGirl.create(:task, :created_at => Time.now + 0.seconds, :user => user)
         task_4 = FactoryGirl.create(:task, :created_at => Time.now + 1.second, :user => user)
-        
+
         tasks = Task.created_between(Time.now - 1.day, Time.now)
 
         tasks.should == [task_1, task_2, task_3]
       end
     end
-  end  
-  
+  end
+
+  describe "#completed_between" do
+    it "should return the correct notes" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        user = Factory.create(:user)
+
+        task_1 = FactoryGirl.create(:task, :completed_at => Time.now - 1.day, :user => user)
+        task_2 = FactoryGirl.create(:task, :completed_at => Time.now - 1.second, :user => user)
+        task_3 = FactoryGirl.create(:task, :completed_at => Time.now + 0.seconds, :user => user)
+        task_4 = FactoryGirl.create(:task, :completed_at => Time.now + 1.second, :user => user)
+
+        tasks = Task.completed_between(Time.now - 1.day, Time.now)
+
+        tasks.should == [task_1, task_2, task_3]
+      end
+    end
+  end
+
   context "mass-assignment" do
     before(:each) do
       @task = Task.new    

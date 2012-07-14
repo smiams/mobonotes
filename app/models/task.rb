@@ -9,6 +9,9 @@ class Task < ActiveRecord::Base
   attr_accessible :name, :rolling
 
   scope :created_between, lambda { |start_time, end_time| where(:created_at => start_time..end_time) }
+
+  scope :completed_between, lambda { |start_time, end_time| where(:completed_at => start_time..end_time) }
+
   scope :occurs_between, lambda { |start_time, end_time|
     start_time = start_time.utc.to_formatted_s(:db)
     end_time = end_time.utc.to_formatted_s(:db)
