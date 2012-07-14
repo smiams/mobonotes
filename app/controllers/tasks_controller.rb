@@ -85,4 +85,24 @@ class TasksController < ApplicationController
       end
     end
   end
+
+  def irrelevant
+    @task = Task.find(params[:id])
+
+    if @task.irrelevant!
+      respond_to do |format|
+        format.js { render :action => "remove-task", :locals => {:task => @task} }
+      end
+    end
+  end
+
+  def relevant
+    @task = Task.find(params[:id])
+
+    if @task.relevant!
+      respond_to do |format|
+        format.js { render :action => "remove-task", :locals => {:task => @task} }
+      end
+    end
+  end
 end

@@ -85,6 +85,73 @@ describe Task do
     end
   end
 
+  describe "#irrelevant_between" do
+    it "should return the correct notes" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        user = Factory.create(:user)
+
+        task_1 = FactoryGirl.create(:task, :irrelevant_at => Time.now - 1.day, :user => user)
+        task_2 = FactoryGirl.create(:task, :irrelevant_at => Time.now - 1.second, :user => user)
+        task_3 = FactoryGirl.create(:task, :irrelevant_at => Time.now + 0.seconds, :user => user)
+        task_4 = FactoryGirl.create(:task, :irrelevant_at => Time.now + 1.second, :user => user)
+
+        tasks = Task.irrelevant_between(Time.now - 1.day, Time.now)
+
+        tasks.should == [task_1, task_2, task_3]
+      end
+    end
+  end
+
+  describe "#relevant" do
+    it "should only return relevant tasks" do
+      user = Factory.create(:user)
+
+      task_1 = FactoryGirl.create(:task, :irrelevant_at => Time.now - 1.day, :user => user)
+      task_2 = FactoryGirl.create(:task, :irrelevant_at => Time.now - 1.second, :user => user)
+      task_3 = FactoryGirl.create(:task, :user => user)
+
+      tasks = Task.relevant.should == [task_3]
+    end
+  end
+
+  describe "#relevant?" do
+    it "should true for a relevant task" do
+      user = Factory.create(:user)
+      task = FactoryGirl.create(:task, :irrelevant_at => nil, :user => user)
+      task.relevant?.should == true
+    end
+
+    it "should false for an irrelevant task" do
+      user = Factory.create(:user)
+      task = FactoryGirl.create(:task, :irrelevant_at => Time.now, :user => user)
+      task.relevant?.should == false
+    end
+  end
+
+  describe "#irrelevant!" do
+    it "should set the Task's irrelevant_at attribute to the current time" do
+      Timecop.freeze(STANDARD_FROZEN_TIME) do
+        user = Factory.create(:user)
+        task = FactoryGirl.create(:task, :irrelevant_at => nil, :user => user)
+
+        task.irrelevant!
+
+        task.reload.irrelevant_at.should == Time.now
+      end
+    end
+  end
+
+  describe "#relevant!" do
+    it "should set the Task's irrelevant_at attribute to nil" do
+      user = Factory.create(:user)
+      task = FactoryGirl.create(:task, :irrelevant_at => Time.now, :user => user)
+
+      task.relevant!
+
+      task.reload.irrelevant_at.should == nil
+    end
+  end
+
   context "mass-assignment" do
     before(:each) do
       @task = Task.new    
