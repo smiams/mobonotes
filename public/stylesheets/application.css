@@ -372,3 +372,25 @@ ul.tags li.last.tag
   margin: 0 0 0 0;
   border-right: none;
 }
+
+a.toggle
+{
+  color: #656565;
+  font-size: 13px;
+}
+
+div.irrelevant a.toggle
+{
+  display: block;
+  margin: 5px 0;
+}
+
+div.irrelevant ol.tasks
+{
+  display: none;
+}
+
+div.irrelevant:hover ol.tasks
+{
+  display: block;
+}

@@ -1,11 +1,14 @@
 <div class="date-content">
   <div class="upper">
     <div class="tasks">
-      <% if @tasks.present? %>
-        <div class="top">
-          <%= render :partial => "tasks/list", :locals => {:tasks => @tasks} %>
-        </div>
-      <% end %>
+      <div class="top">
+        <% if @tasks.present? %>
+          <%= render :partial => "tasks/list", :locals => {:tasks => @tasks, :html => {:id => "relevant-task-list"}} %>
+        <% end %>
+        <% if @irrelevant_tasks.present? %>
+          <%= render :partial => "tasks/irrelevant_block", :locals => {:tasks => @irrelevant_tasks} %>
+        <% end %>
+      </div>
       <div class="bottom">
         <%= render :partial => "tasks/new_form", :locals => {:labels => @labels} %>
       </div>
