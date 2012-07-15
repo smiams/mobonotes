@@ -156,18 +156,18 @@ describe Task do
     before(:each) do
       @task = Task.new    
     end
-    
+
     it "allows mass-assignment of the name attribute" do
       @task.update_attributes(:name => "This is some mass-assigned name.")
       @task.name.should == "This is some mass-assigned name."
     end
-    
+
     it "doesn't allow mass-assignment of the created_at attribute" do
       @task.update_attributes(:created_at => Time.now)
       @task.created_at.should == nil
     end
   end
-  
+
   context "with a label" do
     before(:each) do
       @task = FactoryGirl.build(:task)
@@ -175,26 +175,26 @@ describe Task do
       @task.save
       @label = Factory(:label)
     end
-    
+
     it "has a label" do
       @task.label = @label
       @task.save
       @task.reload.label.should == @label
     end
-  end   
-  
+  end
+
   describe "#complete!" do
     before(:each) do
       @task = Factory(:task, :user => Factory(:user))
     end
-    
+
     it "sets the completed_at date/time to the current date/time" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
         @task.complete!
         @task.reload.completed_at.should == Time.now
       end
     end
-    
+
     it "returns false if it does not save" do
       @task.should_receive(:save).and_return(false)
 
@@ -291,7 +291,6 @@ describe Task do
           Task.occurs_between(Time.now - 1.second, Time.now - 1.second).length.should == 0
         end
       end
-
     end
 
     context "with an end time" do
