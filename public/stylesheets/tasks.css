@@ -9,11 +9,16 @@ div.tasks
   width: 300px;
 }
 
-div.tasks div.top
+div.tasks div.section
+{
+  padding: 10px 0 10px 0;
+}
+
+div.tasks div.divider
 {
   border-bottom: 1px solid #C0C0C0;
-  margin-bottom: 20px;
-  padding: 10px 0 20px 0;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 ol.tasks

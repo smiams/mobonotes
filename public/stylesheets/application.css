@@ -22,25 +22,24 @@ div.page-content
 {
   background-color: #EBEBEB;
   margin: auto;
-  padding: 20px 30px 0 0;
+  padding: 20px 0 0 0;
 }
 
-div.date-content div.upper, div.date-content div.lower
+div.date-content
 {
-  padding-left: 20px;
 }
 
-div.date-content div.upper
+div.date-content div.section
+{
+  padding: 10px 0 10px 20px;
+}
+
+div.date-content div.divider
 {
   margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-top: 20px;
   border-bottom: 2px dashed #C0C0C0;
 }
-
-div.date-content div.lower
-{
-}
-
 
 ol.dates
 {
@@ -166,6 +165,7 @@ div.tasks div.form-container
 div.textarea-container
 {
   margin-right: 10px;
+  padding: 0 10px 0 0;
 }
 
 div.textarea-container textarea
@@ -192,7 +192,7 @@ div.button-container
 {
   clear: both;
   float: right;
-  padding-top: 10px;
+  padding: 10px 5px 0 0;
   text-align: right;
 }
 

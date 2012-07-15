@@ -1,7 +1,7 @@
 <div class="date-content">
-  <div class="upper">
+  <div class="section">
     <div class="tasks">
-      <div class="top">
+      <div class="section">
         <% if @tasks.present? %>
           <%= render :partial => "tasks/list", :locals => {:tasks => @tasks, :html => {:id => "relevant-task-list"}} %>
         <% end %>
@@ -9,12 +9,14 @@
           <%= render :partial => "tasks/irrelevant_block", :locals => {:tasks => @irrelevant_tasks} %>
         <% end %>
       </div>
-      <div class="bottom">
+      <div class="divider"></div>
+      <div class="section">
         <%= render :partial => "tasks/new_form", :locals => {:labels => @labels} %>
       </div>
     </div>
   </div>
-  <div class="lower">
+  <div class="divider"></div>
+  <div class="section">
     <div class="notes">
       <%= render :partial => "notes/form", :locals => {:url => notes_path, :method => :post, :class_name => "", :button_text => "Save", :note => Note.new } %>
 
