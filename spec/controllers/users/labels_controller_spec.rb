@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Users::LabelsController do
+describe LabelsController do
   describe "actions" do
     before(:each) do
       @user = Factory(:user)

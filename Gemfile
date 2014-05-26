@@ -1,12 +1,21 @@
 source 'http://rubygems.org'
 
 gem 'json', '1.7.7'
-gem 'rails', '3.0.9'
-
+gem 'rails', '3.2.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql', '2.9.1'
+gem 'mysql', '2.8.1'
+
+gem 'prototype-rails', '3.1.0'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
+  gem 'uglifier', '>= 1.0.3'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -36,6 +45,7 @@ gem 'capistrano', '2.8.0'
 gem 'heroku', '2.4.2'
 gem 'bcrypt-ruby', '2.1.4'
 gem 'haml', '3.1.4'
+gem 'sass', '3.2.19'
 
 group :development, :test do
   gem 'ruby-debug19', '0.11.6'

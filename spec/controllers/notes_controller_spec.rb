@@ -39,7 +39,7 @@ describe NotesController do
     it "creates a new note" do      
       expect {
         post :create, :note => {:content => "This is a new note."}
-      }.to change {Note.count}.from(0).to(1)
+      }.to change {Note.count}.by(+1)
       
       response.should redirect_to request.env["HTTP_REFERER"]
     end
@@ -57,7 +57,7 @@ describe NotesController do
       
       expect {
         post :create, :note => {:content => "This is a new note with a label.", :label_id => @label.id}
-      }.to change {Note.count}.from(0).to(1)
+      }.to change {Note.count}.by(+1)
       
       assigns(:note).label.should == @label
       response.should redirect_to notes_path
@@ -76,7 +76,7 @@ describe NotesController do
     it "deletes a note" do
       expect {
         delete :destroy, :id => @note.id
-      }.to change {Note.count}.from(1).to(0)
+      }.to change {Note.count}.by(-1)
     end
     
     it "does not delete the note if it does not belong to the current user" do
