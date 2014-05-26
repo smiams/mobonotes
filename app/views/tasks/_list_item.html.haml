@@ -1,0 +1,6 @@
+%li{:id => "task-list-item-" + task.id.to_s, :class => (last ? 'last ' : '') + "task " + (task.in_progress? ? 'started' : '')}
+  %div{:id => "task-" + task.id.to_s, :class => (task.in_progress? ? 'started ' : '') + "task-container"}
+    %label{:class => (task.complete? ? 'complete' : 'incomplete')}
+      = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task checkbox", :onclick => remote_function(:url => task.complete? ? uncomplete_task_path(task) : complete_task_path(task), :method => :put)
+      = task.name
+    = render :partial => "tasks/details", :locals => {:task => task}

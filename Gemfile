@@ -6,7 +6,7 @@ gem 'rails', '3.0.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql', '2.8.1'
+gem 'mysql', '2.9.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -31,10 +31,11 @@ gem 'mysql', '2.8.1'
 #   gem 'webrat'
 # end
 
-gem 'RedCloth', '4.2.7'
+gem 'RedCloth', '4.2.9'
 gem 'capistrano', '2.8.0'
 gem 'heroku', '2.4.2'
 gem 'bcrypt-ruby', '2.1.4'
+gem 'haml', '3.1.4'
 
 group :development, :test do
   gem 'ruby-debug19', '0.11.6'

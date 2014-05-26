@@ -1,0 +1,14 @@
+%div{:class => "label-navigator"}
+  %ol
+    - if @label.present?
+      - labels -= [@label]
+      %li{:class => "active label"}
+        = link_to @label.name, labels_dates_path(@label.id, @date), :class => "active label"
+      %li{:class => "label"}
+        = link_to "-- all --", date_path(@date), :class => "label"
+    - else
+      %li{:class => "active label"}
+        = link_to "-- all --", date_path(@date), :class => "active label"
+    - labels.each do |label|
+      %li{:class => "label"}
+        = link_to label.name, labels_dates_path(label.id, @date), :class => "label"

@@ -1,0 +1,4 @@
+%div{:class => "irrelevant"}
+  %a{:href => "#", :class => "irrelevant toggle"}
+    = pluralize(@irrelevant_tasks.length, "irrelevant task")
+  = render :partial => "tasks/list", :locals => {:tasks => @irrelevant_tasks, :html => {:id => "irrelevant-task-list"}}

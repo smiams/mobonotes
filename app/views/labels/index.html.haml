@@ -1,0 +1,4 @@
+%ul
+	- @labels.each do |label|
+		%li
+			= label.name + (link_to "edit", edit_user_label_path(@user, label))

@@ -1,0 +1,9 @@
+%div{:class => "form-container"}
+  = form_for note, :as => :note, :url => url, :method => method, :html => {:class => class_name} do |f|
+    %div{:class => "textarea-container"}
+      = f.text_area :content
+    %div{:class => "button-container"}
+      %div{:class => "select-container"}
+        = f.select :label_id, @labels.collect { |label| [label.name, label.id] }, :include_blank => true
+      = f.submit button_text, :class => "submit"
+      %div{:style => "clear:both;"}

@@ -1,5 +1,0 @@
-<ol class="tasks" id="<%= html[:id] %>">
-  <% tasks.each_with_index do |task, index| %>
-    <%= render :partial => "tasks/list_item", :locals => {:task => task, :last => tasks.length - 1 == index} %>
-  <% end %>
-</ol>
