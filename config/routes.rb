@@ -1,8 +1,8 @@
 Mobonotes::Application.routes.draw do
   root :to => "dates#show"
-  match "dates/:date" => "dates#show", :as => :date
+  get "dates/:date" => "dates#show", :as => :date
 
-  match "labels/:label_id/dates/:date" => "labels/dates#show", :as => :labels_dates
+  get "labels/:label_id/dates/:date" => "labels/dates#show", :as => :labels_dates
 
   resources :labels do
     get "notes", :on => :member
@@ -21,9 +21,9 @@ Mobonotes::Application.routes.draw do
     resources :notes, :controller => "tasks/notes", :only => [:create]
   end
 
-  match "login" => "sessions#new", :via => :get, :as => :login
-  match "logout" => "sessions#destroy", :as => :logout
-  match "sessions/create" => "sessions#create", :via => :post, :as => :create_session
+  get "login" => "sessions#new", :via => :get, :as => :login
+  get "logout" => "sessions#destroy", :as => :logout
+  post "sessions/create" => "sessions#create", :via => :post, :as => :create_session
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

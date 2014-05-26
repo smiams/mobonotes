@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :_get_current_time_and_date
 
   def get_current_user
-    @current_user = session[:user_id] && User.exists?(session[:user_id]) ? User.find(session[:user_id], :include => :labels) : nil
+    @current_user = session[:user_id] && User.exists?(session[:user_id]) ? User.includes(:labels).find(session[:user_id]) : nil
     redirect_to login_path if @current_user.nil?
   end
 

@@ -1,6 +1,6 @@
 = form_for :session, :url => create_session_path, :method => :post do |f|
-	= f.text_field :email_address
-	= f.password_field :password
-	%div{:class => "button-container"}
+  = f.text_field :email_address
+  = f.password_field :password
+  %div{:class => "button-container"}
     = f.submit "Login", :class => "submit"
     %div{:style => "clear:both;"}

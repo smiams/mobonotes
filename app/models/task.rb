@@ -8,11 +8,11 @@ class Task < ActiveRecord::Base
 
   attr_accessible :name, :rolling
 
-  scope :created_between, lambda { |start_time, end_time| where(:created_at => start_time..end_time) }
-  scope :completed_between, lambda { |start_time, end_time| where(:completed_at => start_time..end_time) }
-  scope :irrelevant_between, lambda { |start_time, end_time| where(:irrelevant_at => start_time..end_time) }
+  scope :created_between, -> start_time, end_time { where(:created_at => start_time..end_time) }
+  scope :completed_between, -> start_time, end_time { where(:completed_at => start_time..end_time) }
+  scope :irrelevant_between, -> start_time, end_time { where(:irrelevant_at => start_time..end_time) }
 
-  scope :occurs_between, lambda { |start_time, end_time|
+  scope :occurs_between, -> start_time, end_time {
     start_time = start_time.utc.to_formatted_s(:db)
     end_time = end_time.utc.to_formatted_s(:db)
 
@@ -22,16 +22,16 @@ class Task < ActiveRecord::Base
     )
   }
 
-  scope :occurs_before, lambda { |end_time|
+  scope :occurs_before, -> end_time {
     where("(start_at <= '#{end_time.utc.to_formatted_s(:db)}')")
   }
 
-  scope :relevant, where("irrelevant_at IS NULL")
-  scope :complete, where("completed_at IS NOT NULL")
-  scope :incomplete, where("completed_at IS NULL")
+  scope :relevant, -> { where("irrelevant_at IS NULL") }
+  scope :complete, -> { where("completed_at IS NOT NULL") }
+  scope :incomplete, -> { where("completed_at IS NULL") }
 
-  scope :rolling, where(:rolling => true)
-  scope :non_rolling, where("rolling = false OR rolling IS NULL")
+  scope :rolling, -> { where(:rolling => true) }
+  scope :non_rolling, -> { where("rolling = false OR rolling IS NULL") }
 
   before_create { self.start_at ||= Time.now }
 

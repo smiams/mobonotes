@@ -1,21 +1,22 @@
 source 'http://rubygems.org'
 
-gem 'json', '1.7.7'
-gem 'rails', '3.2.0'
+gem 'json', '1.8.0'
+gem 'rails', '4.1.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql', '2.8.1'
+gem 'mysql', '2.9.1'
 
-gem 'prototype-rails', '3.1.0'
+# Gems for backwards compatibility with rails 3.x...
+gem 'prototype-rails', '4.0.0'
+gem 'protected_attributes', '1.0.7'
+gem 'rjs-rails', '0.0.8'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails', "~> 3.2.3"
-  gem 'coffee-rails', "~> 3.2.1"
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'sass-rails', '4.0.3'
+gem 'coffee-rails', '4.0.1'
+gem 'uglifier', '2.5.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -44,16 +45,16 @@ gem 'RedCloth', '4.2.9'
 gem 'capistrano', '2.8.0'
 gem 'heroku', '2.4.2'
 gem 'bcrypt-ruby', '2.1.4'
-gem 'haml', '3.1.4'
-gem 'sass', '3.2.19'
+gem 'haml', '4.0.5'
+gem 'sass', '3.2.0'
 
 group :development, :test do
   gem 'ruby-debug19', '0.11.6'
-  gem 'factory_girl_rails', '1.1.0'
-  gem 'timecop', '0.3.5'
+  gem 'factory_girl_rails', '4.4.1'
+  gem 'timecop', '0.7.1'
 end
 
 group :test do
-	gem 'rspec', '2.6.0'
-	gem 'rspec-rails', '2.6.1'
+	gem 'rspec', '2.14.1'
+	gem 'rspec-rails', '2.14.2'
 end
