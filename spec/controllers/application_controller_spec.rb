@@ -1,10 +1,10 @@
-require 'spec_helper'
+require '../spec_helper'
 
-describe ApplicationController do
+describe ApplicationController, :type => :controller do
   describe "get_current_user" do
     context "with a session[user_id]" do
       before(:each) do
-        @user = Factory(:user, :password => "correct", :password_confirmation => "correct")        
+        @user = create(:user, :password => "correct", :password_confirmation => "correct")
       end
 
       it "gets the current user if that user exists in the database" do
@@ -33,9 +33,14 @@ describe ApplicationController do
   end
   
   describe "_set_time_zone" do
-    it "sets the time zone to Central Time (US & Canada)" do
+    it "sets the time zone to Central Time (US & Canada) by default" do
       controller.send(:_set_time_zone)
-      Time.zone.to_s == "(GMT-06:00) Central Time (US & Canada)"
+      Time.zone.to_s.should == "(GMT-06:00) Central Time (US & Canada)"
+    end
+
+    it "sets the time zone to a specified time zone" do
+      controller.send(:_set_time_zone, "Pacific Time (US & Canada)")
+      Time.zone.to_s.should == "(GMT-08:00) Pacific Time (US & Canada)"
     end
   end
 

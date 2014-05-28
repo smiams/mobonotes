@@ -1,6 +1,6 @@
-require 'spec_helper'
+require '../spec_helper'
 
-describe SessionsController do
+describe SessionsController, :type => :controller do
   describe "GET new" do    
     it "renders the new template" do
       get :new
@@ -10,7 +10,7 @@ describe SessionsController do
   
   describe "POST create" do
     before(:each) do
-      @user = Factory(:user, :password => "correct", :password_confirmation => "correct")
+      @user = create(:user, :password => "correct", :password_confirmation => "correct")
     end
     
     context "with valid credentials" do
@@ -23,7 +23,7 @@ describe SessionsController do
       end
       
       it "redirects to the notes_path" do
-        response.should redirect_to(notes_path)
+        response.should redirect_to(root_path)
       end
     end
     
@@ -48,7 +48,7 @@ describe SessionsController do
   
   describe "GET destroy" do
     before(:each) do
-      user = Factory(:user, :password => "correct", :password_confirmation => "correct")
+      user = create(:user, :password => "correct", :password_confirmation => "correct")
       session[:user_id] = user.id
     end
     

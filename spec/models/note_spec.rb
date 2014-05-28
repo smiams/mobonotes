@@ -1,4 +1,4 @@
-require 'spec_helper'
+require '../spec_helper'
 
 describe Note do
   context "new notes" do
@@ -27,7 +27,7 @@ describe Note do
 
       context "and with a user" do
         before(:each) do
-          @user = Factory(:user)
+          @user = build(:user)
           @note.user = @user
         end
         
@@ -38,7 +38,7 @@ describe Note do
         it "should be created" do
           expect {
             @note.save.should == true
-          }.to change {Note.count}.from(0).to(1)
+          }.to change {Note.count}.by(+1)
         end
       end
     end
@@ -55,7 +55,10 @@ describe Note do
     end
     
     it "doesn't allow mass-assignment of the created_at attribute" do
-      @note.update_attributes(:created_at => Time.now)
+      expect {
+        @note.update_attributes(:created_at => Time.now)
+      }.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+
       @note.created_at.should == nil
     end
   end
@@ -63,11 +66,11 @@ describe Note do
   context "created between" do
     it "should return the correct notes" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        user = Factory.create(:user)
-        note_1 = FactoryGirl.create(:note, :created_at => Time.now - 1.day, :user => user)
-        note_2 = FactoryGirl.create(:note, :created_at => Time.now - 1.second, :user => user)
-        note_3 = FactoryGirl.create(:note, :created_at => Time.now + 0.seconds, :user => user)
-        note_4 = FactoryGirl.create(:note, :created_at => Time.now + 1.second, :user => user)
+        user = create(:user)
+        note_1 = create(:note, :created_at => Time.now - 1.day, :user => user)
+        note_2 = create(:note, :created_at => Time.now - 1.second, :user => user)
+        note_3 = create(:note, :created_at => Time.now + 0.seconds, :user => user)
+        note_4 = create(:note, :created_at => Time.now + 1.second, :user => user)
         
         notes = Note.created_between(Time.now - 1.day, Time.now)
 
@@ -78,10 +81,10 @@ describe Note do
   
   context "with a label" do
     before(:each) do
-      @note = FactoryGirl.build(:note)
-      @note.user = Factory(:user)
+      @note = build(:note)
+      @note.user = build(:user)
       @note.save
-      @label = Factory(:label)
+      @label = build(:label)
     end
     
     it "has a label" do

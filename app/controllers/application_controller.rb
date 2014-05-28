@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
     @current_tab = session[:current_tab] || notes_path
   end
 
-  def _set_time_zone
-    Time.zone = "Central Time (US & Canada)"
+  def _set_time_zone(time_zone = "Central Time (US & Canada)")
+    Time.zone = time_zone
   end
 end

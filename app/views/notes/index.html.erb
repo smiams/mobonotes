@@ -18,13 +18,6 @@
         <a href="#">files</a>
       </div>
       <div class="content">
-        <% if date == Time.now.to_date || tasks.present? %>
-            <% if date == Time.now.to_date %>
-            <% end %>
-          </div>
-        <% end %>
-        <% if date == Time.now.to_date %>
-        <% end %>
         <% if notes.present? %>
           <ol class="notes">
             <% notes.each_with_index do |note, index| %>

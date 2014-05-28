@@ -1,4 +1,4 @@
-require 'spec_helper'
+require '../spec_helper'
 
 describe User do
   context "new user" do
@@ -37,14 +37,17 @@ describe User do
     end
     
     it "doesn't allow mass-assignment of the password_hash attribute" do
-      @user.update_attributes(:password_hash => "test-password-hash")
+      expect {
+        @user.update_attributes(:password_hash => "test-password-hash")
+      }.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+
       @user.password_hash.should == nil
     end
   end
   
   context "with authentication" do
     before(:each) do
-      @user = Factory(:user, :password => "new password", :password_confirmation => "new password")
+      @user = create(:user, :password => "new password", :password_confirmation => "new password")
     end
     
     it "should save password_hash to the database" do
@@ -62,25 +65,25 @@ describe User do
   
   context "with labels" do
     before(:each) do
-      @user = Factory(:user, :password => "new password", :password_confirmation => "new password")
+      @user = create(:user, :password => "new password", :password_confirmation => "new password")
     end
     
     it "has many labels" do
       expect {
         @user.labels << Label.new(:name => "Test label")
-      }.to change {@user.labels.count}.from(0).to(1)
+      }.to change {@user.labels.count}.by(+1)
     end
   end
   
   context "with notes" do
     before(:each) do
-      @user = Factory(:user, :password => "new password", :password_confirmation => "new password")
+      @user = create(:user, :password => "new password", :password_confirmation => "new password")
     end
     
     it "has many notes" do
       expect {
         @user.notes << Note.new(:content => "Test note")
-      }.to change {@user.notes.count}.from(0).to(1)
+      }.to change {@user.notes.count}.by(+1)
     end  
   end
 end

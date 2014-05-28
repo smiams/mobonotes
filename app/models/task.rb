@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
   validates :name, :presence => true
   validates :user, :presence => true
 
-  attr_accessible :name, :rolling
+  attr_accessible :name, :rolling, :label_id
 
   scope :created_between, -> start_time, end_time { where(:created_at => start_time..end_time) }
   scope :completed_between, -> start_time, end_time { where(:completed_at => start_time..end_time) }

@@ -14,6 +14,11 @@ div.tasks div.section
   padding: 10px 0 10px 0;
 }
 
+div.tasks div.section div.test
+{
+  background-color: red;
+}
+
 div.tasks div.divider
 {
   border-bottom: 1px solid #C0C0C0;

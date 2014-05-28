@@ -2,6 +2,8 @@
   %div{:class => "section"}
     %div{:class => "tasks"}
       %div{:class => "section"}
+        %div.test
+          hello test
         - if @tasks.present?
           = render :partial => "tasks/list", :locals => {:tasks => @tasks, :html => {:id => "relevant-task-list"}}
         - if @irrelevant_tasks.present?

@@ -49,7 +49,7 @@ gem 'haml', '4.0.5'
 gem 'sass', '3.2.0'
 
 group :development, :test do
-  gem 'ruby-debug19', '0.11.6'
+  gem 'byebug', '3.1.2'
   gem 'factory_girl_rails', '4.4.1'
   gem 'timecop', '0.7.1'
 end

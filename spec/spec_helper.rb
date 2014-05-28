@@ -26,5 +26,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   
   # For TimeCop
-  STANDARD_FROZEN_TIME = Time.parse("2011-07-20 00:00:00 CDT")
+  STANDARD_FROZEN_TIME = Time.parse("2011-07-20 00:00:00 UTC")
+
+  config.include(FactoryGirl::Syntax::Methods)
+  # config.include(ActionDispatch::Routing::UrlFor)
 end

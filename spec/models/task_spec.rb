@@ -1,4 +1,4 @@
-require 'spec_helper'
+require '../spec_helper'
 
 describe Task do
   context "new tasks" do
@@ -8,7 +8,7 @@ describe Task do
 
     it "defaults start_at to the current time" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        @task = Factory(:task, :user => Factory(:user))
+        @task = create(:task, :user => create(:user))
         @task.start_at.should == Time.now
       end
     end
@@ -34,7 +34,7 @@ describe Task do
 
       context "and with a user" do
         before(:each) do
-          @user = Factory(:user)
+          @user = create(:user)
           @task.user = @user
         end
 
@@ -54,12 +54,12 @@ describe Task do
   describe "#created_between" do
     it "should return the correct notes" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        user = Factory.create(:user)
+        user = create(:user)
 
-        task_1 = FactoryGirl.create(:task, :created_at => Time.now - 1.day, :user => user)
-        task_2 = FactoryGirl.create(:task, :created_at => Time.now - 1.second, :user => user)
-        task_3 = FactoryGirl.create(:task, :created_at => Time.now + 0.seconds, :user => user)
-        task_4 = FactoryGirl.create(:task, :created_at => Time.now + 1.second, :user => user)
+        task_1 = create(:task, :created_at => Time.now - 1.day, :user => user)
+        task_2 = create(:task, :created_at => Time.now - 1.second, :user => user)
+        task_3 = create(:task, :created_at => Time.now + 0.seconds, :user => user)
+        task_4 = create(:task, :created_at => Time.now + 1.second, :user => user)
 
         tasks = Task.created_between(Time.now - 1.day, Time.now)
 
@@ -71,12 +71,12 @@ describe Task do
   describe "#completed_between" do
     it "should return the correct notes" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        user = Factory.create(:user)
+        user = create(:user)
 
-        task_1 = FactoryGirl.create(:task, :completed_at => Time.now - 1.day, :user => user)
-        task_2 = FactoryGirl.create(:task, :completed_at => Time.now - 1.second, :user => user)
-        task_3 = FactoryGirl.create(:task, :completed_at => Time.now + 0.seconds, :user => user)
-        task_4 = FactoryGirl.create(:task, :completed_at => Time.now + 1.second, :user => user)
+        task_1 = create(:task, :completed_at => Time.now - 1.day, :user => user)
+        task_2 = create(:task, :completed_at => Time.now - 1.second, :user => user)
+        task_3 = create(:task, :completed_at => Time.now + 0.seconds, :user => user)
+        task_4 = create(:task, :completed_at => Time.now + 1.second, :user => user)
 
         tasks = Task.completed_between(Time.now - 1.day, Time.now)
 
@@ -88,12 +88,12 @@ describe Task do
   describe "#irrelevant_between" do
     it "should return the correct notes" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        user = Factory.create(:user)
+        user = create(:user)
 
-        task_1 = FactoryGirl.create(:task, :irrelevant_at => Time.now - 1.day, :user => user)
-        task_2 = FactoryGirl.create(:task, :irrelevant_at => Time.now - 1.second, :user => user)
-        task_3 = FactoryGirl.create(:task, :irrelevant_at => Time.now + 0.seconds, :user => user)
-        task_4 = FactoryGirl.create(:task, :irrelevant_at => Time.now + 1.second, :user => user)
+        task_1 = create(:task, :irrelevant_at => Time.now - 1.day, :user => user)
+        task_2 = create(:task, :irrelevant_at => Time.now - 1.second, :user => user)
+        task_3 = create(:task, :irrelevant_at => Time.now + 0.seconds, :user => user)
+        task_4 = create(:task, :irrelevant_at => Time.now + 1.second, :user => user)
 
         tasks = Task.irrelevant_between(Time.now - 1.day, Time.now)
 
@@ -104,11 +104,11 @@ describe Task do
 
   describe "#relevant" do
     it "should only return relevant tasks" do
-      user = Factory.create(:user)
+      user = create(:user)
 
-      task_1 = FactoryGirl.create(:task, :irrelevant_at => Time.now - 1.day, :user => user)
-      task_2 = FactoryGirl.create(:task, :irrelevant_at => Time.now - 1.second, :user => user)
-      task_3 = FactoryGirl.create(:task, :user => user)
+      task_1 = create(:task, :irrelevant_at => Time.now - 1.day, :user => user)
+      task_2 = create(:task, :irrelevant_at => Time.now - 1.second, :user => user)
+      task_3 = create(:task, :user => user)
 
       tasks = Task.relevant.should == [task_3]
     end
@@ -116,14 +116,14 @@ describe Task do
 
   describe "#relevant?" do
     it "should true for a relevant task" do
-      user = Factory.create(:user)
-      task = FactoryGirl.create(:task, :irrelevant_at => nil, :user => user)
+      user = create(:user)
+      task = create(:task, :irrelevant_at => nil, :user => user)
       task.relevant?.should == true
     end
 
     it "should false for an irrelevant task" do
-      user = Factory.create(:user)
-      task = FactoryGirl.create(:task, :irrelevant_at => Time.now, :user => user)
+      user = create(:user)
+      task = create(:task, :irrelevant_at => Time.now, :user => user)
       task.relevant?.should == false
     end
   end
@@ -131,8 +131,8 @@ describe Task do
   describe "#irrelevant!" do
     it "should set the Task's irrelevant_at attribute to the current time" do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        user = Factory.create(:user)
-        task = FactoryGirl.create(:task, :irrelevant_at => nil, :user => user)
+        user = create(:user)
+        task = create(:task, :irrelevant_at => nil, :user => user)
 
         task.irrelevant!
 
@@ -143,8 +143,8 @@ describe Task do
 
   describe "#relevant!" do
     it "should set the Task's irrelevant_at attribute to nil" do
-      user = Factory.create(:user)
-      task = FactoryGirl.create(:task, :irrelevant_at => Time.now, :user => user)
+      user = create(:user)
+      task = create(:task, :irrelevant_at => Time.now, :user => user)
 
       task.relevant!
 
@@ -163,17 +163,20 @@ describe Task do
     end
 
     it "doesn't allow mass-assignment of the created_at attribute" do
-      @task.update_attributes(:created_at => Time.now)
+      expect {
+        @task.update_attributes(:created_at => Time.now)
+      }.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+
       @task.created_at.should == nil
     end
   end
 
   context "with a label" do
     before(:each) do
-      @task = FactoryGirl.build(:task)
-      @task.user = Factory(:user)
+      @task = build(:task)
+      @task.user = create(:user)
       @task.save
-      @label = Factory(:label)
+      @label = create(:label)
     end
 
     it "has a label" do
@@ -185,7 +188,7 @@ describe Task do
 
   describe "#complete!" do
     before(:each) do
-      @task = Factory(:task, :user => Factory(:user))
+      @task = create(:task, :user => create(:user))
     end
 
     it "sets the completed_at date/time to the current date/time" do
@@ -208,7 +211,7 @@ describe Task do
   describe "#uncomplete!" do
     before(:each) do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        @task = Factory(:task, :user => Factory(:user), :completed_at => Time.now)
+        @task = create(:task, :user => create(:user), :completed_at => Time.now)
       end
     end
 
@@ -229,7 +232,7 @@ describe Task do
 
   describe "#start!" do
     before(:each) do
-      @task = Factory(:task, :user => Factory(:user))
+      @task = create(:task, :user => create(:user))
     end
 
     it "sets the started_at timestamp to the current date/time" do
@@ -242,7 +245,7 @@ describe Task do
 
   describe "#unstart!" do
     before(:each) do
-      @task = Factory(:task, :user => Factory(:user), :started_at => Time.now)
+      @task = create(:task, :user => create(:user), :started_at => Time.now)
     end
 
     it "sets the started_at timestamp to the current date/time" do
@@ -253,7 +256,7 @@ describe Task do
 
   describe "#started?" do
     before(:each) do
-      @task = Factory(:task, :user => Factory(:user), :started_at => Time.now)
+      @task = create(:task, :user => create(:user), :started_at => Time.now)
     end
 
     it "returns true if the task has been started" do
@@ -269,7 +272,7 @@ describe Task do
   describe "#occurs_between" do
     before(:each) do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        @task = Factory(:task, :user => Factory(:user), :start_at => Time.now)
+        @task = create(:task, :user => create(:user), :start_at => Time.now)
       end
     end
 
@@ -324,7 +327,7 @@ describe Task do
   describe "#occurs_before" do
     before(:each) do
       Timecop.freeze(STANDARD_FROZEN_TIME) do
-        @task = Factory(:task, :user => Factory(:user), :start_at => Time.now)
+        @task = create(:task, :user => create(:user), :start_at => Time.now)
       end
     end
 
@@ -343,10 +346,10 @@ describe Task do
 
   describe "complete and incomplete scopes" do
     before(:each) do
-      @task_1 = Factory(:task, :user => Factory(:user))
-      @task_2 = Factory(:task, :user => Factory(:user))
-      @task_3 = Factory(:task, :user => Factory(:user), :completed_at => Time.now)
-      @task_4 = Factory(:task, :user => Factory(:user), :completed_at => Time.now)
+      @task_1 = create(:task, :user => create(:user))
+      @task_2 = create(:task, :user => create(:user))
+      @task_3 = create(:task, :user => create(:user), :completed_at => Time.now)
+      @task_4 = create(:task, :user => create(:user), :completed_at => Time.now)
     end
 
     it "returns incomplete tasks" do
@@ -374,9 +377,9 @@ describe Task do
 
   describe "rolling scope" do
     before(:each) do
-      @task_1 = Factory(:task, :user => Factory(:user), :rolling => true)
-      @task_2 = Factory(:task, :user => Factory(:user))
-      @task_3 = Factory(:task, :user => Factory(:user))
+      @task_1 = create(:task, :user => create(:user), :rolling => true)
+      @task_2 = create(:task, :user => create(:user))
+      @task_3 = create(:task, :user => create(:user))
     end
 
     it "returns rolling tasks" do

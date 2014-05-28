@@ -1,8 +1,8 @@
-require 'spec_helper'
+require '../spec_helper'
 
 describe Label do
   before(:each) do
-    @label = Factory(:label)
+    @label = build(:label)
     @label.valid?.should == true
   end
   
