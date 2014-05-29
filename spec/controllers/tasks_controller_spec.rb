@@ -1,4 +1,4 @@
-require '../spec_helper'
+require 'spec_helper'
 
 describe TasksController, :type => :controller do
   before(:all) do

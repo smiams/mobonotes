@@ -1,4 +1,4 @@
-require '../spec_helper'
+require 'spec_helper'
 
 describe SessionsController, :type => :controller do
   describe "GET new" do    

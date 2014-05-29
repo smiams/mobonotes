@@ -2,13 +2,13 @@ require 'spec_helper'
 
 require "#{Rails.root.to_s}/lib/authentication"
 
-class AuthenticationSpec
-  include Authentication  
+class AuthenticatedModel
+  include Authentication
 end
 
 describe Authentication do
   before(:each) do
-    @authentication_spec = AuthenticationSpec.new
+    @authentication_spec = AuthenticatedModel.new
   end
   
   it "should have access to the password attribute" do
@@ -26,7 +26,7 @@ describe Authentication do
       @authentication_spec.password_confirmation = "different new password"
 
       @authentication_spec.valid?.should == false
-      @authentication_spec.errors[:password].first.should == "Password and password confirmation need to match."
+      @authentication_spec.errors[:password_confirmation].first.should == "Password and password confirmation need to match."
     end
     
     it "should be valid if the password and password_confirmation match" do

@@ -52,9 +52,6 @@ group :development, :test do
   gem 'byebug', '3.1.2'
   gem 'factory_girl_rails', '4.4.1'
   gem 'timecop', '0.7.1'
-end
-
-group :test do
 	gem 'rspec', '2.14.1'
 	gem 'rspec-rails', '2.14.2'
 end

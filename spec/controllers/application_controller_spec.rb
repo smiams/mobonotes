@@ -1,4 +1,4 @@
-require '../spec_helper'
+require 'spec_helper'
 
 describe ApplicationController, :type => :controller do
   describe "get_current_user" do
