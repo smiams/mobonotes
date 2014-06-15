@@ -1,6 +1,27 @@
-%li{:id => "task-list-item-" + task.id.to_s, :class => (last ? 'last ' : '') + "task " + (task.in_progress? ? 'started' : '')}
-  %div{:id => "task-" + task.id.to_s, :class => (task.in_progress? ? 'started ' : '') + "task-container"}
-    %label{:class => (task.complete? ? 'complete' : 'incomplete')}
-      = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task checkbox", :onclick => remote_function(:url => task.complete? ? uncomplete_task_path(task) : complete_task_path(task), :method => :put)
+%li{:id => "task-" + task.id.to_s, :class => 'task '}
+  %div.task-item-container
+    %div.task-checkbox-container
+      = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task-checkbox"
+    %div.task-text-container
       = task.name
-    = render :partial => "tasks/details", :locals => {:task => task}
+    %div.task-controls-container
+      %div.task-controls-cover
+      %div.task-controls-links
+        %a{:class => "first"}
+          first
+        %a{:class => "last"}
+          last
+
+  %div.task-details-container
+    %div.task-details-content
+      %ol.content
+        - task.notes.each_with_index do |note, index|
+          %li.content{:id => 'task-note-' + note.id.to_s, :class => (index == 0 ? 'first ' : '')}
+            %div.task-note-content
+              = note.content
+    %div.task-details-form-container
+      = form_for Note.new, :class => "new_task", :url => task_notes_path(task), :as => :note, :method => :post do |f|
+        %div.textarea-container
+          = f.text_area :content, :class => "text-area", :rows => 5, :size => 30
+        %div.button-container
+          = f.submit "Add Note", :class => "submit"

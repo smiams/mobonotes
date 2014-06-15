@@ -4,10 +4,6 @@
     %title
       Mobonotes
     = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
     = csrf_meta_tag
 %body
-  %div{:class => "main-content"}
-    = render :partial => "shared/navigation"
-    %div{:class => "page-content"}
-      = yield
+  = yield

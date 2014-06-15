@@ -1,0 +1,16 @@
+%div.task-details-container
+  %div.task-details-shell
+
+    - tasks.each_with_index do |task, index|
+      %div{:id => 'task-' + task.id.to_s + '-details', :class => 'task-details' + (index == 0 ? ' displaying' : '')}
+        %div.task-details-content
+          %ol.content
+            - task.notes.each_with_index do |note, index|
+              %li.content{:id => 'task-note-' + note.id.to_s}
+
+        %div.task-details-form-container
+          = form_for Note.new, :url => task_notes_path(task), :as => :note, :method => :post do |f|
+            %div.textarea-container
+              = f.text_area :content, :class => "text-area", :rows => 5, :size => 30
+            %div.button-container
+              = f.submit "Add Note", :class => "submit"

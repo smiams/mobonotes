@@ -1,0 +1,13 @@
+body
+{
+  font-family: helvetica;
+  font-size: 13px;
+  background-color: #E3F3FC;
+/*  background-color: #D9CFA6;
+  background-color: #C9C59A; */
+}
+
+div.displaying
+{
+  visibility: visible !important;
+}
