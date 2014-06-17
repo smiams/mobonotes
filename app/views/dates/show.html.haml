@@ -1,12 +1,2 @@
 %div.task-section
-  %div.task-container
-    %div.task-list-container
-      %div.label
-        bitsimplicity
-      %div.links
-        %a.first.last
-          edit
-
-      = render :partial => "tasks/list", :locals => {:tasks => @tasks, :html => {:id => "relevant-task-list"}}
-
-      = render :partial => "tasks/new_form", :locals => {:labels => @labels}
+  = render :partial => "tasks/list", :locals => {:tasks => @tasks, :html => {:id => "relevant-task-list"}}

@@ -91,7 +91,7 @@ div.task-list-container ol.tasks li.task div.task-item-container div.task-checkb
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 1px;
+  top: 2px;
 }
 
 div.task-list-container ol.tasks li.task div.task-item-container div.task-text-container
@@ -99,7 +99,6 @@ div.task-list-container ol.tasks li.task div.task-item-container div.task-text-c
   left: 35px;
   padding: 5px 0 5px 0;
   position: relative;
-  width: 355px;
 }
 
 div.task-list-container ol.tasks li.task div.task-item-container div.task-controls-container

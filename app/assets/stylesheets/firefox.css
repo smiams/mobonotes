@@ -1,8 +1,8 @@
 @-moz-document url-prefix() {
-/*  div.task-list-container ol.tasks li.task div.task-checkbox-container input.task-checkbox {
+  div.task-list-container ol.tasks li.task div.task-checkbox-container input.task-checkbox {
     top: 1px !important;
   }
-*/
+
   div.task-list-container ol.tasks li.task.selected div.task-checkbox-container input.task-checkbox {
     top: 3px !important;
   }

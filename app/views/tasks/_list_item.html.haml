@@ -1,4 +1,4 @@
-%li{:id => "task-" + task.id.to_s, :class => 'task '}
+%li{:id => "task-" + task.id.to_s, :class => 'task'}
   %div.task-item-container
     %div.task-checkbox-container
       = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task-checkbox"
@@ -7,11 +7,8 @@
     %div.task-controls-container
       %div.task-controls-cover
       %div.task-controls-links
-        %a{:class => "first"}
-          first
-        %a{:class => "last"}
-          last
-
+        %a{:class => "first last"}
+          edit
   %div.task-details-container
     %div.task-details-content
       %ol.content
