@@ -8,15 +8,13 @@ gem 'rails', '4.1.0'
 gem 'mysql', '2.9.1'
 
 # Gems for backwards compatibility with rails 3.x...
-gem 'prototype-rails', '4.0.0'
 gem 'protected_attributes', '1.0.7'
-gem 'rjs-rails', '0.0.8'
 
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'sass-rails', '4.0.3'
-gem 'coffee-rails', '4.0.1'
 gem 'uglifier', '2.5.0'
+gem 'coffee-rails', '4.0.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -51,6 +49,7 @@ gem 'sass', '3.2.0'
 group :development, :test do
   gem 'byebug', '3.1.2'
   gem 'factory_girl_rails', '4.4.1'
+  gem 'jasmine', '2.0.2'
   gem 'timecop', '0.7.1'
 	gem 'rspec', '2.14.1'
 	gem 'rspec-rails', '2.14.2'

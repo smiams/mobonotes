@@ -1,7 +1,7 @@
 %li{:id => "task-" + task.id.to_s, :class => 'task'}
   %div.task-item-container
     %div.task-checkbox-container
-      = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task-checkbox"
+      = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task-checkbox", :id => "task-" + task.id.to_s + "-checkbox"
     %div.task-text-container
       = task.name
     %div.task-controls-container

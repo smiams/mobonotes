@@ -1,4 +1,4 @@
-div.task-container
+div.tasks-container
 {
   left: 100px;
   position: relative;
@@ -6,7 +6,7 @@ div.task-container
   width: 805px;
 }
 
-div.task-container div.task-list-container
+div.tasks-container div.task-list-container
 {
   background-color: #FFFFB2;
   left: 0;
@@ -226,7 +226,7 @@ div.task-list-container ol.tasks li.task.selected div.task-controls-container di
   padding: 7px 5px 0 5px;
 }
 
-div.task-container div.task-details-container
+div.tasks-container div.task-details-container
 {
   background-color: #FFFFFF;
   box-shadow: 5px 5px 5px #C0C0C0;

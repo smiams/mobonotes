@@ -1,8 +1,10 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 //= require_self
-//= require prototype
-//= require prototype_ujs
-//= require effects
-//= require dragdrop
-//= require controls
+//= require lib/jquery-1.11.1.min
+//= require_tree ../.
+
+window.App = {};
+var App = window.App;
+App.Views = {};
+App.Models = {};
