@@ -1,4 +1,23 @@
 class App.Views.Base
+  @classIdentifierDOMAttribute = "data-view-class"
+
+  @getClassName: ->
+    "App.Views." + @prototype.constructor.name
+
+  @findAll: (contextElement) ->
+    className = @getClassName()
+
+    if contextElement
+      elements = contextElement.find("[" + @classIdentifierDOMAttribute + "='" + className + "']")
+    else
+      elements = $.find("[" + @classIdentifierDOMAttribute + "='" + className + "']")
+
+    viewInstances = []
+    for element in elements
+      viewInstances.push(eval("new " + className + "({domElement: $(element)})"))
+
+    return viewInstances
+
   constructor: (data) ->
     if data
       if data.domElement
@@ -11,8 +30,13 @@ class App.Views.Base
     if @domElement
       @_attachBehavior(@domElement)
 
-  _attachBehavior: (domElement) ->
-    return domElement
+    @_getComponents()
 
   _getDomElement: (id) ->
     return $("#" + id)
+
+  _attachBehavior: (domElement) ->
+    return domElement
+
+  _getComponents: ->
+    return this

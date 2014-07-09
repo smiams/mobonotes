@@ -6,7 +6,7 @@ describe "Task Item View", ->
     taskItem = new App.Views.TaskItem({id: "task-item-id"})
 
   describe "_attachBehavior()", ->
-    it "shows task details when it is clicked", ->      
+    it "shows task details when it is clicked", ->
       domElement = taskItem.domElement
       domElement.click()
       expect(domElement).toHaveClass("selected")
@@ -23,5 +23,8 @@ describe "Task Item View", ->
       expect(domElement.children(".task-details-container")).not.toBeVisible()
 
   describe "_getComponents()", ->
-    it "gets components", ->
-      expect(taskItem.checkbox.domElement.attr("id")).toBe("task-item-id-checkbox")
+    it "gets an App.Views.TaskItemCheckbox view object", ->
+      checkboxView = App.Views.TaskItemCheckbox.findAll()[0]
+      taskItem.checkbox = null
+      taskItem._getComponents()
+      expect(taskItem.checkbox).toEqual(checkboxView)

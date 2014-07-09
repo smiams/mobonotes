@@ -1,5 +1,5 @@
 %div.task-form-container
-  = form_for Task.new, :as => :task, :url => tasks_path, :method => :post do |f|
+  = form_for Task.new, :as => :task, :url => tasks_path, :method => :post, :remote => true do |f|
     %div.text-field-container
       = f.text_field :name, :class => "text-field", :size => 30
     %div.button-container

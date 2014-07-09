@@ -29,8 +29,12 @@
       });
     });
     return describe("_getComponents()", function() {
-      return it("gets components", function() {
-        return expect(taskItem.checkbox.domElement.attr("id")).toBe("task-item-id-checkbox");
+      return it("gets an App.Views.TaskItemCheckbox view object", function() {
+        var checkboxView;
+        checkboxView = App.Views.TaskItemCheckbox.findAll()[0];
+        taskItem.checkbox = null;
+        taskItem._getComponents();
+        return expect(taskItem.checkbox).toEqual(checkboxView);
       });
     });
   });

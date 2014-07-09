@@ -1,8 +1,4 @@
 class App.Views.TaskItem extends App.Views.Base
-  constructor: (data) ->
-    super(data)
-    @_getComponents(@id)
-
   _attachBehavior: (domElement) ->
     super(domElement)
 
@@ -11,5 +7,5 @@ class App.Views.TaskItem extends App.Views.Base
 
     return domElement
 
-  _getComponents: (id) ->
-    @checkbox = new App.Views.Checkbox({id: @id + "-checkbox"})
+  _getComponents: ->
+    @checkbox = App.Views.TaskItemCheckbox.findAll(@domElement)[0]

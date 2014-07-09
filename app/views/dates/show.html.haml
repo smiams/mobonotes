@@ -1,2 +1,5 @@
+- content_for :head do
+  = javascript_include_tag "views-dates-show"
+
 %div.task-section
   = render :partial => "tasks/list", :locals => {:tasks => @tasks, :html => {:id => "relevant-task-list"}}
