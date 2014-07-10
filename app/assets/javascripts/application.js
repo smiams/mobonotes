@@ -7,4 +7,12 @@
 window.App = {};
 var App = window.App;
 App.Views = {};
-App.Views.Instances = []
+
+App.init = function() {
+  App.Views.Instances = [];
+
+  $.ajaxPrefilter(function(options, originalOptions, xhr) {
+    var token = $("meta[name=csrf-token]").attr("content");
+    if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+  });
+};

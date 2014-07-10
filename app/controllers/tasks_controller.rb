@@ -34,7 +34,7 @@ class TasksController < ApplicationController
     @task.update_attributes(params[:task])
 
     respond_to do |format|
-      format.js { render :action => "replace-task", :locals => {:task => @task} }
+      format.js { render :partial => "tasks/list_item", :locals => {:task => task, :index => 0}}
     end
   end
 
@@ -51,7 +51,7 @@ class TasksController < ApplicationController
 
     if @task.complete!
       respond_to do |format|
-        format.js { render :action => "replace-task", :locals => {:task => @task} }
+        format.js { render :partial => "tasks/list_item", :locals => {:task => @task, :index => 0, :selected => params[:selected]} }
       end
     end
   end

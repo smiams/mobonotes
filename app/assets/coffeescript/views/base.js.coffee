@@ -19,6 +19,9 @@ class App.Views.Base
     return viewInstances
 
   constructor: (data) ->
+    @initialize(data)
+
+  initialize: (data) ->
     if data
       if data.domElement
         @domElement = data.domElement
@@ -28,15 +31,29 @@ class App.Views.Base
         @domElement = @_getDomElement(@id)
 
     if @domElement
-      @_attachBehavior(@domElement)
+      @_getDataAttributes(@domElement)
+      @_attachBehavior()
 
     @_getComponents()
+
+  replaceDomElement: (newDomElement) ->
+    @domElement.replaceWith(newDomElement)
+    @domElement = newDomElement
+    @initialize()
+
+  _getDataAttributes: (domElement) ->
+    data = domElement.data()
+
+    for key, value of data
+      this[key] = value if this[key] == undefined
+
+    return data
 
   _getDomElement: (id) ->
     return $("#" + id)
 
-  _attachBehavior: (domElement) ->
-    return domElement
+  _attachBehavior: ->
+    return @domElement
 
   _getComponents: ->
     return this

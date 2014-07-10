@@ -22,7 +22,7 @@
         return expect(baseView.domElement).toEqual($("#parent-base-view"));
       });
     });
-    return describe("findAll()", function() {
+    describe("findAll()", function() {
       it("finds all App.Views.Base objects in the DOM", function() {
         var baseViews;
         baseViews = App.Views.Base.findAll();
@@ -35,6 +35,33 @@
         });
         baseViews = App.Views.Base.findAll(parentBaseView.domElement);
         return expect(baseViews.length).toBe(3);
+      });
+    });
+    return describe("_getDataAttributes()", function() {
+      var baseView, domElement;
+      baseView = {};
+      domElement = {};
+      beforeEach(function() {
+        baseView = new App.Views.Base;
+        return domElement = baseView._getDomElement("parent-base-view");
+      });
+      it("finds data attributes in the domElement and assigns them as attributes on the App.View object", function() {
+        baseView._getDataAttributes(domElement);
+        expect(baseView.viewClass).toBe("App.Views.Base");
+        expect(baseView.testAttrOne).toBe("test attribute 1");
+        return expect(baseView.testAttrTwo).toBe("test attribute 2");
+      });
+      it("does not assign a data attribute from the domElement if it is already set on the App.View object", function() {
+        baseView.testAttrOne = "already assigned";
+        baseView._getDataAttributes(domElement);
+        return expect(baseView.testAttrOne).toBe("already assigned");
+      });
+      return it("returns the data hash", function() {
+        return expect(baseView._getDataAttributes(domElement)).toEqual({
+          testAttrTwo: 'test attribute 2',
+          testAttrOne: 'test attribute 1',
+          viewClass: 'App.Views.Base'
+        });
       });
     });
   });

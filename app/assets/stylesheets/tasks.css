@@ -74,6 +74,11 @@ div.task-list-container ol.tasks li.task:hover
   background-color: #D6D6D6;
 }
 
+div.task-list-container ol.tasks li.complete.task div.task-text-container
+{
+  text-decoration: line-through;
+}
+
 div.task-list-container ol.tasks li.task div.task-item-container:hover
 {
   cursor: default; 
