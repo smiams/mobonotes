@@ -3,13 +3,21 @@ describe "Base View", ->
     loadFixtures("/views/base.html")
 
   describe "new()", ->
-    it "can be initialized with a dom element id", ->
+    it "initializes with a dom element id", ->
       baseView = new App.Views.Base({id: "parent-base-view"})
       expect(baseView.id).toBe("parent-base-view")
       expect(baseView.domElement).toEqual($("#parent-base-view"))
 
-    it "can be initialized with a dom element", ->
-      baseView = new App.Views.Base({domElement: $("#parent-base-view")})
+  describe "initialize()", ->
+    it "initializes with a dom element id", ->
+      baseView = new App.Views.Base
+      baseView.initialize({id: "parent-base-view"})
+      expect(baseView.id).toBe("parent-base-view")
+      expect(baseView.domElement).toEqual($("#parent-base-view"))
+
+    it "initializes with a dom element", ->
+      baseView = new App.Views.Base
+      baseView.initialize({domElement: $("#parent-base-view")})
       expect(baseView.id).toBe("parent-base-view")
       expect(baseView.domElement).toEqual($("#parent-base-view"))
 
@@ -22,6 +30,20 @@ describe "Base View", ->
       parentBaseView = new App.Views.Base({id: "parent-base-view"})
       baseViews = App.Views.Base.findAll(parentBaseView.domElement)
       expect(baseViews.length).toBe(3)
+
+  describe "replaceDomElement()", ->
+    it "replaces the old domElement with a new domElement in the DOM", ->
+      baseView = new App.Views.Base({domElement: $("#parent-base-view")})
+      newDomElement = $("<div id='new-dom-element-from-spec'>a neeeeew doooom</div>")
+      baseView.replaceDomElement(newDomElement)
+      expect(newDomElement).toBeInDOM()
+      expect(newDomElement).toBeMatchedBy("#container-div #new-dom-element-from-spec")
+
+    it "replaces the App.View object's old @domElement with a new @domElement", ->
+      baseView = new App.Views.Base({domElement: $("#parent-base-view")})
+      newDomElement = $("<div id='new-dom-element-from-spec'>a neeeeew doooom</div>")
+      baseView.replaceDomElement(newDomElement)
+      expect(baseView.domElement).toBe(newDomElement)
 
   describe "_getDataAttributes()", ->
     baseView = {}

@@ -25,6 +25,7 @@ describe "Task Item View", ->
   describe "_getComponents()", ->
     it "gets an App.Views.TaskItemCheckbox view object", ->
       checkboxView = App.Views.TaskItemCheckbox.findAll()[0]
+      checkboxView.parent = taskItem
       taskItem.checkbox = null
       taskItem._getComponents()
       expect(taskItem.checkbox).toEqual(checkboxView)

@@ -5,7 +5,7 @@
       return loadFixtures("/views/base.html");
     });
     describe("new()", function() {
-      it("can be initialized with a dom element id", function() {
+      return it("initializes with a dom element id", function() {
         var baseView;
         baseView = new App.Views.Base({
           id: "parent-base-view"
@@ -13,9 +13,21 @@
         expect(baseView.id).toBe("parent-base-view");
         return expect(baseView.domElement).toEqual($("#parent-base-view"));
       });
-      return it("can be initialized with a dom element", function() {
+    });
+    describe("initialize()", function() {
+      it("initializes with a dom element id", function() {
         var baseView;
-        baseView = new App.Views.Base({
+        baseView = new App.Views.Base;
+        baseView.initialize({
+          id: "parent-base-view"
+        });
+        expect(baseView.id).toBe("parent-base-view");
+        return expect(baseView.domElement).toEqual($("#parent-base-view"));
+      });
+      return it("initializes with a dom element", function() {
+        var baseView;
+        baseView = new App.Views.Base;
+        baseView.initialize({
           domElement: $("#parent-base-view")
         });
         expect(baseView.id).toBe("parent-base-view");
@@ -35,6 +47,27 @@
         });
         baseViews = App.Views.Base.findAll(parentBaseView.domElement);
         return expect(baseViews.length).toBe(3);
+      });
+    });
+    describe("replaceDomElement()", function() {
+      it("replaces the old domElement with a new domElement in the DOM", function() {
+        var baseView, newDomElement;
+        baseView = new App.Views.Base({
+          domElement: $("#parent-base-view")
+        });
+        newDomElement = $("<div id='new-dom-element-from-spec'>a neeeeew doooom</div>");
+        baseView.replaceDomElement(newDomElement);
+        expect(newDomElement).toBeInDOM();
+        return expect(newDomElement).toBeMatchedBy("#container-div #new-dom-element-from-spec");
+      });
+      return it("replaces the App.View object's old @domElement with a new @domElement", function() {
+        var baseView, newDomElement;
+        baseView = new App.Views.Base({
+          domElement: $("#parent-base-view")
+        });
+        newDomElement = $("<div id='new-dom-element-from-spec'>a neeeeew doooom</div>");
+        baseView.replaceDomElement(newDomElement);
+        return expect(baseView.domElement).toBe(newDomElement);
       });
     });
     return describe("_getDataAttributes()", function() {

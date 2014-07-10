@@ -32,6 +32,7 @@
       return it("gets an App.Views.TaskItemCheckbox view object", function() {
         var checkboxView;
         checkboxView = App.Views.TaskItemCheckbox.findAll()[0];
+        checkboxView.parent = taskItem;
         taskItem.checkbox = null;
         taskItem._getComponents();
         return expect(taskItem.checkbox).toEqual(checkboxView);
