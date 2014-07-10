@@ -8,5 +8,7 @@ class App.Views.TaskItem extends App.Views.Base
     return @domElement
 
   _getComponents: ->
-    @checkbox = App.Views.TaskItemCheckbox.findAll(@domElement)[0]
-    @checkbox.parent = this
+    checkbox = App.Views.TaskItemCheckbox.findAll(@domElement)[0]
+    if checkbox
+      @checkbox = checkbox
+      @checkbox.parent = this

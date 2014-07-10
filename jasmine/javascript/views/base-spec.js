@@ -70,7 +70,7 @@
         return expect(baseView.domElement).toBe(newDomElement);
       });
     });
-    return describe("_getDataAttributes()", function() {
+    describe("_getDataAttributes()", function() {
       var baseView, domElement;
       baseView = {};
       domElement = {};
@@ -95,6 +95,25 @@
           testAttrOne: 'test attribute 1',
           viewClass: 'App.Views.Base'
         });
+      });
+    });
+    return describe("_getDomAttributes()", function() {
+      var baseView, domElement;
+      baseView = {};
+      domElement = {};
+      beforeEach(function() {
+        baseView = new App.Views.Base;
+        return domElement = baseView._getDomElement("parent-base-view");
+      });
+      it("finds html attributes in the domElement and assigns them as attributes on the App.View object", function() {
+        baseView._getDomAttributes(domElement);
+        expect(baseView["html-test-attr"]).toBe("html test attribute");
+        return expect(baseView["html-test-attr-2"]).toBe("html test attribute two");
+      });
+      return it("does not assign a html attribute from the domElement if it is already set on the App.View object", function() {
+        baseView["html-test-attr"] = "already assigned";
+        baseView._getDomAttributes(domElement);
+        return expect(baseView["html-test-attr"]).toBe("already assigned");
       });
     });
   });

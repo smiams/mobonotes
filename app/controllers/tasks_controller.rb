@@ -6,10 +6,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.js { render :partial => "tasks/list_item", :locals => {:task => task, :index => 0}}
+        format.js { render :partial => "tasks/list_item", :locals => {:task => @task, :index => 0} }
       else
-        format.js { head 500 }
+        format.js { render :text => "Error creating task!", :status => 500 }
       end
+    end
   end
 
   def complete

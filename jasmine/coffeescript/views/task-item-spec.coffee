@@ -2,7 +2,7 @@ describe "Task Item View", ->
   taskItem = {}
 
   beforeEach ->
-    loadFixtures("/views/task-item.html")
+    loadFixtures("/views/task-list.html")
     taskItem = new App.Views.TaskItem({id: "task-item-id"})
 
   describe "_attachBehavior()", ->
@@ -23,9 +23,15 @@ describe "Task Item View", ->
       expect(domElement.children(".task-details-container")).not.toBeVisible()
 
   describe "_getComponents()", ->
-    it "gets an App.Views.TaskItemCheckbox view object", ->
+    it "gets a TaskItemCheckbox view object", ->
       checkboxView = App.Views.TaskItemCheckbox.findAll()[0]
       checkboxView.parent = taskItem
       taskItem.checkbox = null
       taskItem._getComponents()
       expect(taskItem.checkbox).toEqual(checkboxView)
+
+    it "does not get a TaskItemCheckbox view object if there is no checkbox element in the domElement", ->
+      domElement = $("<li id='new-task-item'>new task item</li>")
+      taskItem = new App.Views.TaskItem({domElement: domElement})
+      taskItem._getComponents()
+      expect(taskItem.checkbox).toBe(undefined)

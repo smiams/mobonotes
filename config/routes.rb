@@ -13,10 +13,6 @@ Mobonotes::Application.routes.draw do
   resources :tasks do
     put "complete", :on => :member
     put "uncomplete", :on => :member
-    put "start", :on => :member
-    put "unstart", :on => :member
-    put "relevant", :on => :member
-    put "irrelevant", :on => :member
 
     resources :notes, :controller => "tasks/notes", :only => [:create]
   end

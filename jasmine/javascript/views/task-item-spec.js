@@ -4,7 +4,7 @@
     var taskItem;
     taskItem = {};
     beforeEach(function() {
-      loadFixtures("/views/task-item.html");
+      loadFixtures("/views/task-list.html");
       return taskItem = new App.Views.TaskItem({
         id: "task-item-id"
       });
@@ -29,13 +29,22 @@
       });
     });
     return describe("_getComponents()", function() {
-      return it("gets an App.Views.TaskItemCheckbox view object", function() {
+      it("gets a TaskItemCheckbox view object", function() {
         var checkboxView;
         checkboxView = App.Views.TaskItemCheckbox.findAll()[0];
         checkboxView.parent = taskItem;
         taskItem.checkbox = null;
         taskItem._getComponents();
         return expect(taskItem.checkbox).toEqual(checkboxView);
+      });
+      return it("does not get a TaskItemCheckbox view object if there is no checkbox element in the domElement", function() {
+        var domElement;
+        domElement = $("<li id='new-task-item'>new task item</li>");
+        taskItem = new App.Views.TaskItem({
+          domElement: domElement
+        });
+        taskItem._getComponents();
+        return expect(taskItem.checkbox).toBe(void 0);
       });
     });
   });

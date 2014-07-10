@@ -31,7 +31,7 @@ class App.Views.Base
         @domElement = @_getDomElement(@id)
 
     if @domElement
-      @_getDataAttributes(@domElement)
+      @_getAttributes(@domElement)
       @_attachBehavior()
 
     @_getComponents()
@@ -40,6 +40,18 @@ class App.Views.Base
     @domElement.replaceWith(newDomElement)
     @domElement = newDomElement
     @initialize()
+
+  _getAttributes: (domElement) ->
+    @_getDomAttributes(domElement)
+    @_getDataAttributes(domElement)
+
+  _getDomAttributes: (domElement) ->
+    attributes = domElement[0].attributes
+
+    for attribute in attributes
+      this[attribute.name] = attribute.value if this[attribute.name] == undefined
+
+    return attributes
 
   _getDataAttributes: (domElement) ->
     data = domElement.data()

@@ -69,3 +69,21 @@ describe "Base View", ->
     it "returns the data hash", ->
       expect(baseView._getDataAttributes(domElement)).toEqual({testAttrTwo: 'test attribute 2', testAttrOne: 'test attribute 1', viewClass: 'App.Views.Base'})
 
+  describe "_getDomAttributes()", ->
+    baseView = {}
+    domElement = {}
+
+    beforeEach ->
+      baseView = new App.Views.Base
+      domElement = baseView._getDomElement("parent-base-view")
+
+    it "finds html attributes in the domElement and assigns them as attributes on the App.View object", ->
+      baseView._getDomAttributes(domElement)
+      expect(baseView["html-test-attr"]).toBe("html test attribute")
+      expect(baseView["html-test-attr-2"]).toBe("html test attribute two")
+
+    it "does not assign a html attribute from the domElement if it is already set on the App.View object", ->
+      baseView["html-test-attr"] = "already assigned"
+      baseView._getDomAttributes(domElement)
+
+      expect(baseView["html-test-attr"]).toBe("already assigned")
