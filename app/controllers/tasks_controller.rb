@@ -61,7 +61,7 @@ class TasksController < ApplicationController
 
     if @task.uncomplete!
       respond_to do |format|
-        format.js { render :action => "replace-task", :locals => {:task => @task} }
+        format.js { render :partial => "tasks/list_item", :locals => {:task => @task, :index => 0, :selected => params[:selected]} }
       end
     end
   end
