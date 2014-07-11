@@ -3,32 +3,14 @@
   describe("Task Item View", function() {
     var taskItem;
     taskItem = {};
+    App.init();
     beforeEach(function() {
       loadFixtures("/views/task-list.html");
       return taskItem = new App.Views.TaskItem({
         id: "task-item-2"
       });
     });
-    describe("_attachBehavior()", function() {
-      it("shows task details when it is clicked", function() {
-        var domElement;
-        domElement = taskItem.domElement;
-        domElement.click();
-        expect(domElement).toHaveClass("selected");
-        return expect(domElement.children(".task-details-container")).toBeVisible();
-      });
-      return it("toggles the task-details-container when clicked", function() {
-        var domElement;
-        domElement = taskItem.domElement;
-        domElement.click();
-        expect(domElement).toHaveClass("selected");
-        expect(domElement.children(".task-details-container")).toBeVisible();
-        domElement.click();
-        expect(domElement).not.toHaveClass("selected");
-        return expect(domElement.children(".task-details-container")).not.toBeVisible();
-      });
-    });
-    return describe("_getComponents()", function() {
+    describe("_getComponents()", function() {
       it("sets the checkbox to a TaskItemCheckbox view object", function() {
         var checkboxView;
         checkboxView = App.Views.TaskItemCheckbox.findAll()[0];
@@ -65,6 +47,45 @@
         taskItem.domElement = $("#task-item-2");
         taskItem._getComponents();
         return expect(taskItem.editLink.html().trim()).toBe("edit");
+      });
+    });
+    return describe("toggleOpen()", function() {
+      it("adds the 'selected' css class to the domElement", function() {
+        taskItem.toggleOpen();
+        return expect(taskItem.domElement).toHaveClass("selected");
+      });
+      it("adds the App.View object to the App.Views.OpenViews array", function() {
+        expect(App.Views.OpenViews).not.toContain(taskItem);
+        taskItem.toggleOpen();
+        return expect(App.Views.OpenViews).toContain(taskItem);
+      });
+      it("removes the 'selected' css class from the domElement", function() {
+        taskItem.toggleOpen();
+        expect(taskItem.domElement).toHaveClass("selected");
+        taskItem.toggleOpen();
+        return expect(taskItem.domElement).not.toHaveClass("selected");
+      });
+      it("removes the App.View object from the App.Views.OpenViews array", function() {
+        expect(App.Views.OpenViews).not.toContain(taskItem);
+        taskItem.toggleOpen();
+        expect(App.Views.OpenViews).toContain(taskItem);
+        taskItem.toggleOpen();
+        return expect(App.Views.OpenViews).not.toContain(taskItem);
+      });
+      return it("only allows one open App.View object at a time", function() {
+        var taskItem1;
+        taskItem1 = new App.Views.TaskItem({
+          id: "task-item-1"
+        });
+        expect(App.Views.OpenViews.length).toBe(0);
+        taskItem1.toggleOpen();
+        expect(App.Views.OpenViews.length).toBe(1);
+        expect(App.Views.OpenViews[0]).toBe(taskItem1);
+        taskItem.toggleOpen();
+        expect(App.Views.OpenViews[0]).toBe(taskItem);
+        expect(App.Views.OpenViews.length).toBe(1);
+        taskItem.toggleOpen();
+        return expect(App.Views.OpenViews.length).toBe(0);
       });
     });
   });

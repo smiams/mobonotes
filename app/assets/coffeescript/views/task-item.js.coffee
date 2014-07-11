@@ -16,8 +16,9 @@ class App.Views.TaskItem extends App.Views.Base
   _attachBehavior: ->
     super()
 
-    @domElement.on "click", ->
-      $(this).toggleClass("selected")
+    @domElement.on "click", (event) =>
+      event.stopPropagation()
+      @toggleOpen()
 
     @editLink.on "click", (event) =>
       event.stopPropagation()
@@ -38,3 +39,17 @@ class App.Views.TaskItem extends App.Views.Base
 
   toggleEditActive: ->
     @domElement.toggleClass("edit-active")
+
+  toggleOpen: ->
+    if @domElement.hasClass("selected")
+      for openView, i in App.Views.OpenViews
+        if openView == this
+          @domElement.removeClass("selected")
+          App.Views.OpenViews.splice(i, 1)
+          break
+    else
+      for openView, i in App.Views.OpenViews
+        openView.toggleOpen()
+
+      @domElement.addClass("selected")
+      App.Views.OpenViews.push(this)
