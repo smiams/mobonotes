@@ -23,12 +23,19 @@ describe "Task Item View", ->
       expect(domElement.children(".task-details-container")).not.toBeVisible()
 
   describe "_getComponents()", ->
-    it "gets a TaskItemCheckbox view object", ->
+    it "sets the checkbox to a TaskItemCheckbox view object", ->
       checkboxView = App.Views.TaskItemCheckbox.findAll()[0]
       checkboxView.parent = taskItem
       taskItem.checkbox = null
       taskItem._getComponents()
       expect(taskItem.checkbox).toEqual(checkboxView)
+
+    it "sets the editForm to a TaskEditForm view object", ->
+      editForm = App.Views.TaskEditForm.findAll()[0]
+      editForm.parent = taskItem
+      taskItem.editForm = null
+      taskItem._getComponents()
+      expect(taskItem.editForm).toEqual(editForm)
 
     it "does not get a TaskItemCheckbox view object if there is no checkbox element in the domElement", ->
       domElement = $("<li id='new-task-item'>new task item without a checkbox</li>")
@@ -41,3 +48,9 @@ describe "Task Item View", ->
       taskItem.domElement = $("#task-item-2")
       taskItem._getComponents()
       expect(taskItem.deleteLink.html().trim()).toBe("delete")
+
+    it "sets the editLink to a dom element", ->
+      taskItem = new App.Views.TaskItem
+      taskItem.domElement = $("#task-item-2")
+      taskItem._getComponents()
+      expect(taskItem.editLink.html().trim()).toBe("edit")

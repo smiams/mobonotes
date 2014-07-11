@@ -13,6 +13,21 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    @task = Task.find(params[:id])
+
+    @task.name = params[:task][:name]
+    @task.rolling = params[:task][:rolling]
+
+    respond_to do |format|
+      if @task.save
+        format.js { render :partial => "tasks/list_item", :locals => {:task => @task, :index => 0, :selected => params[:selected]} }
+      else
+        format.js { render :text => "Error creating task!", :status => 500 }
+      end
+    end
+  end
+
   def destroy
     @task = Task.find(params[:id])
 

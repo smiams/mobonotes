@@ -3,7 +3,19 @@
     %div.task-checkbox-container
       = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task-checkbox", :id => "task-" + task.id.to_s + "-checkbox", "data-view-class" => "App.Views.TaskItemCheckbox", "data-url" => task.complete? ? uncomplete_task_path(task): complete_task_path(task), "data-method" => "PUT"
     %div.task-text-container
-      = task.name
+      %div.text
+        = task.name
+      %div.task-form-container
+        = form_for task, :url => task_path(task), :method => :put, :html => {"data-view-class" => "App.Views.TaskEditForm"} do |f|
+          %div.text-field-container
+            = f.text_field :name, :class => "text-field"
+          %div.button-container
+            %label
+              = f.check_box :rolling, :class => "checkbox"
+              Roll
+            = f.submit "Save", :class => "submit"
+            %a
+              cancel
     %div.task-controls-container
       %div.task-controls-cover
       %div.task-controls-links
@@ -15,7 +27,7 @@
     %div.task-details-content
       %ol.content
         - task.notes.each_with_index do |note, index|
-          %li.content{:id => 'task-note-' + note.id.to_s, :class => (index == 0 ? 'first ' : '')}
+          %li.content{:id => "task-note-" + note.id.to_s, :class => (index == 0 ? "first " : "")}
             %div.task-note-content
               = note.content
     %div.task-details-form-container

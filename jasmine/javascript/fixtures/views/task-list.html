@@ -10,7 +10,22 @@
             <input class="task-checkbox" id="task-item-id-checkbox" name="checkbox_for_task_2" type="checkbox" value="1" data-view-class="App.Views.TaskItemCheckbox">
           </div>
           <div class="task-text-container">
-            This is a sample task
+            <div class="text">This is a sample task</div>
+            <div class="task-form-container">
+              <form data-view-class="App.Views.TaskEditForm">
+                <div class="text-field-container">
+                  <input class="text-field" id="task_name" name="task[name]" type="text" value="This is a sample task">
+                </div>
+                <div class="button-container">
+                  <label>
+                    <input name="task[rolling]" type="hidden" value="0"><input checked="checked" class="checkbox" id="task_rolling" name="task[rolling]" type="checkbox" value="1">
+                    Roll
+                  </label>
+                  <input class="submit" name="commit" type="submit" value="Save">
+                  <a>cancel</a>
+                </div>
+              </form>
+            </div>
           </div>
           <div class="task-controls-container">
             <div class="task-controls-cover"></div>

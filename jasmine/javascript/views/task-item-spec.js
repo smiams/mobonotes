@@ -29,13 +29,21 @@
       });
     });
     return describe("_getComponents()", function() {
-      it("gets a TaskItemCheckbox view object", function() {
+      it("sets the checkbox to a TaskItemCheckbox view object", function() {
         var checkboxView;
         checkboxView = App.Views.TaskItemCheckbox.findAll()[0];
         checkboxView.parent = taskItem;
         taskItem.checkbox = null;
         taskItem._getComponents();
         return expect(taskItem.checkbox).toEqual(checkboxView);
+      });
+      it("sets the editForm to a TaskEditForm view object", function() {
+        var editForm;
+        editForm = App.Views.TaskEditForm.findAll()[0];
+        editForm.parent = taskItem;
+        taskItem.editForm = null;
+        taskItem._getComponents();
+        return expect(taskItem.editForm).toEqual(editForm);
       });
       it("does not get a TaskItemCheckbox view object if there is no checkbox element in the domElement", function() {
         var domElement;
@@ -46,11 +54,17 @@
         taskItem._getComponents();
         return expect(taskItem.checkbox).toBe(void 0);
       });
-      return it("sets the deleteLink to a dom element", function() {
+      it("sets the deleteLink to a dom element", function() {
         taskItem = new App.Views.TaskItem;
         taskItem.domElement = $("#task-item-2");
         taskItem._getComponents();
         return expect(taskItem.deleteLink.html().trim()).toBe("delete");
+      });
+      return it("sets the editLink to a dom element", function() {
+        taskItem = new App.Views.TaskItem;
+        taskItem.domElement = $("#task-item-2");
+        taskItem._getComponents();
+        return expect(taskItem.editLink.html().trim()).toBe("edit");
       });
     });
   });
