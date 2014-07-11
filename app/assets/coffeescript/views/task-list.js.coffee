@@ -12,3 +12,10 @@ class App.Views.TaskList extends App.Views.Base
     taskItem.parent = this
     taskListDomElement = @domElement.find("ol.tasks")
     taskListDomElement.append(taskItem.domElement)
+
+  deleteTaskItem: (taskItem) ->
+    for ti, index in @taskItems
+      if ti.id == taskItem.id
+        ti.domElement.remove()
+        @taskItems.splice(index, 1)
+        break

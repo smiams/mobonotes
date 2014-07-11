@@ -6,7 +6,7 @@
     beforeEach(function() {
       loadFixtures("/views/task-list.html");
       return taskItem = new App.Views.TaskItem({
-        id: "task-item-id"
+        id: "task-item-2"
       });
     });
     describe("_attachBehavior()", function() {
@@ -37,14 +37,20 @@
         taskItem._getComponents();
         return expect(taskItem.checkbox).toEqual(checkboxView);
       });
-      return it("does not get a TaskItemCheckbox view object if there is no checkbox element in the domElement", function() {
+      it("does not get a TaskItemCheckbox view object if there is no checkbox element in the domElement", function() {
         var domElement;
-        domElement = $("<li id='new-task-item'>new task item</li>");
+        domElement = $("<li id='new-task-item'>new task item without a checkbox</li>");
         taskItem = new App.Views.TaskItem({
           domElement: domElement
         });
         taskItem._getComponents();
         return expect(taskItem.checkbox).toBe(void 0);
+      });
+      return it("sets the deleteLink to a dom element", function() {
+        taskItem = new App.Views.TaskItem;
+        taskItem.domElement = $("#task-item-2");
+        taskItem._getComponents();
+        return expect(taskItem.deleteLink.html().trim()).toBe("delete");
       });
     });
   });

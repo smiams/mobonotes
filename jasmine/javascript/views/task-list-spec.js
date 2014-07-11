@@ -10,7 +10,7 @@
         id: "task-list"
       });
     });
-    return describe("addTaskItem()", function() {
+    describe("addTaskItem()", function() {
       it("adds a TaskItem object to the @taskItems array", function() {
         var taskItem;
         taskItemDomElement = $("<li id='new-task-item-1'>new task item</li>");
@@ -28,6 +28,22 @@
         });
         taskList.addTaskItem(taskItem);
         return expect(taskList.domElement.find("#new-task-item-2")).toEqual(taskItemDomElement);
+      });
+    });
+    return describe("deleteTaskItem", function() {
+      it("deletes the TaskItem object from the taskItems array", function() {
+        expect(taskList.taskItems.length).toBe(2);
+        taskList.deleteTaskItem(taskList.taskItems[1]);
+        expect(taskList.taskItems.length).toBe(1);
+        return expect(taskList.taskItems[0].id).toEqual("task-item-1");
+      });
+      return it("removes the TaskItem domElement from the DOM", function() {
+        var domElementToDelete, taskItemToDelete;
+        taskItemToDelete = taskList.taskItems[1];
+        domElementToDelete = taskItemToDelete.domElement.clone();
+        taskList.deleteTaskItem(taskItemToDelete);
+        expect(taskItemToDelete.domElement).not.toBeInDOM();
+        return expect(taskList.taskItems[0].domElement).toBeInDOM();
       });
     });
   });

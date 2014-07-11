@@ -20,3 +20,17 @@ describe "Task List View", ->
       taskList.addTaskItem(taskItem)
 
       expect(taskList.domElement.find("#new-task-item-2")).toEqual(taskItemDomElement)
+
+  describe "deleteTaskItem", ->
+    it "deletes the TaskItem object from the taskItems array", ->
+      expect(taskList.taskItems.length).toBe(2)
+      taskList.deleteTaskItem(taskList.taskItems[1])
+      expect(taskList.taskItems.length).toBe(1)
+      expect(taskList.taskItems[0].id).toEqual("task-item-1")
+
+    it "removes the TaskItem domElement from the DOM", ->
+      taskItemToDelete = taskList.taskItems[1]
+      domElementToDelete = taskItemToDelete.domElement.clone()
+      taskList.deleteTaskItem(taskItemToDelete)
+      expect(taskItemToDelete.domElement).not.toBeInDOM()
+      expect(taskList.taskItems[0].domElement).toBeInDOM()

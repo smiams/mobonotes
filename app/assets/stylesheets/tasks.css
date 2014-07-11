@@ -40,9 +40,14 @@ div.task-list-container div.links a.first, div.task-controls-container div.task-
   margin-left: 0;
 }
 
+div.task-controls-container div.task-controls-links a:hover
+{
+  cursor: pointer !important;
+}
+
 div.task-list-container div.links a, div.task-controls-container div.task-controls-links a
 {
-  color: #666600;
+  color: #000000;
   margin: 0 -4px 0 5px;
   padding-right: 7px;
   text-decoration: underline;
@@ -110,10 +115,10 @@ div.task-list-container ol.tasks li.task div.task-item-container div.task-contro
 {
   background-color: #D6D6D6;
   height: 100%;
-  left: -70px;
+  left: -80px;
   position: absolute;
   top: 0;
-  width: 70px;
+  width: 80px;
 }
 
 div.task-controls-container div.task-controls-cover
@@ -131,7 +136,7 @@ div.task-controls-container div.task-controls-cover
 
 div.task-controls-container div.task-controls-cover:hover, ol.tasks li.task:hover div.task-controls-cover
 {
-  background: transparent;
+  height: 0 !important;
 }
 
 div.task-controls-container div.task-controls-links
@@ -182,7 +187,6 @@ div.task-list-container ol.tasks li.task.selected:hover
 {
   background-color: #4B6B7C;
 }
-
 
 div.task-list-container ol.tasks li.task.selected div.task-item-container
 {

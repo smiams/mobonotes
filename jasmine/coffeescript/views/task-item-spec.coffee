@@ -3,7 +3,7 @@ describe "Task Item View", ->
 
   beforeEach ->
     loadFixtures("/views/task-list.html")
-    taskItem = new App.Views.TaskItem({id: "task-item-id"})
+    taskItem = new App.Views.TaskItem({id: "task-item-2"})
 
   describe "_attachBehavior()", ->
     it "shows task details when it is clicked", ->
@@ -31,7 +31,13 @@ describe "Task Item View", ->
       expect(taskItem.checkbox).toEqual(checkboxView)
 
     it "does not get a TaskItemCheckbox view object if there is no checkbox element in the domElement", ->
-      domElement = $("<li id='new-task-item'>new task item</li>")
+      domElement = $("<li id='new-task-item'>new task item without a checkbox</li>")
       taskItem = new App.Views.TaskItem({domElement: domElement})
       taskItem._getComponents()
       expect(taskItem.checkbox).toBe(undefined)
+
+    it "sets the deleteLink to a dom element", ->
+      taskItem = new App.Views.TaskItem
+      taskItem.domElement = $("#task-item-2")
+      taskItem._getComponents()
+      expect(taskItem.deleteLink.html().trim()).toBe("delete")

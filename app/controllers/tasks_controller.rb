@@ -13,6 +13,18 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+
+    respond_to do |format|
+      if @task.destroy!
+        format.js { head :ok }
+      else
+        format.js { head :error }
+      end
+    end
+  end
+
   def complete
     @task = Task.find(params[:id])
 

@@ -7,8 +7,10 @@
     %div.task-controls-container
       %div.task-controls-cover
       %div.task-controls-links
-        %a{:class => "first last"}
+        %a{:class => "first"}
           edit
+        %a{:class => "last", "data-url" => task_path(task)}
+          delete
   %div.task-details-container
     %div.task-details-content
       %ol.content
