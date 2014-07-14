@@ -1,7 +1,7 @@
-%li{:id => "task-" + task.id.to_s, :class => ((defined?(selected) && selected == "true" ? "selected " : "") + (task.complete? ? "complete " : "") + "task"), "data-view-class" => "App.Views.TaskItem"}
+%li{:id => "task-" + task.id.to_s, :class => ((defined?(selected) && selected == "true" ? "selected " : "") + (task.complete? ? "complete " : "") + "task"), "data-view-class" => "App.Views.Task"}
   %div.task-item-container
     %div.task-checkbox-container
-      = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task-checkbox", :id => "task-" + task.id.to_s + "-checkbox", "data-view-class" => "App.Views.TaskItemCheckbox", "data-url" => task.complete? ? uncomplete_task_path(task): complete_task_path(task), "data-method" => "PUT"
+      = check_box_tag "checkbox_for_task_#{task.id.to_s}", "1", task.complete?, :class => "task-checkbox", :id => "task-" + task.id.to_s + "-checkbox", "data-view-class" => "App.Views.TaskCheckbox", "data-url" => task.complete? ? uncomplete_task_path(task): complete_task_path(task), "data-method" => "PUT"
     %div.task-text-container
       %div.text
         = task.name

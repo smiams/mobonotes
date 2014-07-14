@@ -11,7 +11,7 @@ class App.Views.TaskCreationForm extends App.Views.Base
           dataType: "html",
           data: @domElement.serializeArray()
         }).success (data, status, xhr) =>
-          @parent.addTaskItem(new App.Views.TaskItem({domElement: $(data)}))
+          @parent.addTask(new App.Views.Task({domElement: $(data)}))
           @textbox.val("")
           return xhr
 

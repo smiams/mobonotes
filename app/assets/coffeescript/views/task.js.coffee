@@ -1,9 +1,9 @@
-class App.Views.TaskItem extends App.Views.Base
+class App.Views.Task extends App.Views.Base
   _getComponents: ->
     @deleteLink = @domElement.find("div.task-controls-container a:contains('delete')")
     @editLink = @domElement.find("div.task-controls-container a:contains('edit')")
 
-    checkbox = App.Views.TaskItemCheckbox.findAll(@domElement)[0]
+    checkbox = App.Views.TaskCheckbox.findAll(@domElement)[0]
     if checkbox
       @checkbox = checkbox
       @checkbox.parent = this
@@ -32,7 +32,7 @@ class App.Views.TaskItem extends App.Views.Base
             url: @deleteLink.data("url"),
             type: "delete"
           }).success (data, status, xhr) =>
-            @parent.deleteTaskItem(this)
+            @parent.deleteTask(this)
             return xhr
 
     return @domElement

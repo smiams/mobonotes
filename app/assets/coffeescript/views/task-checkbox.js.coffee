@@ -1,4 +1,4 @@
-class App.Views.TaskItemCheckbox extends App.Views.Checkbox
+class App.Views.TaskCheckbox extends App.Views.Checkbox
   _attachBehavior: ->
     super()
 

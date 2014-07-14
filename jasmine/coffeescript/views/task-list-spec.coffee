@@ -1,36 +1,36 @@
 describe "Task List View", ->
   taskList = {}
-  taskItemDomElement = {}
+  taskDomElement = {}
 
   beforeEach ->
     loadFixtures("/views/task-list.html")
     taskList = new App.Views.TaskList({id: "task-list"})
 
-  describe "addTaskItem()", ->
-    it "adds a TaskItem object to the @taskItems array", ->
-      taskItemDomElement = $("<li id='new-task-item-1'>new task item</li>")
-      taskItem = new App.Views.TaskItem({domElement: taskItemDomElement})
-      taskList.addTaskItem(taskItem)
+  describe "addTask()", ->
+    it "adds a Task object to the @tasks array", ->
+      taskDomElement = $("<li id='new-task-item-1'>new task item</li>")
+      task = new App.Views.Task({domElement: taskDomElement})
+      taskList.addTask(task)
 
-      expect(taskList.taskItems[taskList.taskItems.length - 1]).toBe(taskItem)
+      expect(taskList.tasks[taskList.tasks.length - 1]).toBe(task)
 
-    it "appends the TaskItem's domElement to the TaskList's domElement", ->
-      taskItemDomElement = $("<li id='new-task-item-2'>new task item</li>")
-      taskItem = new App.Views.TaskItem({domElement: taskItemDomElement})
-      taskList.addTaskItem(taskItem)
+    it "appends the Task's domElement to the TaskList's domElement", ->
+      taskDomElement = $("<li id='new-task-item-2'>new task item</li>")
+      task = new App.Views.Task({domElement: taskDomElement})
+      taskList.addTask(task)
 
-      expect(taskList.domElement.find("#new-task-item-2")).toEqual(taskItemDomElement)
+      expect(taskList.domElement.find("#new-task-item-2")).toEqual(taskDomElement)
 
-  describe "deleteTaskItem", ->
-    it "deletes the TaskItem object from the taskItems array", ->
-      expect(taskList.taskItems.length).toBe(2)
-      taskList.deleteTaskItem(taskList.taskItems[1])
-      expect(taskList.taskItems.length).toBe(1)
-      expect(taskList.taskItems[0].id).toEqual("task-item-1")
+  describe "deleteTask", ->
+    it "deletes the Task object from the tasks array", ->
+      expect(taskList.tasks.length).toBe(2)
+      taskList.deleteTask(taskList.tasks[1])
+      expect(taskList.tasks.length).toBe(1)
+      expect(taskList.tasks[0].id).toEqual("task-item-1")
 
-    it "removes the TaskItem domElement from the DOM", ->
-      taskItemToDelete = taskList.taskItems[1]
-      domElementToDelete = taskItemToDelete.domElement.clone()
-      taskList.deleteTaskItem(taskItemToDelete)
-      expect(taskItemToDelete.domElement).not.toBeInDOM()
-      expect(taskList.taskItems[0].domElement).toBeInDOM()
+    it "removes the Task domElement from the DOM", ->
+      taskToDelete = taskList.tasks[1]
+      domElementToDelete = taskToDelete.domElement.clone()
+      taskList.deleteTask(taskToDelete)
+      expect(taskToDelete.domElement).not.toBeInDOM()
+      expect(taskList.tasks[0].domElement).toBeInDOM()
