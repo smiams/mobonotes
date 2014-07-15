@@ -27,11 +27,9 @@
     %div.task-details-content
       %ol.content
         - task.notes.each_with_index do |note, index|
-          %li.content{:id => "task-note-" + note.id.to_s, :class => (index == 0 ? "first " : "")}
-            %div.task-note-content
-              = note.content
-    %div.task-details-form-container
-      = form_for Note.new, :class => "new_task", :url => task_notes_path(task), :as => :note, :method => :post do |f|
+          = render :partial => "tasks/notes/list_item", :locals => {:note => note, :index => index}
+    %div.form-container
+      = form_for Note.new, :url => task_notes_path(task), :as => :note, :method => :post, :html => {"data-view-class" => "App.Views.TaskNoteCreationForm"} do |f|
         %div.textarea-container
           = f.text_area :content, :class => "text-area", :rows => 5, :size => 30
         %div.button-container

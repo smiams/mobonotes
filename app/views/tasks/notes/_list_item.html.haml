@@ -1,0 +1,19 @@
+%li.content{:id => "task-note-" + note.id.to_s, :class => (index == 0 ? "first " : ""), "data-view-class" => "App.Views.TaskNote"}
+  %h2.task-note-details
+    %span.task-note-timestamp
+      = note.created_at.strftime("%d %b, %Y at %l:%M%P") + "..."
+    %span.task-note-controls
+      %a edit
+      %a{"data-url" => task_note_path(note.task, note)}
+        delete
+    %div{:style => "clear:both;"}
+  %div.task-note-content
+    = RedCloth.new(note.content).to_html.html_safe
+  %div.form-container
+    = form_for note, :url => task_note_path(note.task, note), :as => :note, :method => :post, :html => {"data-view-class" => "App.Views.TaskNoteEditForm"} do |f|
+      %div.textarea-container
+        = f.text_area :content, :class => "text-area", :rows => 5, :size => 30
+      %div.button-container
+        = f.submit "Save", :class => "submit"
+        %a
+          cancel

@@ -13,6 +13,15 @@ class App.Views.Task extends App.Views.Base
       @editForm = editForm
       @editForm.parent = this
 
+    addNoteForm = App.Views.TaskNoteCreationForm.findAll(@domElement)[0]
+    if addNoteForm
+      @addNoteForm = addNoteForm
+      @addNoteForm.parent = this
+
+    @notes = App.Views.TaskNote.findAll(@domElement)
+    for note in @notes
+      note.parent = this
+
   _attachBehavior: ->
     super()
 
@@ -53,3 +62,18 @@ class App.Views.Task extends App.Views.Base
 
       @domElement.addClass("selected")
       App.Views.OpenViews.push(this)
+
+  addNote: (taskNote) ->
+    @notes.push(taskNote)
+    taskNote.parent = this
+    taskDomElement = @domElement.find(".task-details-container .task-details-content ol.content")
+    taskDomElement.append(taskNote.domElement)
+
+    return taskNote
+
+  deleteNote: (taskNote) ->
+    for note, index in @notes
+      if note.id == taskNote.id
+        note.domElement.remove()
+        @notes.splice(index, 1)
+        break

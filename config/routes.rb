@@ -14,7 +14,7 @@ Mobonotes::Application.routes.draw do
     put "complete", :on => :member
     put "uncomplete", :on => :member
 
-    resources :notes, :controller => "tasks/notes", :only => [:create]
+    resources :notes, :controller => "tasks/notes", :only => [:create, :update, :destroy]
   end
 
   get "login" => "sessions#new", :via => :get, :as => :login
