@@ -1,9 +1,0 @@
-%div{:id => "task-" + task.id.to_s + "-details", :class => "task-details"}
-  %h1{:id => "task-"+ task.id.to_s + "-header"}
-    = task.name
-    %div{:class => "links"}
-      = link_to "edit", edit_task_path(task), :remote => true
-      = link_to "delete", task_path(task), :class => "delete", :method => :delete, :confirm => "Are you sure?"
-      = link_to task.started? ? "unstart" : "start", task.started? ? unstart_task_path(task) : start_task_path(task), :remote => true, :method => :put
-      = link_to task.relevant? ? "irrelevant" : "relevant", task.relevant? ? irrelevant_task_path(task) : relevant_task_path(task), :remote => true, :method => :put
-  = render :partial => "tasks/notes/list", :locals => {:task => task}

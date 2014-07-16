@@ -1,1 +1,0 @@
-page << "$('task-list-item-#{task.id}').remove();"

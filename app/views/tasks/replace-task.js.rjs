@@ -1,6 +1,0 @@
-page.replace "task-#{task.id}", :partial => "tasks/task", :locals => {:task => task}
-if task.in_progress?
-  page << "$('task-list-item-#{task.id}').addClassName('started');"
-else
-  page << "$('task-list-item-#{task.id}').removeClassName('started');"
-end
