@@ -1,9 +1,0 @@
-%div.task-form-container
-  = form_for Task.new, :as => :task, :url => tasks_path, :method => :post, :html => {"data-view-class" => "App.Views.TaskCreationForm"} do |f|
-    %div.text-field-container
-      = f.text_field :name, :class => "text-field", :size => 30
-    %div.button-container
-      %label
-        = f.check_box :rolling, :class => "checkbox"
-        Roll
-      = f.submit "Save", :class => "submit"

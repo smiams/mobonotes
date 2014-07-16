@@ -6,4 +6,12 @@
     %ol.tasks
       - tasks.each_with_index do |task, index|
         = render :partial => "tasks/list_item", :locals => {:task => task, :index => index}
-    = render :partial => "tasks/new_form", :locals => {:labels => @labels}
+    %div.task-form-container
+      = form_for Task.new, :as => :task, :url => tasks_path, :method => :post, :html => {"data-view-class" => "App.Views.TaskCreationForm"} do |f|
+        %div.text-field-container
+          = f.text_field :name, :class => "text-field", :size => 30
+        %div.button-container
+          %label
+            = f.check_box :rolling, :class => "checkbox"
+            Roll
+          = f.submit "Save", :class => "submit"
