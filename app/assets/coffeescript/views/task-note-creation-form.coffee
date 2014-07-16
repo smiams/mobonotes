@@ -13,10 +13,10 @@ class App.Views.TaskNoteCreationForm extends App.Views.Base
         data: @domElement.serializeArray()
       }).success (data, status, xhr) =>
         @parent.addNote(new App.Views.TaskNote({domElement: $(data)}))
-        @textbox.val("")
+        @textarea.val("")
         return xhr
 
     return @domElement
 
   _getComponents: ->
-    @textbox = @domElement.find("textarea")
+    @textarea = @domElement.find("textarea")

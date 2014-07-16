@@ -42,20 +42,76 @@
         <div class="task-details-container">
           <div class="task-details-content">
             <ol class="content">
-              <li class="content first" id="task-note-7">
+              <li class="content first edit-active" data-view-class="App.Views.TaskNote" id="first-task-note">
+                <h2 class="task-note-details">
+                  <span class="task-note-timestamp">
+                    14 Jul, 2014 at  1:44pm...
+                  </span>
+                  <span class="task-note-controls">
+                    <a>edit</a>
+                    <a data-url="/tasks/8/notes/10">
+                      delete
+                    </a>
+                  </span>
+                  <div style="clear:both;"></div>
+                </h2>
                 <div class="task-note-content">
-                  this is a sample note under a task
+                  <p><strong>something in bold??</strong></p>
+                  <ol>
+                  	<li>this is a ma-newer note</li>
+                  	<li>which is alsos</li>
+                  	<li>a list
+                    	<ul>
+                    		<li>one</li>
+                    		<li>two</li>
+                    		<li>three</li>
+                    	</ul>
+                    </li>
+                  </ol>
+                  <blockquote>
+                    <p>something very interesting from an old, old, wise person…and they went on and on and on and on…i didn’t know when this person was going to stop…</p>
+                  </blockquote>
+                  <ol>
+                  	<li>one</li>
+                  	<li>two</li>
+                  	<li>three
+                    	<ul>
+                    		<li>something else</li>
+                    	</ul>
+                    </li>
+                  </ol>
+                </div>
+                <div class="form-container">
+                  <form accept-charset="UTF-8" action="/tasks/8/notes/10" class="edit_note" data-view-class="App.Views.TaskNoteEditForm" id="first-task-note-edit-form" method="post">
+                    <div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="HWS7lpr/FYDW7aRkN+sLqRkoEPol6+rStHBhxbpf4OM=">
+                    </div>
+                    <div class="textarea-container">
+                      <textarea class="text-area" id="note_content" name="note[content]" rows="5"></textarea>
+                    </div>
+                    <div class="button-container">
+                      <input class="submit" name="commit" type="submit" value="Save">
+                      <a>
+                        cancel
+                      </a>
+                    </div>
+                  </form>
+                </div>
+              </li>
+              <li class="content first" id="second-task-note" data-view-class="App.Views.TaskNote">
+                <div class="task-note-content">
+                  this is the second sample task note
                 </div>
               </li>
             </ol>
           </div>
           <div class="task-details-form-container">
-            <form accept-charset="UTF-8" action="/tasks/2/notes" class="new_note" id="new_note" method="post"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="Pyf+Adn0ejS7MiHxLbzBQmLkgrpub2w6aDFvzdNrDK4="></div>      <div class="textarea-container">
-                    <textarea class="text-area" id="note_content" name="note[content]" rows="5"></textarea>
-                  </div>
-                  <div class="button-container">
-                    <input class="submit" name="commit" type="submit" value="Add Note">
-                  </div>
+            <form accept-charset="UTF-8" action="/tasks/2/notes" class="new_note" id="new_note" method="post" data-view-class="App.Views.TaskNoteCreationForm">
+              <div class="textarea-container">
+                <textarea class="text-area" id="note_content" name="note[content]" rows="5"></textarea>
+              </div>
+              <div class="button-container">
+                <input class="submit" name="commit" type="submit" value="Add Note">
+              </div>
             </form>
           </div>
         </div>

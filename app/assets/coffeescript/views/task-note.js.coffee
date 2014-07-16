@@ -15,7 +15,7 @@ class App.Views.TaskNote extends App.Views.Base
             url: @deleteLink.data("url"),
             type: "delete"
           }).success (data, status, xhr) =>
-            @parent.deleteNote(this)
+            @parent.removeNote(this)
             return xhr
 
   _getComponents: ->

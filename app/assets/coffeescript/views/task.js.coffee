@@ -71,7 +71,7 @@ class App.Views.Task extends App.Views.Base
 
     return taskNote
 
-  deleteNote: (taskNote) ->
+  removeNote: (taskNote) ->
     for note, index in @notes
       if note.id == taskNote.id
         note.domElement.remove()
