@@ -1,13 +1,14 @@
 %div.tasks-container{:id => "tasks-container"}
   %div.task-list-container{:id => "task-list", "data-view-class" => "App.Views.TaskList"}
     %div.label
-      bitsimplicity
+      = label.name
     %div.links
     %ol.tasks
       - tasks.each_with_index do |task, index|
         = render :partial => "tasks/list_item", :locals => {:task => task, :index => index}
     %div.task-form-container
       = form_for Task.new, :as => :task, :url => tasks_path, :method => :post, :html => {"data-view-class" => "App.Views.TaskCreationForm"} do |f|
+        = f.hidden_field :label_id, :value => label.id
         %div.text-field-container
           = f.text_field :name, :class => "text-field", :size => 30
         %div.button-container

@@ -10,7 +10,6 @@ class Task < ActiveRecord::Base
 
   scope :created_between, -> start_time, end_time { where(:created_at => start_time..end_time) }
   scope :completed_between, -> start_time, end_time { where(:completed_at => start_time..end_time) }
-  scope :irrelevant_between, -> start_time, end_time { where(:irrelevant_at => start_time..end_time) }
 
   scope :occurs_between, -> start_time, end_time {
     start_time = start_time.utc.to_formatted_s(:db)
@@ -26,7 +25,6 @@ class Task < ActiveRecord::Base
     where("(start_at <= '#{end_time.utc.to_formatted_s(:db)}')")
   }
 
-  scope :relevant, -> { where("irrelevant_at IS NULL") }
   scope :complete, -> { where("completed_at IS NOT NULL") }
   scope :incomplete, -> { where("completed_at IS NULL") }
 
@@ -47,37 +45,5 @@ class Task < ActiveRecord::Base
 
   def complete?
     self.completed_at.present?
-  end
-
-  def start!
-    self.started_at = Time.now
-    self.save
-  end
-
-  def unstart!
-    self.started_at = nil
-    self.save
-  end
-
-  def irrelevant!
-    self.irrelevant_at = Time.now
-    self.save
-  end
-
-  def relevant!
-    self.irrelevant_at = nil
-    self.save
-  end
-
-  def started?
-    self.started_at.present?
-  end
-
-  def in_progress?
-    self.started_at.present? && self.complete? == false
-  end
-
-  def relevant?
-    self.irrelevant_at.blank?
   end
 end

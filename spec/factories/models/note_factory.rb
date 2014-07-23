@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :note, :class => Note do
-    content "This is a factoried note."
+    content "This is a factory'd note."
   end
 end
