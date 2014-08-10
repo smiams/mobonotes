@@ -4,4 +4,5 @@
 *= require firefox
 *= require global
 *= require tasks
+*= require navigation
 */

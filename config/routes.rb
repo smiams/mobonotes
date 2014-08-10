@@ -1,6 +1,7 @@
 Mobonotes::Application.routes.draw do
   root :to => "dates#show"
-  get "dates/:date" => "dates#show", :as => :date
+  get "dates/:start_date" => "dates#show", :as => :date
+  get "dates/:start_date/:end_date" => "dates#show", :as => :date_range
 
   get "labels/:label_id/dates/:date" => "labels/dates#show", :as => :labels_dates
 

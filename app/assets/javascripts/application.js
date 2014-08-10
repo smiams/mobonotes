@@ -2,6 +2,8 @@
 // This file is automatically included by javascript_include_tag :defaults
 //= require_self
 //= require lib/jquery-1.11.1.min
+//= require lib/jquery-ui.min
+//= require lib/moment.min.js
 //= require_tree ../coffeescript
 
 window.App = {};

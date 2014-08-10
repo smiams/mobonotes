@@ -1,166 +1,63 @@
-div.navigation-container
+#navigation
 {
-  background-color: red;
-  margin: 0;
-  padding: 0;
+  background-color: #4B6B7C;
 }
 
-ul.navigation
+#date-range-navigator
 {
-  background-color: #000000;
-  clear: both;
-  float: left;
-  font-size: 13px;
-  height: 36px;
-  list-style: none;
-  margin: 0;
-  padding: 15px 0 0 35px;
+  padding: 20px;
 }
 
-ul.navigation li.tab
+#date-and-controls-container
 {
-  float: left;
-  height: 36px;
-  margin-left: 10px;
-  position: relative;
+  font-size: 22px;
+  padding: 10px;
 }
 
-ul.navigation li.tab.first
+#date-and-controls-container #dates
 {
-  margin-left: 0px;
-}
-
-ul.navigation li.tab div.tab
-{
-  color: #000000;
-  height: 20px;
-  position: relative;
-}
-
-ul.navigation li.tab a.arrow, ul.navigation li.tab div.label-nav
-{
-  display: none;
-}
-
-ul.navigation li.tab.active a.arrow, ul.navigation li.tab.active div.label-nav
-{
-  display: block;
-}
-
-ul.navigation li.tab.active div.tab
-{
-  background-color: yellow;
-  height: 36px;
-  line-height: 36px;
-  top: 0px;
-}
-
-li.tab div.tab .tab-slice
-{
-  background-color: #656565;
   color: #FFFFFF;
-  display: block;
-  float: left;
+}
+
+#date-and-controls-container #dates:hover
+{
+  cursor: pointer;
+}
+
+#date-and-controls-container a#back, #date-and-controls-container a#forward
+{
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+#date-picker-controls-container
+{
   position: relative;
+  background-color: green;
+  z-index: 30;
+}
+
+#date-picker-controls
+{
+  padding: 10px;
+  background-color: #4B6B7C;
+  position: absolute;
+}
+
+#date-picker-controls .footer
+{
   text-align: center;
-  text-decoration: none;
-  font-size: 12px;
+  margin-top: 10px;
 }
 
-li.tab div.tab a.tab-slice
+#date-picker-controls .footer a#change-mode
 {
-  height: 15px;
-  line-height: 15px;
-  padding: 7px;
-  top: 7px;
+  color: #EEEEEE;
+  font-size: 11px;
+  text-decoration: underline;
 }
 
-li.tab.active div.tab .tab-slice
+#date-picker-controls .footer a#change-mode:hover
 {
-  font-size: 13px;
-  background-color: #EBEBEB;
-  color: #000000;
-}
-
-li.tab.active div.tab a.tab-slice
-{
-  height: 26px;
-  line-height: 26px;
-  top: 0px;
-  padding: 5px 5px 5px 5px;
-}
-
-li.tab.active div.tab a.tab
-{
-  color: #000000;
-}
-
-ul.navigation li.tab.first
-{
-  margin-left: 5px;
-  margin-right: 3px;
-}
-
-ul.navigation li.tab.last
-{
-  margin-left: 3px;
-  margin-right: 0px;
-}
-
-div.label-navigator
-{
-  background-color: #26B319;
-  clear: both;
-  font-size: 13px;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-  width: 135px;
-  z-index: 10;
-  border-left: 2px solid #656565;
-}
-
-div.label-navigator ol
-{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-div.label-navigator:hover ol
-{
-  display: block;
-}
-
-div.label-navigator ol li.label.active
-{
-  background-color: #EBEBEB;
-  display: block;
-}
-
-div.label-navigator ol li.label
-{
-  display: none;
-  text-align: left;
-}
-
-div.label-navigator ol:hover li.label
-{
-  display: block;
-}
-
-div.label-navigator ol li.label a.label
-{
-  background-color: #26B319;
-  color: #FFFFFF;
-  display: block;
-  font-size: 12px;
-  padding: 0 5px 0 5px;
-  text-decoration: none;
-}
-
-div.label-navigator ol li.label a.label:hover
-{
-  background-color: #656565;
+  cursor: pointer;
 }

@@ -1,4 +1,7 @@
 class App.Views.TaskList extends App.Views.Base
+  # hasOne: {taskCreationForm: "App.Views.TaskCreationForm"}
+  # hasMany: {tasks: "App.Views.Task"}
+
   _getComponents: ->
     @taskCreationForm = App.Views.TaskCreationForm.findAll(@domElement)[0]
     @taskCreationForm.parent = this if @taskCreationForm

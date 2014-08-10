@@ -31,8 +31,8 @@ class App.Views.Base
         @domElement = @_getDomElement(@id)
 
     if @domElement
-      @_getComponents()
       @_getAttributes(@domElement)
+      @_getComponents()
       @_attachBehavior()
 
   replaceDomElement: (newDomElement) ->
