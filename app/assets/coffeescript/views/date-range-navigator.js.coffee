@@ -25,8 +25,8 @@ class App.Views.DateRangeNavigator extends App.Views.Base
     @dateRangePickerContainer.html(@dateRangePicker.container)
 
   _getDataAttributes: (domElement) ->
-    @setEndDate(new Date(domElement.data().endDate + " (GMT)"))
     @setStartDate(new Date(domElement.data().startDate + " (GMT)"))
+    @setEndDate(new Date(domElement.data().endDate + " (GMT)"))
     super(domElement)
     
   setStartDate: (newStartDate) ->
@@ -40,8 +40,11 @@ class App.Views.DateRangeNavigator extends App.Views.Base
     @formattedEndDate = $.datepicker.formatDate("yy-mm-dd", @endDate) # can moment.js format dates?
     @domElement.data().endDate = @formattedEndDate
     @domElement.find("#end-date").html(" - " + $.datepicker.formatDate("MM d, yy", @endDate))
+
     if @calculateDayRange() > 1
       @domElement.find("#end-date").show()
+    else
+      @domElement.find("#end-date").hide()
 
   unsetEndDate: ->
     @endDate = null
@@ -82,7 +85,7 @@ class App.Views.DateRangeNavigator extends App.Views.Base
       subscribe: {"change": (date, action) ->
         dateRangeNavigator.setStartDate(this._sel[0]._d)
         dateRangeNavigator.unsetEndDate()
-        dateRangeNavigator.navigateToSelectedRange()
+        dateRangeNavigator.parent.navigateToSelectedDateRange()
       }
     }
     new Kalendae(@id, options)
@@ -96,14 +99,14 @@ class App.Views.DateRangeNavigator extends App.Views.Base
       subscribe: {'change': (date, action) ->
         dateRangeNavigator.setStartDate(this._sel[0]._d)
         dateRangeNavigator.setEndDate(this._sel[1]._d)
-        dateRangeNavigator.navigateToSelectedRange()
+        dateRangeNavigator.parent.navigateToSelectedDateRange()
       }
     }
     
     new Kalendae(@id, options)
 
-  navigateToSelectedRange: ->
+  getPathForSelectedDateRange: ->
     if @calculateDayRange() > 1
-      window.location.href = "/dates/" + @formattedStartDate + "/" + @formattedEndDate
+      return @basePath + "/" + @formattedStartDate + "/" + @formattedEndDate
     else
-      window.location.href = "/dates/" + @formattedStartDate
+      return @basePath + "/" + @formattedStartDate

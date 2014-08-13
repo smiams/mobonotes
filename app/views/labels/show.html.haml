@@ -1,0 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "views-dates-show"
+
+- if @label_with_tasks
+  %div.task-section
+    = render :partial => "tasks/list", :locals => {:label => @label_with_tasks, :tasks => @label_with_tasks.tasks}

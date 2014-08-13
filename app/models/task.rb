@@ -8,6 +8,26 @@ class Task < ActiveRecord::Base
 
   attr_accessible :name, :rolling, :label_id
 
+
+
+  scope :current, -> (start_time, end_time) do
+    start_time_utc_db = start_time.utc.to_formatted_s(:db)
+    end_time_utc_db = end_time.utc.to_formatted_s(:db)
+
+    self.where(
+      "(((tasks.end_at IS NOT NULL
+      AND tasks.start_at IS NOT NULL
+      AND tasks.start_at <= ? AND tasks.end_at >= ?)
+      OR (tasks.end_at IS NULL AND tasks.start_at BETWEEN ? AND ? AND tasks.completed_at IS NULL))
+      OR (tasks.start_at <= ? AND tasks.rolling = true AND tasks.completed_at IS NULL)
+      OR (tasks.completed_at BETWEEN ? AND ?))",
+      end_time_utc_db, start_time_utc_db,
+      start_time_utc_db, end_time_utc_db,
+      end_time_utc_db,
+      start_time_utc_db, end_time_utc_db
+    )
+  end
+
   scope :created_between, -> start_time, end_time { where(:created_at => start_time..end_time) }
   scope :completed_between, -> start_time, end_time { where(:completed_at => start_time..end_time) }
 

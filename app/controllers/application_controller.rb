@@ -3,11 +3,14 @@ class ApplicationController < ActionController::Base
 
   include Rails.application.routes.url_helpers
 
+  helper DateRangeNavigatorHelper
+
   before_filter :get_current_user
   before_filter :get_labels
   before_filter :get_current_controller_and_action
   before_filter :set_time_zone
   before_filter :_get_date_time
+  before_filter :_get_time_range
   before_filter :_get_current_tab
 
   def get_current_user
@@ -38,10 +41,29 @@ class ApplicationController < ActionController::Base
   private
 
   def _get_current_tab
-    @current_tab = session[:current_tab] || notes_path
+    @current_tab = session[:current_tab]
   end
 
   def _get_date_time
     @date_time = Time.zone.now
+  end
+
+  def _get_time_range
+    if params[:start_date]
+      @start_time = Time.zone.parse(params[:start_date]).beginning_of_day
+    end
+
+    if params[:end_date]
+      @end_time = Time.zone.parse(params[:end_date]).end_of_day
+    elsif @start_time
+      @end_time = @start_time.end_of_day
+    else
+      @end_time = @date_time.end_of_day
+    end
+
+    unless @start_time
+      @start_time = @date_time.beginning_of_day
+      @end_time = @date_time.end_of_day
+    end
   end
 end

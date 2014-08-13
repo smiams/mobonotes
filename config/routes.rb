@@ -1,15 +1,13 @@
 Mobonotes::Application.routes.draw do
   root :to => "dates#show"
+
   get "dates/:start_date" => "dates#show", :as => :date
   get "dates/:start_date/:end_date" => "dates#show", :as => :date_range
 
-  get "labels/:label_id/dates/:date" => "labels/dates#show", :as => :labels_dates
-
-  resources :labels do
-    get "notes", :on => :member
+  resources :labels, :only => :show do
+    get "dates/:start_date", :on => :member, :to => :show, :as => :date
+    get "dates/:start_date/:end_date", :on => :member, :to => :show, :as => :date_range
   end
-
-  resources :notes
 
   resources :tasks do
     put "complete", :on => :member

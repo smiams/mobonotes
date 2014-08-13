@@ -24,6 +24,6 @@ class Label < ActiveRecord::Base
       start_time_utc_db, end_time_utc_db,
       end_time_utc_db,
       start_time_utc_db, end_time_utc_db
-    ).eager_load(:tasks, :user)
+    ).eager_load({:tasks => :notes}, :user)
   end
 end
