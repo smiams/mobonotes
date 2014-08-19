@@ -4,16 +4,34 @@ Mobonotes::Application.routes.draw do
   get "dates/:start_date" => "dates#show", :as => :date
   get "dates/:start_date/:end_date" => "dates#show", :as => :date_range
 
-  resources :labels, :only => :show do
+  resources :labels, :only => [:show, :index] do
     get "dates/:start_date", :on => :member, :to => :show, :as => :date
     get "dates/:start_date/:end_date", :on => :member, :to => :show, :as => :date_range
+
+    resources :tasks, :module => "labels", :only => :index do
+      get "dates/:start_date", :on => :collection, :to => :index, :as => :date
+      get "dates/:start_date/:end_date", :on => :collection, :to => :index, :as => :date_range
+    end
+
+    resources :notes, :module => "labels", :only => :index do
+      get "dates/:start_date", :on => :collection, :to => :index, :as => :date
+      get "dates/:start_date/:end_date", :on => :collection, :to => :index, :as => :date_range
+    end
   end
 
   resources :tasks do
+    get "dates/:start_date", :on => :collection, :to => :index, :as => :date
+    get "dates/:start_date/:end_date", :on => :collection, :to => :index, :as => :date_range
+
     put "complete", :on => :member
     put "uncomplete", :on => :member
 
     resources :notes, :controller => "tasks/notes", :only => [:create, :update, :destroy]
+  end
+
+  resources :notes, :only => "index" do
+    get "dates/:start_date", :on => :collection, :to => :index, :as => :date
+    get "dates/:start_date/:end_date", :on => :collection, :to => :index, :as => :date_range
   end
 
   get "login" => "sessions#new", :via => :get, :as => :login

@@ -1,4 +1,10 @@
 class TasksController < ApplicationController
+  def index
+    @labels_with_tasks = Label.with_current_tasks_for_user(@current_user, @start_time, @end_time)
+
+    render :template => "dates/show"
+  end
+
   def create
     @task = Task.new(params[:task])
     @task.user_id = @current_user.id

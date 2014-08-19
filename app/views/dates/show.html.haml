@@ -2,5 +2,8 @@
   = javascript_include_tag "views-dates-show"
 
 %div.task-section
-  - @labels_with_tasks.each do |label|
-    = render :partial => "tasks/list", :locals => {:label => label, :tasks => label.tasks}
+  - if @labels_with_tasks.length > 0
+    - @labels_with_tasks.each do |label|
+      = render :partial => "tasks/list", :locals => {:label => label, :tasks => label.tasks}
+  - else
+    = render :partial => "tasks/list", :locals => {:label => @label, :tasks => []}

@@ -2,7 +2,6 @@
 {
   font-size: 22px;
   background-color: #4B6B7C;
-  height: 60px;
 }
 
 #date-and-controls-container
@@ -22,22 +21,22 @@
 
 #date-and-controls-container a#back, #date-and-controls-container a#forward
 {
-  text-decoration: none;
   color: #FFFFFF;
+  text-decoration: none;
 }
 
 #date-picker-controls-container
 {
-  position: relative;
   background-color: green;
+  position: relative;
   z-index: 30;
 }
 
 #date-picker-controls
 {
+  background-color: #4B6B7C;
   line-height: normal;
   padding: 10px;
-  background-color: #4B6B7C;
   position: absolute;
 }
 
@@ -64,7 +63,7 @@
   float: left;
   height: 60px;
   line-height: 40px;
-  width: 430px;
+  width: 480px;
 }
 
 #navigation #label-navigator
@@ -72,4 +71,66 @@
   float: left;
   height: 60px;
   line-height: 54px;
+}
+
+div#navigation div.top
+{
+  clear: both;
+  height: 60px;
+}
+
+div#navigation div.bottom
+{
+  clear: both;
+  height: 30px;
+}
+
+div#navigation #tabs
+{
+  height: 30px;
+}
+
+div#navigation #tabs ul
+{
+	clear: both;
+  height: 30px;
+  padding-left: 30px;
+}
+
+div#navigation #tabs ul li
+{
+	float: left;
+  height: 30px;
+  margin-left: 10px;
+}
+
+div#navigation #tabs ul li.first
+{
+  margin-left: 0;
+}
+
+div#navigation #tabs ul li a:hover
+{
+  cursor: pointer;
+}
+
+div#navigation #tabs ul li a.tab
+{
+  background-color: #79ADC8;
+  color: #FFFFFF;
+  float: left;
+  font-size: 13px;
+  height: 15px;
+  margin-top: 5px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+
+div#navigation #tabs ul li.active a.tab
+{
+  background-color: #F1F1F1;
+  color: #010101;
+  font-size: 18px;
+  height: 20px;
+  margin-top: 0px;
 }

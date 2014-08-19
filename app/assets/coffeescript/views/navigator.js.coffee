@@ -12,4 +12,7 @@ class App.Views.Navigator extends App.Views.Base
       @labelNavigator.parent = this
 
   navigateToSelectedDateRange: ->
-    window.location = @labelNavigator.getPathForSelectedLabel() + @dateRangeNavigator.getPathForSelectedDateRange()
+    if @basePath
+      window.location = @basePath + @dateRangeNavigator.getPathForSelectedDateRange()
+    else
+      window.location = @dateRangeNavigator.getPathForSelectedDateRange()

@@ -17,11 +17,6 @@ class Labels::DatesController < ApplicationController
     end
   end
 
-  # The #index action should show a calendar or something...
-  # def index
-  # 
-  # end
-
   private
 
   def _get_label

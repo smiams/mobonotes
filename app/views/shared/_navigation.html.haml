@@ -1,18 +1,20 @@
-#navigation{"data-view-class" => "App.Views.Navigator"}
-  #date-range-navigator.date-range-navigator{"data-view-class" => "App.Views.DateRangeNavigator", "data-start-date" => @start_time.strftime("%b %d, %Y"), "data-end-date" => @end_time.strftime("%b %d, %Y"), "data-base-path" => "/dates"}
-    #date-and-controls-container
-      = link_to_date_range_back(@start_time, @end_time)
-      %span#dates
-        %span#start-date
-          = @start_time.strftime("%b %d, %Y")
-        = content_for_end_date(@start_time, @end_time)
-      = link_to_date_range_forward(@start_time, @end_time)
-    #date-picker-controls-container{:style => "display: none;"}
-      #date-picker-controls
-        #single-date-picker-container.date-picker-container{:style => "display: none;"}
-        #date-range-picker-container.date-picker-container{:style => "display: none;"}
-        .footer
-          = link_to_change_mode(@start_time, @end_time)
-  #label-navigator{"data-base-path" => "/labels", "data-view-class" => "App.Views.LabelNavigator"}
-    = select_tag :labels, options_from_collection_for_select(@labels, :id, :name, @label.try(:id)), :prompt => "- All Labels -", :id => "label-selector"
-%div{:style => "clear:both;"}
+#navigation{"data-view-class" => "App.Views.Navigator", "data-base-path" => get_base_path}
+  .top
+    #date-range-navigator.date-range-navigator{"data-view-class" => "App.Views.DateRangeNavigator", "data-start-date" => @start_time.strftime("%b %d, %Y"), "data-end-date" => @end_time.strftime("%b %d, %Y")}
+      #date-and-controls-container
+        = link_to_date_range_back(@start_time, @end_time)
+        %span#dates
+          %span#start-date
+            = @start_time.strftime("%B %d, %Y")
+          = content_for_end_date(@start_time, @end_time)
+        = link_to_date_range_forward(@start_time, @end_time)
+      #date-picker-controls-container{:style => "display: none;"}
+        #date-picker-controls
+          #single-date-picker-container.date-picker-container{:style => "display: none;"}
+          #date-range-picker-container.date-picker-container{:style => "display: none;"}
+          .footer
+            = link_to_change_mode(@start_time, @end_time)
+    #label-navigator{"data-view-class" => "App.Views.LabelNavigator"}
+      = select_tag :labels, options_for_select(get_label_options, request.env['REQUEST_PATH']), :id => "label-selector"
+  .bottom
+    = render :partial => "shared/navigation_tabs"

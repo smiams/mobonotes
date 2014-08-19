@@ -1,0 +1,6 @@
+#tabs
+  %ul
+    %li{:class => @current_tab == "tasks" ? "first active" : "first"}
+      = link_to("Tasks", url_for_tab("tasks"), :class => "tab")
+    %li{:class => @current_tab == "notes" ? "active" : ""}
+      = link_to("Notes", url_for_tab("notes"), :class => "tab")

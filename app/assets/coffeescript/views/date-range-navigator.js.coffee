@@ -107,6 +107,6 @@ class App.Views.DateRangeNavigator extends App.Views.Base
 
   getPathForSelectedDateRange: ->
     if @calculateDayRange() > 1
-      return @basePath + "/" + @formattedStartDate + "/" + @formattedEndDate
+      return "/dates/" + @formattedStartDate + "/" + @formattedEndDate
     else
-      return @basePath + "/" + @formattedStartDate
+      return "/dates/" + @formattedStartDate
