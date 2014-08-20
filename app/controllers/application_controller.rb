@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include Rails.application.routes.url_helpers
 
-  helper DateRangeNavigatorHelper
+  helper NavigatorHelper
 
   before_filter :set_time_zone
   before_filter :_get_current_user

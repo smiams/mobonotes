@@ -4,3 +4,5 @@ Mobonotes::Application.config.tab_mappings = {
   "notes" => "notes",
   "labels/notes" => "notes"
 }
+
+Mobonotes::Application.config.tab_names = Mobonotes::Application.config.tab_mappings.values.uniq

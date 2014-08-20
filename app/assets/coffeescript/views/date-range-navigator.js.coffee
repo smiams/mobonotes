@@ -3,6 +3,7 @@ class App.Views.DateRangeNavigator extends App.Views.Base
 
   initialize: (data) ->
     super(data)
+
     if @calculateDayRange() > 1
       @pickerMode = "range"
       @dateRangePickerContainer.show()
@@ -88,10 +89,12 @@ class App.Views.DateRangeNavigator extends App.Views.Base
         dateRangeNavigator.parent.navigateToSelectedDateRange()
       }
     }
+
     new Kalendae(@id, options)
 
   _initializeDateRangePicker: ->
     dateRangeNavigator = this
+
     options = {
       mode: "range",
       months: 2,
@@ -102,7 +105,7 @@ class App.Views.DateRangeNavigator extends App.Views.Base
         dateRangeNavigator.parent.navigateToSelectedDateRange()
       }
     }
-    
+
     new Kalendae(@id, options)
 
   getPathForSelectedDateRange: ->
