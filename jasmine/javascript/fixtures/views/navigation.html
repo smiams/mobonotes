@@ -1,0 +1,49 @@
+<div data-base-path="/tasks" data-view-class="App.Views.Navigator" id="navigation">
+    <div class="top">
+      <div class="date-range-navigator" data-end-date="2014-08-20" data-start-date="2014-08-20" data-view-class="App.Views.DateRangeNavigator" id="date-range-navigator">
+        <div id="date-and-controls-container">
+          <a href="/tasks/dates/2014-08-19" id="back">«</a>
+          <span id="dates">
+            <span id="start-date">August 20, 2014</span>
+            <span id="end-date" style="display: none;"> - August 20, 2014</span>
+          </span>
+          <a href="/tasks/dates/2014-08-21" id="forward">»</a>
+        </div>
+        <div id="date-picker-controls-container" style="display: none;">
+          <div id="date-picker-controls">
+            <div class="date-picker-container" id="single-date-picker-container" style="display: none;">
+            </div>
+            <div class="date-picker-container" id="date-range-picker-container" style="display: none;">
+            </div>
+            <div class="footer">
+              <a id="change-mode">choose a date range instead...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-view-class="App.Views.LabelNavigator" id="label-navigator">
+        <select id="label-selector" name="labels"><option selected="selected" value="/tasks/dates/2014-08-20">- All Labels -</option>
+        <option value="/labels/1/tasks/dates/2014-08-20">bitsimplicity</option>
+        <option value="/labels/2/tasks/dates/2014-08-20">housekeeping</option>
+        <option value="/labels/3/tasks/dates/2014-08-20">communications</option>
+        <option value="/labels/4/tasks/dates/2014-08-20">social</option>
+        <option value="/labels/5/tasks/dates/2014-08-20">from the store</option>
+        <option value="/labels/6/tasks/dates/2014-08-20">physical</option>
+        <option value="/labels/7/tasks/dates/2014-08-20">flight</option>
+        <option value="/labels/8/tasks/dates/2014-08-20">job search</option>
+        <option value="/labels/9/tasks/dates/2014-08-20">mobonotes</option></select>
+      </div>
+    </div>
+    <div class="bottom">
+      <div id="tabs">
+        <ul>
+          <li class="first active">
+            <a class="tab" href="/tasks/dates/2014-08-20">Tasks</a>
+          </li>
+          <li class="">
+            <a class="tab" href="/notes/dates/2014-08-20">Notes</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_filter :get_current_user, :except => [:destroy]
-  skip_before_filter :get_labels
+  skip_before_filter :_get_current_user, :except => [:destroy]
+  skip_before_filter :_get_labels
   
   layout false
   

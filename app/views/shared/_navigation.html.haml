@@ -1,6 +1,6 @@
 #navigation{"data-view-class" => "App.Views.Navigator", "data-base-path" => get_base_path}
   .top
-    #date-range-navigator.date-range-navigator{"data-view-class" => "App.Views.DateRangeNavigator", "data-start-date" => @start_time.strftime("%b %d, %Y"), "data-end-date" => @end_time.strftime("%b %d, %Y")}
+    #date-range-navigator.date-range-navigator{"data-view-class" => "App.Views.DateRangeNavigator", "data-start-date" => @start_time.strftime("%Y-%m-%d"), "data-end-date" => @end_time.strftime("%Y-%m-%d")}
       #date-and-controls-container
         = link_to_date_range_back(@label, @start_time, @end_time)
         %span#dates
