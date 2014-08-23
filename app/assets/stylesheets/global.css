@@ -1,11 +1,8 @@
 body
 {
-  font-family: helvetica;
+  font-family: "Lucida Grande", helvetica, verdana, arial, sans-serif;
   font-size: 13px;
   background-color: #F1F1F1;
-/*  background-color: #E3F3FC;
-    background-color: #D9CFA6;
-    background-color: #C9C59A;  */
 }
 
 div.displaying
@@ -13,10 +10,38 @@ div.displaying
   visibility: visible !important;
 }
 
-.clearfix:after { 
-   content: "."; 
-   visibility: hidden; 
-   display: block; 
-   height: 0; 
-   clear: both;
+.clearfix
+{
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+div#workspace
+{
+  background-color: #F1F1F1;
+  clear: both;
+  height: 100%;
+  width: 100%;
+}
+
+div#workspace div.page
+{
+  background-color: #FFFFFF;
+  box-shadow: 1px 1px 1px #F1F1F1;
+  margin: 3em;
+}
+
+div#workspace div.page div.page-navigation
+{
+  background-color: #4B6B7C;
+  color: #FFFFFF;
+  margin-bottom: 25px;
+  padding: 10px 10px 10px 15px;
+}
+
+div#workspace div.page div.page-navigation a
+{
+  color: #FFFFFF;
 }

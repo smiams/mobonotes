@@ -74,12 +74,14 @@ div.task-list-container ol.tasks li.task
 
 div.task-list-container ol.tasks li.task:hover
 {
-  background-color: #79ADC8;
+/*  background-color: #FFFFB2;*/
+  cursor: pointer;
 }
 
 div.task-list-container ol.tasks li.task:hover div.task-text-container
 {
-  color: #FFFFFF;
+/*  color: #FFFFFF;*/
+    cursor: pointer;
 }
 
 div.task-list-container ol.tasks li.complete.task div.task-text-container div.text
@@ -89,7 +91,7 @@ div.task-list-container ol.tasks li.complete.task div.task-text-container div.te
 
 div.task-list-container ol.tasks li.task div.task-item-container:hover
 {
-  cursor: default; 
+  cursor: default;
 }
 
 div.task-list-container ol.tasks li.task div.task-item-container div.task-checkbox-container
@@ -144,7 +146,7 @@ div.task-controls-container div.task-controls-cover:hover, ol.tasks li.task:hove
 
 div.task-controls-container div.task-controls-links
 {
-  background-color: #79ADC8;
+  background-color: #FFFFB2;
   padding: 5px;
   text-align: right;
   white-space: nowrap;
@@ -152,7 +154,7 @@ div.task-controls-container div.task-controls-links
 
 div.task-controls-container div.task-controls-links a
 {
-  color: #FFFFFF;
+  color: #000000;
 }
 
 div.task-list-container div.task-form-container

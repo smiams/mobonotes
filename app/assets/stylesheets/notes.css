@@ -1,0 +1,138 @@
+ul.notes
+{
+  padding: 0 25px 0 25px;
+  background-color: #ffffff;
+}
+
+ul.notes li.note div.note-container
+{
+  background-color: #FFFFFF;
+  padding-bottom: 40px;
+}
+
+ul.notes li.note div.note-container div.header div.timestamp
+{
+  font-weight: 800;
+  padding-bottom: 5px;
+}
+
+ul.notes li.note div.note-container div.header div.links
+{
+  padding-bottom: 5px;
+}
+
+ul.notes li.note div.note-container div.header div.links a
+{
+  
+  text-decoration: underline;
+  color: #000000;
+  margin-left: 5px;
+}
+
+ul.notes li.note div.note-container div.header div.links a.first
+{
+  margin: 0;
+}
+
+ul.notes li.note div.note-container div.footer
+{
+  padding: 20px 0 0 0;
+}
+
+ul.notes li.note div.note-container div.footer div.related-items input.checkbox
+{
+  margin: 0 5px 0 0;
+}
+
+ul.notes li.note div.note-container div.footer div.related-items
+{
+  background-color: #E5E5E5;
+  border-radius: 3px;
+  color: #606060;
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+}
+
+ul.notes li.note div.note-container div.footer div.related-items h3
+{
+  border-bottom: 1px dotted #606060;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+ul.notes li.note div.note-container div.footer div.bottom-border
+{
+  border-bottom: 1px solid #e5e5e5;
+  height: 0px;
+}
+
+ul.notes li.note div.note-container div.content
+{
+  padding: 5px 30px 10px 0px;
+}
+
+ul.notes li.note div.note-container div.content h1
+{
+  font-size: 20px;
+  margin-bottom: .5em;
+}
+
+ul.notes li.note div.note-container div.content h2
+{
+  font-size: 18px;
+  margin-bottom: .5em;
+}
+
+ul.notes li.note div.note-container div.content p
+{
+  margin-bottom: .5em;
+  margin-top: .5em;
+}
+
+ul.notes li.note div.note-container div.content ul
+{
+  list-style: disc;
+  padding: .5em 1em;
+  margin-left: 1em;
+}
+
+ul.notes li.note div.note-container div.content ol
+{
+  list-style: decimal;
+  padding: .5em 1em;
+  margin-left: 1em;
+}
+
+ul.notes li.note div.note-container div.content ul li
+{
+  list-style-type: disc;
+  padding-bottom: .5em;
+}
+
+ul.notes li.note div.note-container div.content ol li
+{
+  list-style-type: decimal;
+  padding-bottom: .5em;  
+}
+
+ul.notes li.note div.note-container div.content ul li ul li
+{
+  list-style-type: square;
+}
+
+ul.notes li.note div.note-container div.content blockquote
+{
+  background-color: #F9F9F9;
+  border-left: 5px solid #CCCCCC;
+  font-style: italic;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+}
+
+ul.notes li.note div.note-container div.content pre
+{
+  white-space: pre-wrap;
+  font-family: courier;
+}
