@@ -1,0 +1,20 @@
+%li.note{"data-view-class" => "App.Views.Note"}
+  .note-container
+    .header
+      .timestamp
+        = note.created_at.strftime("%d %b, %Y at %l:%M%P")
+    .clearfix
+      clearfix
+    .content
+      = RedCloth.new(note.content).to_html.html_safe
+    .footer
+      / .related-items
+      /   %h3
+      /     Related items...
+      /   - if note.task
+      /     %label
+      /       %input{:type => "checkbox", :class => "checkbox"}
+      /         = note.task.name
+      .bottom-border
+    .clearfix
+      clearfix

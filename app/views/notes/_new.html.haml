@@ -1,0 +1,12 @@
+.note-form{"data-view-class" => "App.Views.NoteWindow", :style => "display:none;"}
+  .header
+    New Note
+  .form-container
+    = form_for Note.new, :url => notes_path, :as => :note, :method => :post, :html => {"data-view-class" => "App.Views.NoteCreationForm"} do |f|
+      = f.hidden_field :label_id, :value => @label.id if @label
+      .textarea-container
+        = f.text_area :content, :class => "text-area", :rows => 5, :size => 30
+      .button-container
+        = f.submit "Save", :class => "submit"
+        %a
+          cancel

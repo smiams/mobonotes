@@ -5,9 +5,9 @@ body
   background-color: #F1F1F1;
 }
 
-div.displaying
+a:hover
 {
-  visibility: visible !important;
+  cursor: pointer;
 }
 
 .clearfix
@@ -31,6 +31,7 @@ div#workspace div.page
   background-color: #FFFFFF;
   box-shadow: 1px 1px 1px #F1F1F1;
   margin: 3em;
+  position: relative;
 }
 
 div#workspace div.page div.page-navigation

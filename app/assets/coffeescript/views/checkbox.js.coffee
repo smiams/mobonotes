@@ -1,4 +1,5 @@
 class App.Views.Checkbox extends App.Views.Base
+#  events: {"click": (event) => do some things...}
   _attachBehavior: ->
     super()
 
