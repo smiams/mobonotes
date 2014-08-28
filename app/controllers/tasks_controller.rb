@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   def index
     @labels_with_tasks = Label.with_current_tasks_for_user(@current_user, @start_time, @end_time)
 
-    render :template => "dates/show"
+    render :action => :index
   end
 
   def create

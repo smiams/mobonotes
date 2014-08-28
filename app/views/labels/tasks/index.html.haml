@@ -1,0 +1,5 @@
+- content_for :head do
+  = javascript_include_tag "views/tasks/index.js"
+
+%div.task-section
+  = render :partial => "tasks/list", :locals => {:label => @label_with_tasks, :tasks => @label_with_tasks.tasks}
