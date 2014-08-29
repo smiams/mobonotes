@@ -1,8 +1,5 @@
 class App.Views.LabelNavigator extends  App.Views.Base
-  # hasOne: {labelSelector: "select#label-selector"}
-
-  _getComponents: ->
-    @labelSelector = @domElement.find("select#label-selector")
+  @hasOne {name: "labelSelector", domSelector: "select#label-selector"}
 
   _attachBehavior: ->
     @labelSelector.on "change", (event) =>

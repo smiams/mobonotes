@@ -1,7 +1,6 @@
 class App.Views.TaskNoteEditForm extends App.Views.Base
-  _getComponents: ->
-    @cancelLink = @domElement.find("div.button-container a:contains('cancel')")
-    @textbox = @domElement.find("textarea")
+  @hasOne {name: "cancelLink", domSelector: "div.button-container a:contains('cancel')"}
+  @hasOne {name: "textbox", domSelector: "textarea"}
 
   _attachBehavior: ->
     @cancelLink.on "click", (event) =>

@@ -1,29 +1,19 @@
 class App.Views.DateRangeNavigator extends App.Views.Base
-  # hasOne: {datesBox: "span#dates"}
+  @hasOne {name: "datesBox", domSelector: "span#dates"}
+  @hasOne {name: "changeModeLink", domSelector: "a#change-mode"}
+  @hasOne {name: "datePickerControlsContainer", domSelector: "div#date-picker-controls-container"}
+  @hasOne {name: "singleDatePicker", class: "App.Views.SingleDatePicker"}
+  @hasOne {name: "dateRangePicker", class: "App.Views.DateRangePicker"}
 
   initialize: (data) ->
     super(data)
 
     if @calculateDayRange() > 1
       @pickerMode = "range"
-      @dateRangePickerContainer.show() if @dateRangePickerContainer
+      @dateRangePicker.show() if @dateRangePicker
     else
       @pickerMode = "single"
-      @singleDatePickerContainer.show() if @singleDatePickerContainer
-
-  _getComponents: ->
-    @datesBox = @domElement.find("span#dates")
-    @changeModeLink = @domElement.find("a#change-mode")
-
-    @datePickerControlsContainer = @domElement.find("div#date-picker-controls-container")
-    @singleDatePickerContainer = @domElement.find("div#single-date-picker-container")
-    @dateRangePickerContainer = @domElement.find("div#date-range-picker-container")
-
-    @singleDatePicker = @_initializeSingleDatePicker()
-    @dateRangePicker = @_initializeDateRangePicker()
-
-    @singleDatePickerContainer.html(@singleDatePicker.container)
-    @dateRangePickerContainer.html(@dateRangePicker.container)
+      @singleDatePicker.show() if @singleDatePicker
 
   _getDataAttributes: (domElement) ->
     @setStartDate(domElement.data().startDate)
@@ -69,45 +59,14 @@ class App.Views.DateRangeNavigator extends App.Views.Base
   _togglePickerMode: ->
     if @pickerMode == "range"
       @changeModeLink.html("choose a date range instead...")
-      @singleDatePickerContainer.show()
-      @dateRangePickerContainer.hide()
+      @singleDatePicker.show()
+      @dateRangePicker.hide()
       @pickerMode = "single"
     else
       @changeModeLink.html("choose a single date instead...")
-      @dateRangePickerContainer.show()
-      @singleDatePickerContainer.hide()
+      @dateRangePicker.show()
+      @singleDatePicker.hide()
       @pickerMode = "range"
-
-  _initializeSingleDatePicker: ->
-    dateRangeNavigator = this
-
-    options = {
-      mode: "single",
-      selected: @formattedStartDate,
-      subscribe: {"change": (date, action) ->
-        dateRangeNavigator.setStartDate(this._sel[0]._i)
-        dateRangeNavigator.unsetEndDate()
-        dateRangeNavigator.parent.navigateToSelectedDateRange()
-      }
-    }
-
-    new Kalendae(@id, options)
-
-  _initializeDateRangePicker: ->
-    dateRangeNavigator = this
-
-    options = {
-      mode: "range",
-      months: 2,
-      selected: @formattedStartDate + " - " + @formattedEndDate
-      subscribe: {'change': (date, action) ->
-        dateRangeNavigator.setStartDate(this._sel[0]._i)
-        dateRangeNavigator.setEndDate(this._sel[1]._i)
-        dateRangeNavigator.parent.navigateToSelectedDateRange()
-      }
-    }
-
-    new Kalendae(@id, options)
 
   getPathForSelectedDateRange: ->
     if @calculateDayRange() > 1

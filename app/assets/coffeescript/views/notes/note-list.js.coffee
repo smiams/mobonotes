@@ -1,11 +1,5 @@
 class App.Views.NoteList extends App.Views.Base
-  # hasMany: {notes: "App.Views.Note"}
-
-  _getComponents: ->
-    @notes = App.Views.Note.findAll(@domElement)
-
-    for note in @notes
-      note.parent = this
+  @hasMany {name: "notes", class: "App.Views.Note"}
 
   addNote: (note) ->
     @notes.push(note)

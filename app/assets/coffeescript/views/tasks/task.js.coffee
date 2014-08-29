@@ -1,26 +1,10 @@
 class App.Views.Task extends App.Views.Base
-  _getComponents: ->
-    @deleteLink = @domElement.find("div.task-controls-container a:contains('delete')")
-    @editLink = @domElement.find("div.task-controls-container a:contains('edit')")
-
-    checkbox = App.Views.TaskCheckbox.findAll(@domElement)[0]
-    if checkbox
-      @checkbox = checkbox
-      @checkbox.parent = this
-
-    editForm = App.Views.TaskEditForm.findAll(@domElement)[0]
-    if editForm
-      @editForm = editForm
-      @editForm.parent = this
-
-    addNoteForm = App.Views.TaskNoteCreationForm.findAll(@domElement)[0]
-    if addNoteForm
-      @addNoteForm = addNoteForm
-      @addNoteForm.parent = this
-
-    @notes = App.Views.TaskNote.findAll(@domElement)
-    for note in @notes
-      note.parent = this
+  @hasOne {name: "deleteLink", domSelector: "div.task-controls-container a:contains('delete')"}
+  @hasOne {name: "editLink", domSelector: "div.task-controls-container a:contains('edit')"}
+  @hasOne {name: "checkbox", class: "App.Views.TaskCheckbox"}
+  @hasOne {name: "editForm", class: "App.Views.TaskEditForm"}
+  @hasOne {name: "addNoteForm", class: "App.Views.TaskNoteCreationForm"}
+  @hasMany {name: "notes", class: "App.Views.TaskNote"}
 
   _attachBehavior: ->
     super()

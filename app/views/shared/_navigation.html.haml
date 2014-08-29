@@ -10,8 +10,8 @@
         = link_to_date_range_forward(@label, @start_time, @end_time)
       #date-picker-controls-container{:style => "display: none;"}
         #date-picker-controls
-          #single-date-picker-container.date-picker-container{:style => "display: none;"}
-          #date-range-picker-container.date-picker-container{:style => "display: none;"}
+          #single-date-picker-container.date-picker-container{:style => "display: none;", "data-view-class" => "App.Views.SingleDatePicker"}
+          #date-range-picker-container.date-picker-container{:style => "display: none;", "data-view-class" => "App.Views.DateRangePicker"}
           .footer
             = link_to_change_mode(@start_time, @end_time)
     #label-navigator{"data-view-class" => "App.Views.LabelNavigator"}

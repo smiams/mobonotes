@@ -1,4 +1,6 @@
 class App.Views.TaskNoteCreationForm extends App.Views.Base
+  @hasOne {name: "textarea", domSelector: "textarea"}
+
   _attachBehavior: ->
     @domElement.on "click", (event) =>
       event.stopPropagation()
@@ -17,6 +19,3 @@ class App.Views.TaskNoteCreationForm extends App.Views.Base
         return xhr
 
     return @domElement
-
-  _getComponents: ->
-    @textarea = @domElement.find("textarea")

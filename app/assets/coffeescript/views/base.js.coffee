@@ -1,20 +1,35 @@
 class App.Views.Base
   @classIdentifierDOMAttribute = "data-view-class"
 
+  @hasOne: (configHash) ->
+    if @prototype.constructor.singleChildren == undefined
+      @prototype.constructor.singleChildren = []
+
+    @prototype.constructor.singleChildren.push(configHash)
+
+  @hasMany: (configHash) ->
+    if @prototype.constructor.multiChildren == undefined
+      @prototype.constructor.multiChildren = []
+
+    @prototype.constructor.multiChildren.push(configHash)
+
   @getClassName: ->
     "App.Views." + @prototype.constructor.name
 
-  @findAll: (contextElement) ->
+  @findAll: (parent) ->
     className = @getClassName()
 
-    if contextElement
-      elements = contextElement.find("[" + @classIdentifierDOMAttribute + "='" + className + "']")
+    if parent
+      elements = parent.domElement.find("[" + @classIdentifierDOMAttribute + "='" + className + "']")
     else
       elements = $.find("[" + @classIdentifierDOMAttribute + "='" + className + "']")
 
     viewInstances = []
     for element in elements
-      viewInstances.push(eval("new " + className + "({domElement: $(element)})"))
+      dataHash = {domElement: $(element)}
+      dataHash.parent = parent if parent
+      viewInstance = eval("new " + className + "(dataHash)")
+      viewInstances.push(viewInstance)
 
     return viewInstances
 
@@ -30,10 +45,12 @@ class App.Views.Base
         @id = data.id
         @domElement = @_getDomElement(@id)
 
+      this.parent = data.parent if data.parent
+
     if @domElement
       @_getAttributes(@domElement)
-      @_getComponents()
-      @_attachBehavior()
+    @_getComponents()
+    @_attachBehavior()
 
   replaceDomElement: (newDomElement) ->
     @domElement.replaceWith(newDomElement)
@@ -67,4 +84,18 @@ class App.Views.Base
     return @domElement
 
   _getComponents: ->
+    if @constructor.singleChildren
+      for configHash in @constructor.singleChildren
+        if configHash.class
+          @[configHash.name] = eval(configHash.class + ".findAll(this)[0]")        
+        else if configHash.domSelector
+          @[configHash.name] = @domElement.find(configHash.domSelector)
+
+    if @constructor.multiChildren
+      for configHash in @constructor.multiChildren
+        if configHash.class
+          @[configHash.name] = eval(configHash.class + ".findAll(this)")
+        else if configHash.domSelector
+          @[configHash.name] = @domElement.find(configHash.domSelector)
+
     return this

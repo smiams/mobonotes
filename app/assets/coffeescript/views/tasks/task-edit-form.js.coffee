@@ -1,6 +1,5 @@
 class App.Views.TaskEditForm extends App.Views.Base
-  _getComponents: ->
-    @cancelLink = @domElement.find("div.button-container a:contains('cancel')")
+  @hasOne {name: "cancelLink", domSelector: "div.button-container a:contains('cancel')"}
 
   _attachBehavior: ->
     @domElement.on "click", (event) =>

@@ -1,4 +1,6 @@
 class App.Views.TaskCreationForm extends App.Views.Base
+  @hasOne {name: "textbox", domSelector: "input[type='text']"}
+
   _attachBehavior: ->
     super()
 
@@ -15,8 +17,4 @@ class App.Views.TaskCreationForm extends App.Views.Base
           @textbox.val("")
           return xhr
 
-    return @domElement
-
-  _getComponents: ->
-    @textbox = @domElement.find("input[type='text']")
-    
+    return @domElement    
