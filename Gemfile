@@ -7,9 +7,6 @@ gem 'rails', '4.1.0'
 
 gem 'mysql', '2.9.1'
 
-# pg (Postgres gem) for Heroku...
-gem 'pg', '0.17.1'
-
 # Gems for backwards compatibility with rails 3.x...
 gem 'protected_attributes', '1.0.7'
 
@@ -55,4 +52,9 @@ group :development, :test do
   gem 'timecop', '0.7.1'
 	gem 'rspec', '2.14.1'
 	gem 'rspec-rails', '2.14.2'
+end
+
+group :production do# pg (Postgres gem) for Heroku...
+  gem 'pg', '0.17.1'
+  gem 'rails_12factor', '0.0.2'
 end
