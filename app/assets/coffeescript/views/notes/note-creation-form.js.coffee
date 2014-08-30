@@ -15,7 +15,7 @@ class App.Views.NoteCreationForm extends App.Views.Base
           dataType: "html",
           data: @domElement.serializeArray()
         }).success (data, status, xhr) =>
-          @parent.parent.noteList.addNote(new App.Views.Note({domElement: $(data)}))
+          @parent.parent.noteTable.addNote(new App.Views.NoteRow({domElement: $(data)}))
           @textarea.val("")
           @parent.domElement.hide()
           return xhr

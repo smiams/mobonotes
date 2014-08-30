@@ -7,3 +7,8 @@ class App.Views.NoteTable extends App.Views.Base
         nte.domElement.remove()
         @notes.splice(index, 1)
         break
+
+  addNote: (note) ->
+    @notes.push(note)
+    note.parent = this
+    @domElement.append(note.domElement)

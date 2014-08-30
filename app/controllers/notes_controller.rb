@@ -12,7 +12,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.js { render :partial => "notes/list_item", :locals => {:note => @note, :index => 0} }
+        format.js { render :partial => "notes/table_row", :locals => {:note => @note} }
       else
         format.js { render :text => "Error creating note!", :status => 500 }
       end
