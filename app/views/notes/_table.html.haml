@@ -1,0 +1,4 @@
+%table.notes{"data-view-class" => "App.Views.NoteTable"}
+  - @notes.each do |note|
+    = render :partial => "notes/table_row", :locals => {:note => note}
+= render :partial => "notes/new"

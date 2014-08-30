@@ -26,7 +26,7 @@ Mobonotes::Application.routes.draw do
     resources :notes, :controller => "tasks/notes", :only => [:create, :update, :destroy]
   end
 
-  resources :notes, :only => ["index", "create"] do
+  resources :notes, :only => ["index", "create", "update"] do
     get "dates/:start_date", :on => :collection, :to => :index, :as => :date
     get "dates/:start_date/:end_date", :on => :collection, :to => :index, :as => :date_range
   end

@@ -30,5 +30,5 @@ App.init = function() {
 
 $(document).ready(function () {
   App.init();
-  App.Views.Instances = App.Views.Instances.concat(App.Views.Navigator.findAll())
+  App.Views.Instances = App.Views.Instances.concat(App.Views.Navigator.findAll());
 });

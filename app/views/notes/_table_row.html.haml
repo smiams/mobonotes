@@ -1,0 +1,25 @@
+%tr.note{"data-view-class" => "App.Views.NoteRow"}
+  %td.header
+    .timestamp
+      = note.created_at.strftime("%d %b")
+      %span.time
+        = note.created_at.strftime("(%l:%M%P)").gsub(/\s/, '')
+  %td.content
+    .content
+      = RedCloth.new(note.content).to_html.html_safe
+    .footer
+      .links
+        %a.first edit
+        %a.delete delete
+        %a.last view
+    .note-form{:style => "display: none;", "data-view-class" => "App.Views.NoteEditWindow"}
+      .header
+        Edit Note...
+      .form-container
+        = form_for note, :url => note_path(note), :as => :note, :method => :put, :html => {"data-view-class" => "App.Views.NoteEditForm"} do |f|
+          %div.textarea-container
+            = f.text_area :content, :class => "text-area", :rows => 5, :size => 30
+          %div.button-container
+            = f.submit "Save", :class => "submit"
+            %a
+              cancel

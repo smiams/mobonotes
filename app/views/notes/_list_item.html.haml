@@ -2,11 +2,16 @@
   .note-container
     .header
       .timestamp
-        = note.created_at.strftime("%d %b, %Y at %l:%M%P")
-    .clearfix
-      clearfix
+        = note.created_at.strftime("%d %b")
+        %span.time
+          = note.created_at.strftime("(%l:%M%P)").gsub(/\s/, '')
+      .links
+        %a.first edit
+        %a.last delete
     .content
       = RedCloth.new(note.content).to_html.html_safe
+    .clearfix
+      clearfix
     .footer
       / .related-items
       /   %h3

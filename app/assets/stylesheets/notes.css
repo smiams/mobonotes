@@ -8,12 +8,25 @@ ul.notes li.note div.note-container
 {
   background-color: #FFFFFF;
   padding-bottom: 40px;
+  position: relative;
+}
+
+ul.notes li.note div.note-container div.header
+{
+  float: left;
 }
 
 ul.notes li.note div.note-container div.header div.timestamp
 {
   font-weight: 800;
   padding-bottom: 5px;
+}
+
+ul.notes li.note div.note-container div.header div.timestamp span.time
+{
+  font-weight: normal;
+  font-size: 12px;
+  font-style: italic;
 }
 
 ul.notes li.note div.note-container div.header div.links
@@ -23,28 +36,21 @@ ul.notes li.note div.note-container div.header div.links
 
 ul.notes li.note div.note-container div.header div.links a
 {
-  
   text-decoration: underline;
   color: #000000;
-  margin-left: 5px;
 }
 
-ul.notes li.note div.note-container div.header div.links a.first
+table.notes td.content div.footer
 {
-  margin: 0;
+  padding: 10px 0 0 5px;
 }
 
-ul.notes li.note div.note-container div.footer
-{
-  padding: 20px 0 0 0;
-}
-
-ul.notes li.note div.note-container div.footer div.related-items input.checkbox
+table.notes td.content div.footer div.related-items input.checkbox
 {
   margin: 0 5px 0 0;
 }
 
-ul.notes li.note div.note-container div.footer div.related-items
+table.notes td.content div.footer div.related-items
 {
   background-color: #E5E5E5;
   border-radius: 3px;
@@ -55,74 +61,73 @@ ul.notes li.note div.note-container div.footer div.related-items
   width: 200px;
 }
 
-ul.notes li.note div.note-container div.footer div.related-items h3
+table.notes td.content div.footer div.related-items h3
 {
   border-bottom: 1px dotted #606060;
   padding-bottom: 5px;
   margin-bottom: 10px;
 }
 
-ul.notes li.note div.note-container div.footer div.bottom-border
+table.notes td.content div.footer div.bottom-border
 {
   border-bottom: 1px solid #e5e5e5;
   height: 0px;
 }
 
-ul.notes li.note div.note-container div.content
+table.notes td.content div.content
 {
-  padding: 5px 30px 10px 0px;
+  padding: 5px;
 }
 
-ul.notes li.note div.note-container div.content h1
+table.notes td.content div.content h1
 {
   font-size: 20px;
   margin-bottom: .5em;
 }
 
-ul.notes li.note div.note-container div.content h2
+table.notes td.content div.content h2
 {
   font-size: 18px;
   margin-bottom: .5em;
 }
 
-ul.notes li.note div.note-container div.content p
+table.notes td.content div.content p
 {
   margin-bottom: .5em;
-  margin-top: .5em;
 }
 
-ul.notes li.note div.note-container div.content ul
+table.notes td.content div.content ul
 {
   list-style: disc;
-  padding: .5em 1em;
+  padding: 0em 1em .5em 1em;
   margin-left: 1em;
 }
 
-ul.notes li.note div.note-container div.content ol
+table.notes td.content div.content ol
 {
   list-style: decimal;
-  padding: .5em 1em;
+  padding: 0em 1em .5em 1em;
   margin-left: 1em;
 }
 
-ul.notes li.note div.note-container div.content ul li
+table.notes td.content div.content ul li
 {
   list-style-type: disc;
   padding-bottom: .5em;
 }
 
-ul.notes li.note div.note-container div.content ol li
+table.notes td.content div.content ol li
 {
   list-style-type: decimal;
   padding-bottom: .5em;  
 }
 
-ul.notes li.note div.note-container div.content ul li ul li
+table.notes td.content div.content ul li ul li
 {
   list-style-type: square;
 }
 
-ul.notes li.note div.note-container div.content blockquote
+table.notes td.content div.content blockquote
 {
   background-color: #F9F9F9;
   border-left: 5px solid #CCCCCC;
@@ -131,41 +136,36 @@ ul.notes li.note div.note-container div.content blockquote
   padding: 0.5em 10px;
 }
 
-ul.notes li.note div.note-container div.content pre
+table.notes td.content div.content pre
 {
   white-space: pre-wrap;
   font-family: courier;
 }
 
-
-
-
 div.note-form
 {
   background-color: #FFFFFF;
+  border-radius: 5px 5px 5px;
+  left: 1em;
   position: absolute;
   top: 1em;
-  border-radius: 5px 5px 5px;
   width: 95%;
+  z-index: 100;
 }
 
 div.note-form div.header
 {
+  background-color: #010101;
   border-radius: 5px 5px 0px 0px;
-  padding: 15px;
-/*  background-color: #79ADC8;*/
-/*  background-color: #4B6B7C;*/
-    background-color: #010101;
   color: #FFFFFF;
+  padding: 15px;
 }
 
 div.note-form div.form-container
 {
+  border: 2px solid #010101;
+  border-radius: 0px 0px 5px 5px;
   padding: 15px;
-/*  border: 2px solid #4B6B7C;*/
-    border: 2px solid #010101;
-/*  border: 2px solid #79ADC8;*/
-      border-radius: 0px 0px 5px 5px;
 }
 
 div.note-form div.form-container form
@@ -175,20 +175,65 @@ div.note-form div.form-container form
 
 div.note-form div.form-container textarea
 {
-  font-size: 13px;
-  width: 100%;
-  height: 40em;
-  margin: 0;
   border: none;
-  padding: 0 0 10px 0;
+  font-size: 13px;
+  height: 20em;
+  margin: 0;
   outline: 0;
-  resize: none;
+  padding: 0 0 10px 0;
+  width: 100%;
 }
 
 div.note-form div.form-container div.button-container
 {
-  text-align: right;
-/*  border-top: 1px solid #79ADC8;*/
-    border-top: 1px solid #010101;
+  border-top: 1px solid #010101;
   padding-top: 10px;
+  text-align: right;
+}
+
+table.notes tr
+{
+  padding-bottom: 10px;
+}
+
+table.notes tr.note
+{
+  position: relative;
+}
+
+table.notes td
+{
+  padding: .5em .5em 3em 1em;
+  vertical-align: top;
+  position: relative;
+}
+
+table.notes td.header .timestamp
+{
+  background-color: #79ADC8;
+  border-radius: 3px;
+  color: #FFFFFF;
+  padding: 5px;
+  text-align: center;
+  width: 9em;
+}
+
+table.notes td.content .footer .links a
+{
+  color: #4B6B7C;
+  font-size: 11px;
+  padding: 1px 1px 3px 1px;
+  text-decoration: underline;
+}
+
+table.notes td.content .footer .links a.delete:hover
+{
+  background-color: red;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+table.notes td.content div.note-form
+{
+  top: 0em;
 }
