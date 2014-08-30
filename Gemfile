@@ -7,6 +7,9 @@ gem 'rails', '4.1.0'
 
 gem 'mysql', '2.9.1'
 
+# pg (Postgres gem) for Heroku...
+gem 'pg', '0.17.1'
+
 # Gems for backwards compatibility with rails 3.x...
 gem 'protected_attributes', '1.0.7'
 
@@ -41,7 +44,6 @@ gem 'coffee-rails', '4.0.1'
 
 gem 'RedCloth', '4.2.9'
 gem 'capistrano', '2.8.0'
-gem 'heroku', '2.4.2'
 gem 'bcrypt-ruby', '2.1.4'
 gem 'haml', '4.0.5'
 gem 'sass', '3.2.0'

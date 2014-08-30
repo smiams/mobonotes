@@ -1,4 +1,8 @@
 class NotesController < ApplicationController
+  def new
+    render :text => "notes/new"
+  end
+
   def index
     @notes = Note.where(:user => @current_user).created_between(@start_time, @end_time).eager_load(:task).order(:created_at)
 
