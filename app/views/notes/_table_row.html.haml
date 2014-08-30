@@ -1,4 +1,4 @@
-%tr.note{"data-view-class" => "App.Views.NoteRow"}
+%tr.note{"data-view-class" => "App.Views.NoteRow", :id => "note-" + note.id.to_s}
   %td.header
     .timestamp
       = note.created_at.strftime("%d %b")
@@ -10,7 +10,7 @@
     .footer
       .links
         %a.first edit
-        %a.delete delete
+        %a.delete{"data-url" => note_path(note)} delete
         %a.last view
     .note-form{:style => "display: none;", "data-view-class" => "App.Views.NoteEditWindow"}
       .header

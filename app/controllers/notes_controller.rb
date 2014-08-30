@@ -32,4 +32,16 @@ class NotesController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @note = Note.find(params[:id])
+
+    respond_to do |format|
+      if @note.destroy!
+        format.js { head :ok }
+      else
+        format.js { head :error }
+      end
+    end
+  end
 end
